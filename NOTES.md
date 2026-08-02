@@ -10,6 +10,9 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 ## Working context (Stand: 2026-08-02)
 - **Klausur: Donnerstag, 06.08.2026** — nur noch ~3½ Tage. Kombiniert **Stochastik I + II**.
 - Ausgangsniveau: Grundlagen wackelig.
+- **Zeitbudget: 6+ Std/Tag** — großzügig. Alle 6 Lektionen gründlich + Pre-Klausur schaffbar;
+  Notfall-Priorität voraussichtlich nicht nötig. Lernstil: erst Lektion durcharbeiten, dann
+  mit Fragen zurückkommen (L1 so gestartet).
 - `pre_klausur.pdf` ist die beste Referenz für den Aufgaben-Stil (I: Bedingen/Mischen,
   stetige Dichten, Konvergenz→Poisson; II: Exponentialfamilie+MLS, Gauß-Test+KI).
 
