@@ -8,7 +8,7 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 - Kurze Lektionen mit *einem* greifbaren Win (kleines Arbeitsgedächtnis, Crunch-Modus).
 
 ## Working context (Stand: 2026-08-02)
-- Klausur in ~2 Wochen, kombiniert **Stochastik I + II**.
+- **Klausur: Donnerstag, 06.08.2026** — nur noch ~3½ Tage. Kombiniert **Stochastik I + II**.
 - Ausgangsniveau: Grundlagen wackelig.
 - `pre_klausur.pdf` ist die beste Referenz für den Aufgaben-Stil (I: Bedingen/Mischen,
   stetige Dichten, Konvergenz→Poisson; II: Exponentialfamilie+MLS, Gauß-Test+KI).
@@ -29,9 +29,15 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 - Einseitiger Gauß-Test: **Beispiel 92**; p-Wert **Beispiel 95**; zweiseitig **Beispiel 96**
 - χ²-Verteilung: **Def. 98/101**; KI für σ²: **Beispiel 103/104**
 
-## TODO / Ideenspeicher für nächste Lektionen
-- L2: Erwartungswert stetiger ZV aus Dichte (pre_klausur S-Aufgabe 2a).
-- L3: Konvergenz in Verteilung → Poisson-Approximation (pre_klausur S-Aufgabe 3).
-- L4: Exponentialfamilie erkennen + natürlicher Parameter (pre_klausur E-Aufgabe 1).
-- L5: MLS via Satz 60.
-- L6: Gauß-Test einseitig + Konfidenzintervall (pre_klausur E-Aufgabe 2).
+## 3½-Tage-Plan bis zur Klausur (Do, 06.08.)
+Ziel: die 6 Aufgabentypen der Pre-Klausur sicher können. Reihenfolge = Pre-Klausur.
+Stochastik II ist ~die Hälfte → L4–L6 unbedingt solide.
+
+- **So (heute):** L1 Bedingen ✅ durcharbeiten · L2 Erwartungswert aus Dichte + Verteilungsgleichheit (S-Aufg. 2).
+- **Mo:** L3 Konvergenz in Verteilung → Poisson-Approx. (S-Aufg. 3) · L4 Exponentialfamilie + natürl. Parameter (E-Aufg. 1a,b).
+- **Di:** L5 MLS via Satz 60 (E-Aufg. 1c) · L6 Gauß-Test einseitig + Konfidenzintervall + Verbindung (E-Aufg. 2).
+- **Mi:** ganze Pre-Klausur unter Zeit rechnen; Lücken gezielt nachüben (Interleaving-Mix aus allen Lektionen).
+- **Do früh:** nur Retrieval — Verteilungs-Referenz, Formeln, Quizzes. Nichts Neues mehr anfangen.
+
+Puffer: Wenn Zeit knapp wird, Priorität = L1, L6, L5, L4 (die punktreichsten, gut lernbaren Typen);
+L2/L3 zur Not nur über die Quizzes/Referenz mitnehmen.
