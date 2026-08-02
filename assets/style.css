@@ -1,0 +1,132 @@
+/* ============================================================
+   Stochastik-Klausur — geteiltes Stylesheet für alle Lektionen
+   Tufte-inspiriert: ruhige Typografie, warmer Hintergrund,
+   großzügige Ränder, gut ausdruckbar, Dark-Mode-fähig.
+   ============================================================ */
+
+:root {
+  --bg:        #fffff8;
+  --ink:       #111111;
+  --muted:     #4a4a44;
+  --rule:      #d9d7c8;
+  --accent:    #7a1f1f;   /* gedämpftes Bordeaux für Akzente */
+  --accent-2:  #1f4e7a;   /* gedämpftes Blau für Links */
+  --box-bg:    #f5f3e6;
+  --box-idea:  #eef4ee;
+  --box-warn:  #fbf0e6;
+  --code-bg:   #f0eede;
+  --maxw:      42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #16161a;
+    --ink:     #e8e6dd;
+    --muted:   #a7a49a;
+    --rule:    #33323a;
+    --accent:  #e0a3a3;
+    --accent-2:#9ec7f0;
+    --box-bg:  #21212a;
+    --box-idea:#1b271f;
+    --box-warn:#2a2118;
+    --code-bg: #23222b;
+  }
+}
+
+html { font-size: 17px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  line-height: 1.55;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 3.5rem 1.4rem 6rem;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Kopf / Navigation --- */
+.eyebrow {
+  font-variant: small-caps;
+  letter-spacing: .08em;
+  color: var(--muted);
+  font-size: .8rem;
+  margin: 0 0 .3rem;
+}
+h1 { font-size: 1.9rem; line-height: 1.15; margin: 0 0 .2rem; font-weight: 600; }
+h2 { font-size: 1.3rem; margin: 2.4rem 0 .6rem; font-weight: 600; }
+h3 { font-size: 1.05rem; margin: 1.6rem 0 .4rem; font-weight: 600; color: var(--muted); }
+.subtitle { color: var(--muted); font-style: italic; margin: .1rem 0 1.4rem; }
+
+p { margin: .7rem 0; }
+a { color: var(--accent-2); text-decoration: none; border-bottom: 1px solid var(--rule); }
+a:hover { border-bottom-color: var(--accent-2); }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
+
+/* --- Boxen --- */
+.box { border-radius: 6px; padding: .9rem 1.1rem; margin: 1.2rem 0; border: 1px solid var(--rule); }
+.box > :first-child { margin-top: 0; }
+.box > :last-child  { margin-bottom: 0; }
+.box .label {
+  font-variant: small-caps; letter-spacing: .06em; font-size: .78rem;
+  color: var(--muted); display: block; margin-bottom: .3rem;
+}
+.idea { background: var(--box-idea); border-color: #bcd2bc; }
+.warn { background: var(--box-warn); border-color: #e0c199; }
+.note { background: var(--box-bg); }
+@media (prefers-color-scheme: dark) {
+  .idea { border-color: #2e4a34; }
+  .warn { border-color: #55411f; }
+}
+
+/* --- Durchgerechnetes Beispiel --- */
+.worked { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.2rem 0; }
+.worked .step { margin: .55rem 0; }
+.worked .step b { color: var(--accent); font-weight: 600; }
+
+/* --- Zitate / Quellenangaben --- */
+.cite { font-size: .82rem; color: var(--muted); }
+sup.ref a { border: 0; color: var(--accent-2); font-size: .7rem; }
+.sources { font-size: .85rem; color: var(--muted); }
+.sources li { margin: .25rem 0; }
+
+/* --- Code / Formelinline --- */
+code { background: var(--code-bg); padding: .05rem .3rem; border-radius: 3px; font-size: .9em; }
+
+/* --- Fußzeile / Lernpfad --- */
+.footer-nav {
+  margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-size: .9rem;
+}
+.ask {
+  margin-top: 2rem; background: var(--box-idea); border: 1px dashed #bcd2bc;
+  border-radius: 6px; padding: .9rem 1.1rem; font-size: .95rem;
+}
+@media (prefers-color-scheme: dark) { .ask { border-color: #2e4a34; } }
+
+.primary-source {
+  margin: 1.4rem 0; padding: .9rem 1.1rem; background: var(--box-bg);
+  border-radius: 6px; border: 1px solid var(--rule);
+}
+.primary-source .label {
+  font-variant: small-caps; letter-spacing: .06em; font-size: .78rem;
+  color: var(--accent); display: block; margin-bottom: .25rem;
+}
+
+/* --- Tabellen (z. B. Verteilungs-Referenz) --- */
+table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: .92rem; }
+th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-variant: small-caps; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+
+/* --- Druck --- */
+@media print {
+  :root { --bg:#fff; --ink:#000; }
+  body { max-width: none; padding: 0; }
+  .quiz, .footer-nav, .ask { break-inside: avoid; }
+  a { color: #000; border: 0; }
+}

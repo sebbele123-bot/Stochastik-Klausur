@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion 1 · Bedingen: totale Wahrscheinlichkeit &amp; totale Erwartung</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+
+<p class="eyebrow">Lektion 1 · Stochastik I · Klausurvorbereitung</p>
+<h1>Bedingen: totale Wahrscheinlichkeit &amp; totale Erwartung</h1>
+<p class="subtitle">Ein Werkzeug, zwei Formeln — und damit ist Aufgabe&nbsp;1 der
+Pre-Klausur gelöst.</p>
+
+<div class="box note">
+  <span class="label">Warum genau das zuerst</span>
+  <p style="margin:0">Die <b>erste Aufgabe</b> deiner Muster-Klausur ist eine
+  Bernoulli-Mischung: Erst wird per Münzwurf $B$ entschieden, <i>welche</i> Verteilung
+  gilt, dann wird $X$ gezogen. Solche „Erst-dies-dann-das“-Aufgaben löst man immer mit
+  denselben zwei Formeln. Beherrschst du sie, holst du sichere Punkte — und dasselbe
+  Muster kommt in Teil&nbsp;II bei der Likelihood wieder.</p>
+</div>
+
+<h2>Die Kernidee</h2>
+
+<div class="box idea">
+  <span class="label">Zwei Formeln — mehr brauchst du hier nicht</span>
+  <p><b>Totale Wahrscheinlichkeit.</b> Zerlege über die Fälle von $B$:
+  $$P(A) \;=\; \sum_{b} P(A \mid B=b)\,P(B=b).$$</p>
+  <p style="margin-bottom:0"><b>Totale Erwartung (Turmregel).</b> Genauso für Erwartungswerte:
+  $$E[X] \;=\; E\big[\,E[X \mid B]\,\big] \;=\; \sum_{b} E[X \mid B=b]\,P(B=b).$$</p>
+</div>
+
+<p>Beide sagen dasselbe in Worten: <i>Rechne den Fall bei bekanntem $B$ aus, und mittle
+dann über die Fälle — gewichtet mit ihren Wahrscheinlichkeiten.</i> Das Gewicht $P(B=b)$
+darf nie fehlen; das ist der häufigste Fehler.</p>
+
+<div class="box warn">
+  <span class="label">Denkfehler, den die Klausur bestraft</span>
+  <p style="margin:0">$E[X\mid B]$ ist <b>keine feste Zahl</b>, solange $B$ zufällig ist —
+  es ist selbst eine Zufallsvariable, die je nach Ausgang von $B$ einen anderen Wert
+  annimmt. Deshalb steht außen noch ein $E[\,\cdot\,]$: erst innen bedingt rechnen, dann
+  außen über $B$ mitteln.</p>
+</div>
+
+<h2>Durchgerechnet: Aufgabe 1 der Pre-Klausur</h2>
+
+<p>Sei $B\sim\mathrm{Bernoulli}(p)$. Bedingt auf $B$ gilt
+$X\sim\mathrm{Exp}(2)$ falls $B=1$, und $X\sim\mathrm{Exp}(1)$ falls $B=0$.
+Erinnerung aus der <a href="../reference/verteilungen.html">Verteilungs-Referenz</a>:
+für $\mathrm{Exp}(\lambda)$ ist $P(X\le x)=1-e^{-\lambda x}$ und $E[X]=\tfrac1\lambda$.</p>
+
+<div class="worked">
+  <div class="step"><b>Aufbau.</b> Wir haben zwei Fälle:
+  $B=1$ mit Gewicht $p$ und Rate $\lambda=2$; &nbsp;$B=0$ mit Gewicht $1-p$ und Rate $\lambda=1$.</div>
+
+  <div class="step"><b>(a) $P(X\le 1)$.</b> Totale Wahrscheinlichkeit mit $A=\{X\le 1\}$:
+  $$P(X\le 1)= p\,\underbrace{(1-e^{-2\cdot 1})}_{B=1,\ \lambda=2}
+     +(1-p)\,\underbrace{(1-e^{-1\cdot 1})}_{B=0,\ \lambda=1}
+   = p\,(1-e^{-2})+(1-p)(1-e^{-1}).$$</div>
+
+  <div class="step"><b>(b) $P(X\le 2)$.</b> Dieselbe Zerlegung, nur $x=2$:
+  $$P(X\le 2)= p\,(1-e^{-4})+(1-p)(1-e^{-2}).$$</div>
+
+  <div class="step"><b>(c) $E[X]$.</b> Turmregel. Innen ist der Erwartungswert einer
+  Exponentialverteilung, also $E[X\mid B=1]=\tfrac12$ und $E[X\mid B=0]=1$. Außen mitteln:
+  $$E[X]=E\big[E[X\mid B]\big]= p\cdot\tfrac12 + (1-p)\cdot 1 = 1-\tfrac{p}{2}.$$</div>
+
+  <div class="step"><b>Plausibilität.</b> Für $p=0$ (immer $\mathrm{Exp}(1)$) kommt $E[X]=1$
+  heraus, für $p=1$ (immer $\mathrm{Exp}(2)$) kommt $\tfrac12$ heraus — genau die
+  Randfälle, die man erwartet. Gutes Zeichen, dass die Rechnung stimmt.</div>
+</div>
+
+<h2>So gehst du in der Klausur vor</h2>
+<ol>
+  <li>Finde die <b>Fallvariable</b> $B$ und schreibe ihre Gewichte $P(B=b)$ hin.</li>
+  <li>Rechne die gesuchte Größe <b>innerhalb jedes Falls</b> (bedingt) aus — hier per
+      Verteilungs-Referenz.</li>
+  <li><b>Mittle</b> mit den Gewichten: Summe aus (Wert im Fall)$\times$(Wahrscheinlichkeit des Falls).</li>
+  <li>Bei Erwartungswerten steht außen ein $E[\,\cdot\,]$ — nicht vergessen.</li>
+</ol>
+
+<h2>Jetzt du — Retrieval-Übung</h2>
+<p>Nicht nachschlagen, sondern <i>aus dem Gedächtnis</i> abrufen. Genau dieser leichte
+Widerstand baut die dauerhafte Erinnerung auf.</p>
+
+<div id="quiz1"></div>
+
+<div class="primary-source">
+  <span class="label">Primärquelle zum Vertiefen</span>
+  Blitzstein &amp; Hwang, <a href="https://probabilitybook.net/"><i>Introduction to
+  Probability</i></a> — Kap.&nbsp;2 (Law of Total Probability) und Kap.&nbsp;9
+  (Conditional Expectation, „Adam’s Law“ = Turmregel). Wenn du 15&nbsp;Minuten hast, ist
+  das die beste einzelne Ressource für diese Lektion. Visuell:
+  <a href="https://seeing-theory.brown.edu/compound-probability/index.html">Seeing Theory — Conditional Probability</a>.
+</div>
+
+<div class="ask">
+  <b>Ich bin dein Tutor.</b> Frag ruhig nach: „Warum ist $E[X\mid B]$ eine Zufallsvariable?“,
+  „Rechne mir (a) mit $p=\tfrac13$ als Zahl aus“, oder „Gib mir eine ähnliche Aufgabe mit
+  Normalverteilung statt Exponential.“ Unklarheiten jetzt klären ist billiger als in der Klausur.
+</div>
+
+<div class="footer-nav">
+  <span>Referenz: <a href="../reference/verteilungen.html">Verteilungen auf einen Blick</a></span>
+  <span>Nächste Lektion: Erwartungswert aus der Dichte →</span>
+</div>
+
+<hr>
+<p class="eyebrow">Quellen</p>
+<ol class="sources">
+  <li><span class="cite">Pre-Klausur Stochastik I+II, Aufgabe 1 (Bernoulli-Mischung von
+      Exponentialverteilungen) — <code>pre_klausur.pdf</code>.</span></li>
+  <li><span class="cite">Blitzstein &amp; Hwang, <i>Introduction to Probability</i>, 2. Aufl.,
+      Kap. 2 &amp; 9 — <a href="https://probabilitybook.net/">probabilitybook.net</a>.</span></li>
+  <li><span class="cite">Verteilungswerte (Exp): siehe
+      <a href="../reference/verteilungen.html">Verteilungs-Referenz</a> dieses Kurses.</span></li>
+</ol>
+
+<script src="../assets/quiz.js"></script>
+<script>
+Quiz.render('quiz1', [
+  {
+    type: 'recall',
+    q: 'Formuliere den Satz von der totalen Erwartung (Turmregel) als Formel.',
+    answer: '$E[X] = E\\big[E[X\\mid B]\\big]$',
+    explain: 'Innen bedingt rechnen, außen über $B$ mitteln.'
+  },
+  {
+    type: 'mc',
+    q: 'Was ist $E[X\\mid B]$, solange $B$ zufällig ist?',
+    options: [
+      'Selbst eine zufällige Größe',
+      'Eine feste reelle Zahl',
+      'Stets der gesuchte Erwartungswert'
+    ],
+    correct: 0,
+    explain: 'Der Wert hängt vom Ausgang von $B$ ab — deshalb steht außen noch ein $E[\\cdot]$.'
+  },
+  {
+    type: 'mc',
+    q: 'Wie zerlegt man $P(X\\le x)$ über $B\\sim\\mathrm{Bernoulli}(p)$ korrekt?',
+    options: [
+      '$p\\,P(X\\le x\\mid B{=}1) + (1{-}p)\\,P(X\\le x\\mid B{=}0)$',
+      '$P(X\\le x\\mid B{=}1) + P(X\\le x\\mid B{=}0)$',
+      '$p\\,P(X\\le x\\mid B{=}1)\\cdot(1{-}p)\\,P(X\\le x\\mid B{=}0)$'
+    ],
+    correct: 0,
+    explain: 'Gewichten mit $P(B{=}b)$ und summieren — nicht multiplizieren, nicht weglassen.'
+  },
+  {
+    type: 'numeric',
+    q: 'Berechne $E[X]$ im Beispiel für $p=\\tfrac12$. (Es gilt $E[X]=1-\\tfrac{p}{2}$.)',
+    answer: 0.75, tol: 0.001,
+    explain: '$1-\\tfrac{1}{2}\\cdot\\tfrac12 = 1-\\tfrac14 = 0.75$.'
+  },
+  {
+    type: 'numeric',
+    q: 'Und für $p=1$ (also immer $\\mathrm{Exp}(2)$): $E[X]=$ ?',
+    answer: 0.5, tol: 0.001,
+    explain: '$E[X]=1-\\tfrac12 = \\tfrac12$, der Erwartungswert von $\\mathrm{Exp}(2)$.'
+  }
+], { title: 'Selbsttest · Bedingen' });
+
+if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+  MathJax.startup.promise.then(function () { MathJax.typesetPromise(); });
+}
+</script>
+
+</body>
+</html>
