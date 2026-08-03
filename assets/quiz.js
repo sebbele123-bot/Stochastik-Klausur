@@ -50,6 +50,18 @@
     return e;
   }
 
+  // Akzeptiert Dezimalzahlen (0.75 / 0,75) UND Brüche (3/4, -1/2).
+  function parseNum(raw) {
+    raw = (raw || "").replace(",", ".").trim();
+    if (raw === "") return NaN;
+    var m = raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if (m) {
+      var d = parseFloat(m[2]);
+      return d !== 0 ? parseFloat(m[1]) / d : NaN;
+    }
+    return parseFloat(raw);
+  }
+
   function injectCSS() {
     if (document.getElementById("quiz-css")) return;
     var s = el("style"); s.id = "quiz-css"; s.textContent = CSS;
@@ -127,7 +139,7 @@
     var row = el("div", "num-row");
     var input = el("input");
     input.type = "text";
-    input.placeholder = q.placeholder || "Zahl eingeben";
+    input.placeholder = q.placeholder || "z. B. 0,75 oder 3/4";
     var btn = el("button", "btn", "Prüfen");
     row.appendChild(input);
     if (q.unit) row.appendChild(el("span", null, q.unit));
@@ -138,8 +150,7 @@
     var answered = false;
     function check() {
       if (answered) return;
-      var raw = (input.value || "").replace(",", ".").trim();
-      var val = parseFloat(raw);
+      var val = parseNum(input.value);
       if (isNaN(val)) { input.focus(); return; }
       answered = true; input.disabled = true; btn.disabled = true;
       var tol = q.tol != null ? q.tol : 1e-9;
