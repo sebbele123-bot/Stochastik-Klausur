@@ -1,0 +1,321 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0;
+    --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+      --idea-bg:#16211a; --idea-br:#2f4a35;
+      --warn-bg:#241d13; --warn-br:#574421;
+      --card:#171b21; --code:#1c222a;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+    --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+    --card:#171b21; --code:#1c222a;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62; margin:0;}
+  .wrap{max-width:41rem; margin:0 auto; padding:3.4rem 1.4rem 5rem;}
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.13em; font-size:.72rem; font-weight:600; color:var(--accent); margin:0 0 .7rem;}
+  h1{font-size:2.05rem; line-height:1.12; font-weight:600; margin:0 0 .5rem; text-wrap:balance; letter-spacing:-.01em;}
+  .subtitle{color:var(--muted); font-style:italic; font-size:1.12rem; margin:0 0 1.6rem; text-wrap:balance;}
+  h2{font-size:1.32rem; font-weight:600; margin:2.6rem 0 .5rem; letter-spacing:-.005em;}
+  p{margin:.7rem 0;} ol{padding-left:1.25rem;} ol li{margin:.4rem 0;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+  .m{font-style:italic; font-family:Georgia,"Times New Roman",serif;}
+  sup,sub{font-style:normal;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:-0.55em; text-align:center;
+    font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
+  .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
+  .frac>span:last-child{padding:0 .28em;}
+  .eq{margin:1.05rem 0; text-align:center; font-size:1.08rem;}
+  .intg{font-style:normal; font-size:1.42em; line-height:0; vertical-align:-.32em; margin-right:.02em;}
+  .cases{display:inline-grid; grid-template-columns:auto auto; gap:.15rem 1rem; text-align:left;
+    border-left:2px solid currentColor; padding-left:.6rem; margin:.3rem 0; font-style:normal;}
+  .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
+  .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0; background:var(--card);}
+  .box>:first-child{margin-top:0} .box>:last-child{margin-bottom:0}
+  .idea{background:var(--idea-bg); border-color:var(--idea-br);} .idea .label{color:#2f6b3d;}
+  .warn{background:var(--warn-bg); border-color:var(--warn-br);} .warn .label{color:#8a5a17;}
+  .why .label{color:var(--accent);}
+  :root[data-theme="dark"] .idea .label{color:#8fce9c} :root[data-theme="dark"] .warn .label{color:#e0bd82}
+  @media (prefers-color-scheme:dark){ .idea .label{color:#8fce9c} .warn .label{color:#e0bd82} }
+  .worked{border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.15rem; margin:1.4rem 0;}
+  .worked .step{margin:.7rem 0;} .worked .step b{color:var(--accent);}
+  .cite{color:var(--muted); font-size:.88em;}
+  code{background:var(--code); font-family:ui-monospace,Menlo,monospace; font-size:.86em; padding:.06rem .32rem; border-radius:4px;}
+  .source{background:var(--accent-soft); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.5rem 0;}
+  .source .label{color:var(--accent);}
+  .ask{border:1px dashed var(--accent); border-radius:8px; padding:1rem 1.15rem; margin:1.8rem 0;} .ask .label{color:var(--accent);}
+  hr{border:0; border-top:1px solid var(--rule); margin:2.4rem 0;}
+  .foot{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:.85rem; color:var(--muted);
+    margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule);}
+  .sources{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--muted); padding-left:1.1rem;}
+  .sources li{margin:.3rem 0;}
+  /* quiz */
+  .quiz{border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:1.6rem 0;
+    background:var(--card); font-family:ui-sans-serif,system-ui,sans-serif;}
+  .quiz-head{display:flex; justify-content:space-between; align-items:center; padding:.7rem 1.05rem;
+    border-bottom:1px solid var(--rule); text-transform:uppercase; letter-spacing:.09em; font-size:.72rem; font-weight:700; color:var(--muted);}
+  .quiz-score{letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--accent);}
+  .q{padding:1.05rem;} .q+.q{border-top:1px solid var(--rule);}
+  .q-prompt{margin:0 0 .75rem; font-weight:600;} .q-prompt .qn{color:var(--muted); margin-right:.4rem; font-weight:700;}
+  .opt{display:block; width:100%; text-align:left; margin:.34rem 0; padding:.55rem .8rem; border:1px solid var(--rule);
+    border-radius:6px; background:var(--paper); color:var(--ink); font:inherit; cursor:pointer; transition:border-color .12s, background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);} .opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:#dcefdf; border-color:#5fa06c; color:#173f21;}
+  .opt.wrong{background:#f4dede; border-color:#c06a6a; color:#521818;}
+  :root[data-theme="dark"] .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+  :root[data-theme="dark"] .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  @media (prefers-color-scheme:dark){ .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;} .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;} }
+  .num-row{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center;}
+  .num-row input{font:inherit; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--ink); width:9rem;}
+  .num-row input:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .btn{font:inherit; font-weight:600; padding:.5rem .95rem; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:var(--on-accent); cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--accent);} .btn:hover{filter:brightness(1.05);} .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
+  .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
+  .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Lektion 2 · Stochastik I · Klausurvorbereitung</p>
+  <h1>Erwartungswert aus der Dichte — und Verteilungen vergleichen</h1>
+  <p class="subtitle">Zwei Standardschritte an Aufgabe 2 der Pre-Klausur — beide über dasselbe Bild: die Dichte als Mischung.</p>
+
+  <div class="box why">
+    <span class="label">Warum das dran ist</span>
+    <p>Aufgabe 2 prüft zwei Dinge, die immer wieder kommen: <b>(a)</b> einen Erwartungswert aus
+    einer Dichte ausrechnen und <b>(b)</b> zeigen, dass zwei Zufallsvariablen <i>dieselbe
+    Verteilung</i> haben. Der Schlüssel zu beidem: die Dichte als <b>Mischung</b> lesen — genau
+    die Bedingen-Struktur aus Lektion 1.</p>
+  </div>
+
+  <h2>Kernidee 1 — Erwartungswert einer stetigen Zufallsvariablen</h2>
+  <div class="box idea">
+    <span class="label">Die Formel</span>
+    <p style="margin-bottom:.2rem">Statt Summe über Werte steht ein Integral über die Dichte:</p>
+    <div class="eq"><span class="m">E[X]</span> = <span class="intg">∫</span><sub>−∞</sub><sup>∞</sup> <span class="m">x&thinsp;f(x)</span> <span class="m">dx</span></div>
+    <p style="margin-bottom:0">Ist <span class="m">f</span> <b>stückweise</b> definiert, wird daraus eine <b>Summe von Integralen</b> — eins pro Stück.</p>
+  </div>
+
+  <h2>Kernidee 2 — eine Dichte als Mischung lesen</h2>
+  <p>Lässt sich eine Dichte schreiben als <span class="m">f(x)</span> = <span class="m">w</span><sub>1</sub>&thinsp;<span class="m">f</span><sub>1</sub><span class="m">(x)</span> + <span class="m">w</span><sub>2</sub>&thinsp;<span class="m">f</span><sub>2</sub><span class="m">(x)</span> mit <span class="m">w</span><sub>1</sub>+<span class="m">w</span><sub>2</sub>=1 (und <span class="m">f</span><sub>1</sub>,<span class="m">f</span><sub>2</sub> selbst Dichten), dann ist <span class="m">X</span> eine <b>Mischung</b>: „mit Wahrscheinlichkeit <span class="m">w</span><sub>1</sub> wie <span class="m">f</span><sub>1</sub>, mit <span class="m">w</span><sub>2</sub> wie <span class="m">f</span><sub>2</sub>.“ Die Gewichte sind die <b>Massen</b> der Stücke.</p>
+
+  <div class="box warn">
+    <span class="label">Der Punkt, der Punkte kostet</span>
+    <p>Jedes Gewicht gehört zu <i>seinem</i> Stück. Prüfe immer: addieren sich die Gewichte zu 1?
+    Und passt jedes Gewicht zur Masse seines Dichte-Stücks? Vertauschte Gewichte sind der
+    klassische Fehler bei Verteilungsgleichheit.</p>
+  </div>
+
+  <h2>Kernidee 3 — wann zwei Zufallsvariablen „gleich verteilt“ sind</h2>
+  <p><span class="m">X</span> und <span class="m">Y</span> heißen <b>gleich verteilt</b>
+  (<span class="m">X</span> <sup>d</sup>= <span class="m">Y</span>), wenn ihre
+  Verteilungsfunktionen — äquivalent: ihre Dichten — <b>überall übereinstimmen</b>. Für ein
+  konstruiertes <span class="m">Y</span> mit „Schalter“ <span class="m">B</span> bekommt man die Dichte per totaler Wahrscheinlichkeit:</p>
+  <div class="eq"><span class="m">f<sub>Y</sub>(y)</span> = <span class="m">P(B=1)</span>&thinsp;<span class="m">f</span><sub>Zweig 1</sub><span class="m">(y)</span> + <span class="m">P(B=0)</span>&thinsp;<span class="m">f</span><sub>Zweig 2</sub><span class="m">(y)</span></div>
+  <p>… und vergleicht <b>Stück für Stück</b> mit <span class="m">f<sub>X</sub></span>.</p>
+
+  <h2>Durchgerechnet: Aufgabe 2 der Pre-Klausur</h2>
+  <p>Gegeben ist die Dichte</p>
+  <div class="eq"><span class="m">f(x)</span> =
+    <span class="cases">
+      <span class="m">⅓</span><span>0 ≤ <span class="m">x</span> ≤ 1</span>
+      <span class="m">⅔&thinsp;e<sup>−(x−1)</sup></span><span><span class="m">x</span> &gt; 1</span>
+      <span class="m">0</span><span>sonst</span>
+    </span>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>(a) <span class="m">E[X]</span> — Stück für Stück integrieren.</b></div>
+    <div class="step">Stück 1 auf [0,1]:
+      <span class="intg">∫</span><sub>0</sub><sup>1</sup> <span class="m">x</span>·⅓ <span class="m">dx</span> = ⅓·<span class="frac"><span class="m">x<sup>2</sup></span><span>2</span></span> <span class="cite">von 0 bis 1</span> = <span class="frac"><span>1</span><span>6</span></span>.</div>
+    <div class="step">Stück 2 auf (1,∞), Substitution <span class="m">t = x−1</span> (also <span class="m">x = 1+t</span>):
+      <div class="eq"><span class="intg">∫</span><sub>1</sub><sup>∞</sup> <span class="m">x</span>·⅔<span class="m">e<sup>−(x−1)</sup></span><span class="m">dx</span> = ⅔<span class="intg">∫</span><sub>0</sub><sup>∞</sup>(1+<span class="m">t</span>)<span class="m">e<sup>−t</sup></span><span class="m">dt</span> = ⅔·(1+1) = <span class="frac"><span>4</span><span>3</span></span></div>
+      <span class="cite">Dabei ist ∫e<sup>−t</sup>dt = 1 und ∫t&thinsp;e<sup>−t</sup>dt = 1 (das ist der Erwartungswert von Exp(1)).</span></div>
+    <div class="step"><b>Ergebnis:</b> <span class="m">E[X]</span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>8</span><span>6</span></span> = <span class="frac"><span>9</span><span>6</span></span> = <span class="frac"><span>3</span><span>2</span></span>.</div>
+    <div class="step"><b>Gegenprobe mit der Turmregel (Lektion 1).</b> Lies <span class="m">f</span> als Mischung:
+      Gewicht ⅓ auf Unif(0,1), Gewicht ⅔ auf 1+Exp(1). Dann
+      <div class="eq"><span class="m">E[X]</span> = ⅓·<span class="m">E[U]</span> + ⅔·<span class="m">E[1+Z]</span> = ⅓·<span class="frac"><span>1</span><span>2</span></span> + ⅔·2 = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>3</span><span>2</span></span> ✓</div>
+      Zwei Wege, dasselbe Ergebnis — genau so fängst du Rechenfehler.</div>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>(b) Verteilungsgleichheit zeigen.</b> Behauptet wird: ein per Schalter
+    <span class="m">B</span> konstruiertes <span class="m">Y</span> (Zweige <span class="m">U</span>~Unif(0,1) und
+    1+<span class="m">Z</span> mit <span class="m">Z</span>~Exp(1)) hat dieselbe Verteilung wie <span class="m">X</span>.</div>
+    <div class="step"><b>Schritt 1 — <span class="m">f</span> als Mischung erkennen.</b>
+      Auf [0,1]: ⅓ = ⅓·1 = Gewicht ⅓ mal Dichte von Unif(0,1).
+      Auf (1,∞): ⅔<span class="m">e<sup>−(x−1)</sup></span> = Gewicht ⅔ mal Dichte von 1+Exp(1).</div>
+    <div class="step"><b>Schritt 2 — Dichte von <span class="m">Y</span> hinschreiben.</b> Der Schalter wählt
+      den <span class="m">U</span>-Zweig mit Wahrscheinlichkeit ⅓ und den 1+<span class="m">Z</span>-Zweig mit ⅔:
+      <div class="eq"><span class="m">f<sub>Y</sub>(y)</span> = ⅓·<span class="m">1<sub>[0,1]</sub>(y)</span> + ⅔·<span class="m">e<sup>−(y−1)</sup>1<sub>y&gt;1</sub></span></div></div>
+    <div class="step"><b>Schritt 3 — vergleichen.</b> Das ist Stück für Stück genau <span class="m">f<sub>X</sub></span>.
+      Also <span class="m">f<sub>Y</sub> ≡ f<sub>X</sub></span> und damit <span class="m">Y</span> <sup>d</sup>= <span class="m">X</span>. &nbsp;∎</div>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Konsistenz-Check — unbedingt machen</span>
+    <p>Der ganze Beweis steht und fällt mit der <b>Zuordnung der Gewichte</b>: der
+    Gleichverteilungs-Anteil trägt Masse ⅓, der Exponential-Schwanz Masse ⅔. Also muss der
+    Schalter dem 1+<span class="m">Z</span>-Zweig die <i>größere</i> Wahrscheinlichkeit ⅔ geben.
+    Steht in einer Aufgabenfassung ein Schalter, der dem <span class="m">U</span>-Zweig ⅔ gäbe,
+    passen die Stücke nicht mehr zusammen — dann stimmt die behauptete Gleichheit nicht. Dieses
+    Nachrechnen der Gewichte ist der prüfungsrelevante Schritt.</p>
+  </div>
+
+  <h2>So gehst du in der Klausur vor</h2>
+  <ol>
+    <li><b>Dichte in Stücke</b> zerlegen; pro Stück ∫ <span class="m">x&thinsp;f(x)</span> <span class="m">dx</span> rechnen und addieren.</li>
+    <li>Für Verteilungsfragen: Dichte als <b><span class="m">w</span><sub>1</sub><span class="m">f</span><sub>1</sub> + <span class="m">w</span><sub>2</sub><span class="m">f</span><sub>2</sub></b> schreiben (Gewichte = Massen).</li>
+    <li>Gleichheit zeigen = <b>Dichten (oder CDFs) Stück für Stück vergleichen</b>.</li>
+    <li>Immer der <b>Konsistenz-Check</b>: Gewichte ≥ 0, Summe = 1, jedes zum richtigen Stück.</li>
+  </ol>
+
+  <h2>Jetzt du — Retrieval-Übung</h2>
+  <p>Aus dem Gedächtnis, nicht nachschlagen. Brüche wie <code>1/6</code> sind erlaubt.</p>
+  <div id="quiz2"></div>
+
+  <div class="source">
+    <span class="label">Primärquelle zum Vertiefen</span>
+    <p style="margin:0">Blitzstein &amp; Hwang, <a href="https://probabilitybook.net/" target="_blank" rel="noopener"><i>Introduction to Probability</i></a>
+    — Kap. 5 (Continuous RVs, <span class="m">E[X]</span> = ∫<span class="m">x&thinsp;f</span>) und Kap. 8 (Transformationen &amp; Mischungen).</p>
+  </div>
+
+  <div class="ask">
+    <span class="label">Ich bin dein Tutor</span>
+    <p style="margin:0">Frag z. B.: „Warum ist ∫<sub>0</sub><sup>∞</sup><span class="m">t&thinsp;e<sup>−t</sup>dt</span> = 1?“,
+    „Zeig mir (a) über die CDF“, oder „Gib mir eine Dichte, bei der ich die Mischung selbst finden muss.“</p>
+  </div>
+
+  <div class="foot">
+    <span>← Lektion 1: Bedingen</span>
+    <span>Nächste: Konvergenz → Poisson-Approximation →</span>
+  </div>
+
+  <hr>
+  <p class="eyebrow">Quellen</p>
+  <ol class="sources">
+    <li>Pre-Klausur Stochastik I+II, Aufgabe 2 (Dichte, Erwartungswert, Verteilungsgleichheit) — <code>pre_klausur.pdf</code>.</li>
+    <li>Blitzstein &amp; Hwang, <i>Introduction to Probability</i>, Kap. 5 &amp; 8 — <a href="https://probabilitybook.net/" target="_blank" rel="noopener">probabilitybook.net</a>.</li>
+  </ol>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+  function scoreText(s){return s.total? (s.correct+" / "+s.total+" richtig"):"";}
+  function parseNum(raw){
+    raw=(raw||"").replace(",",".").trim(); if(raw==="")return NaN;
+    var m=raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if(m){var d=parseFloat(m[2]); return d!==0?parseFloat(m[1])/d:NaN;}
+    return parseFloat(raw);
+  }
+  function render(mountId, questions, title){
+    var mount=document.getElementById(mountId); if(!mount) return;
+    var state={correct:0,total:0};
+    questions.forEach(function(q){ if(q.type!=="recall") state.total++; });
+    var wrap=el("div","quiz"); var head=el("div","quiz-head");
+    head.appendChild(el("span",null,title||"Selbsttest"));
+    var score=el("span","quiz-score",scoreText(state)); head.appendChild(score); wrap.appendChild(head);
+    questions.forEach(function(q,i){ wrap.appendChild(buildQ(q,i,state,score)); });
+    mount.appendChild(wrap);
+  }
+  function buildQ(q,i,state,score){
+    var box=el("div","q");
+    box.appendChild(el("p","q-prompt",'<span class="qn">'+(i+1)+'.</span>'+q.q));
+    if(q.type==="mc") mc(box,q,state,score);
+    else if(q.type==="numeric") numeric(box,q,state,score);
+    else recall(box,q);
+    return box;
+  }
+  function mc(box,q,state,score){
+    var fb=el("div","fb"); var answered=false; var btns=[];
+    q.options.forEach(function(opt,j){
+      var b=el("button","opt",opt); b.type="button";
+      b.addEventListener("click",function(){
+        if(answered)return; answered=true; var ok=j===q.correct;
+        btns.forEach(function(bb,k){ bb.disabled=true;
+          if(k===q.correct) bb.classList.add("correct"); else if(k===j) bb.classList.add("wrong"); });
+        fb.className="fb show "+(ok?"ok":"no");
+        fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz. ")+(q.explain||"");
+        if(ok)state.correct++; score.textContent=scoreText(state);
+      });
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+  }
+  function numeric(box,q,state,score){
+    var row=el("div","num-row");
+    var input=el("input"); input.type="text"; input.placeholder=q.placeholder||"z. B. 0,75 oder 3/4";
+    var btn=el("button","btn","Prüfen"); btn.type="button";
+    row.appendChild(input); row.appendChild(btn); box.appendChild(row);
+    var fb=el("div","fb"); box.appendChild(fb); var answered=false;
+    function check(){
+      if(answered)return; var v=parseNum(input.value); if(isNaN(v)){input.focus();return;}
+      answered=true; input.disabled=true; btn.disabled=true;
+      var tol=q.tol!=null?q.tol:1e-9; var ok=Math.abs(v-q.answer)<=tol;
+      fb.className="fb show "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz — richtig ist <b>"+q.answer+"</b>. ")+(q.explain||"");
+      if(ok)state.correct++; score.textContent=scoreText(state);
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter")check(); });
+  }
+  function recall(box,q){
+    var btn=el("button","btn ghost","Antwort zeigen"); btn.type="button";
+    var rev=el("div","reveal",q.answer+(q.explain?'<br><span style="color:var(--muted);font-size:.86rem">'+q.explain+'</span>':''));
+    btn.addEventListener("click",function(){ rev.classList.add("show"); btn.style.display="none"; });
+    box.appendChild(btn); box.appendChild(rev);
+  }
+  var M='class="m"';
+  render("quiz2",[
+    { type:"recall",
+      q:'Wie berechnet man <span '+M+'>E[X]</span> einer stetigen Zufallsvariablen mit Dichte <span '+M+'>f</span>?',
+      answer:'<span '+M+'>E[X]</span> = ∫<sub>−∞</sub><sup>∞</sup> <span '+M+'>x&thinsp;f(x) dx</span>',
+      explain:'Bei stückweiser Dichte: Summe der Integrale über die Stücke.' },
+    { type:"numeric",
+      q:'Wert von ∫<sub>0</sub><sup>1</sup> <span '+M+'>x</span>·⅓ <span '+M+'>dx</span> ?',
+      answer:0.16666667, tol:0.01,
+      explain:'⅓·½ = 1/6 ≈ 0,167. (Eingabe 1/6 zählt auch.)' },
+    { type:"numeric",
+      q:'Gesamt-<span '+M+'>E[X]</span> der Beispiel-Dichte (1/6 + 4/3) ?',
+      answer:1.5, tol:0.001,
+      explain:'1/6 + 8/6 = 9/6 = 3/2 = 1,5.' },
+    { type:"mc",
+      q:'Wann sind <span '+M+'>X</span> und <span '+M+'>Y</span> „gleich verteilt“?',
+      options:['Ihre Verteilungsfunktionen stimmen überall überein','Sie nehmen stets denselben Wert an','Sie haben denselben Erwartungswert'],
+      correct:0,
+      explain:'Gleiche CDF (bzw. Dichte) genügt und ist nötig — gleicher Mittelwert reicht nicht.' },
+    { type:"numeric",
+      q:'Gewicht des Gleichverteilungs-Anteils: ∫<sub>0</sub><sup>1</sup> ⅓ <span '+M+'>dx</span> ?',
+      answer:0.33333333, tol:0.01,
+      explain:'1/3. Der Exponential-Schwanz trägt entsprechend 2/3.' }
+  ],"Selbsttest · Dichte & Verteilungen");
+})();
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion 2 · Erwartungswert aus der Dichte &amp; Verteilungen vergleichen</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+  window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+
+<p class="eyebrow">Lektion 2 · Stochastik I · Klausurvorbereitung</p>
+<h1>Erwartungswert aus der Dichte — und Verteilungen vergleichen</h1>
+<p class="subtitle">Zwei Standardschritte an Aufgabe&nbsp;2 der Pre-Klausur — beide über
+dasselbe Bild: die Dichte als Mischung.</p>
+
+<div class="box note">
+  <span class="label">Warum das dran ist</span>
+  <p style="margin:0">Aufgabe&nbsp;2 prüft zwei Dinge, die immer wieder kommen:
+  <b>(a)</b> einen Erwartungswert aus einer Dichte ausrechnen und <b>(b)</b> zeigen, dass zwei
+  Zufallsvariablen <i>dieselbe Verteilung</i> haben. Der Schlüssel zu beidem: die Dichte als
+  <b>Mischung</b> lesen — genau die Bedingen-Struktur aus
+  <a href="0001-bedingen-totale-erwartung.html">Lektion&nbsp;1</a>.</p>
+</div>
+
+<h2>Kernidee 1 — Erwartungswert einer stetigen Zufallsvariablen</h2>
+<div class="box idea">
+  <span class="label">Die Formel</span>
+  <p style="margin-bottom:.2rem">Statt Summe über Werte steht ein Integral über die Dichte:</p>
+  <div style="text-align:center">$$E[X]=\int_{-\infty}^{\infty} x\,f(x)\,dx.$$</div>
+  <p style="margin-bottom:0">Ist $f$ <b>stückweise</b> definiert, wird daraus eine
+  <b>Summe von Integralen</b> — eins pro Stück.</p>
+</div>
+
+<h2>Kernidee 2 — eine Dichte als Mischung lesen</h2>
+<p>Lässt sich eine Dichte schreiben als
+$$f(x)=w_1\,f_1(x)+w_2\,f_2(x),\qquad w_1+w_2=1,$$
+wobei $f_1,f_2$ selbst Dichten sind, dann ist $X$ eine <b>Mischung</b>: „mit Wahrscheinlichkeit
+$w_1$ verhält sich $X$ wie $f_1$, mit $w_2$ wie $f_2$.“ Die Gewichte sind genau die
+<b>Massen</b> der Stücke: $w_i=\int f\text{-Anteil}_i$.</p>
+
+<div class="box warn">
+  <span class="label">Der Punkt, der Punkte kostet</span>
+  <p style="margin:0">Jedes Gewicht gehört zu <i>seinem</i> Stück. Prüfe immer: addieren sich die
+  Gewichte zu $1$? Und passt jedes Gewicht zur Masse des Dichte-Stücks? Vertauschte Gewichte
+  sind der klassische Fehler bei Verteilungsgleichheit.</p>
+</div>
+
+<h2>Kernidee 3 — wann zwei Zufallsvariablen „gleich verteilt“ sind</h2>
+<p>$X$ und $Y$ heißen <b>gleich verteilt</b> ($X \stackrel{d}{=} Y$), wenn ihre
+Verteilungsfunktionen — äquivalent: ihre Dichten — <b>überall übereinstimmen</b>. Für ein
+konstruiertes $Y$ mit „Schalter“ $B$ bekommt man die Dichte per totaler Wahrscheinlichkeit:
+$$f_Y(y)=P(B{=}1)\,f_{\text{Zweig }1}(y)+P(B{=}0)\,f_{\text{Zweig }2}(y),$$
+und vergleicht <b>Stück für Stück</b> mit $f_X$.</p>
+
+<h2>Durchgerechnet: Aufgabe 2 der Pre-Klausur</h2>
+<p>Gegeben ist die Dichte
+$$f(x)=\begin{cases}\tfrac13, & 0\le x\le 1,\\[2pt]\tfrac23 e^{-(x-1)}, & x>1,\\[2pt]0,&\text{sonst.}\end{cases}$$</p>
+
+<div class="worked">
+  <div class="step"><b>(a) $E[X]$ — Stück für Stück integrieren.</b></div>
+  <div class="step">Stück&nbsp;1 auf $[0,1]$:
+    $\displaystyle\int_0^1 x\cdot\tfrac13\,dx=\tfrac13\cdot\tfrac{x^2}{2}\Big|_0^1=\tfrac16.$</div>
+  <div class="step">Stück&nbsp;2 auf $(1,\infty)$, Substitution $t=x-1$ (also $x=1+t$):
+    $$\int_1^\infty x\cdot\tfrac23 e^{-(x-1)}dx=\tfrac23\int_0^\infty (1+t)e^{-t}dt=\tfrac23\,(1+1)=\tfrac43.$$
+    <span class="cite">Dabei ist $\int_0^\infty e^{-t}dt=1$ und $\int_0^\infty t\,e^{-t}dt=1$ (Erwartungswert von $\mathrm{Exp}(1)$).</span></div>
+  <div class="step"><b>Ergebnis:</b> $\;E[X]=\tfrac16+\tfrac43=\tfrac16+\tfrac86=\dfrac{9}{6}=\dfrac{3}{2}.$</div>
+  <div class="step"><b>Gegenprobe mit der Turmregel (Lektion&nbsp;1).</b> Lies $f$ als Mischung:
+    Gewicht $\tfrac13$ auf $\mathrm{Unif}(0,1)$ und Gewicht $\tfrac23$ auf $1+\mathrm{Exp}(1)$. Dann
+    $$E[X]=\tfrac13\,E[U]+\tfrac23\,E[1+Z]=\tfrac13\cdot\tfrac12+\tfrac23\cdot 2=\tfrac16+\tfrac43=\tfrac32.\;\checkmark$$
+    Zwei Wege, dasselbe Ergebnis — genau so fängst du Rechenfehler.</div>
+</div>
+
+<div class="worked">
+  <div class="step"><b>(b) Verteilungsgleichheit zeigen.</b> Behauptet wird: ein per Schalter
+  $B$ konstruiertes $Y$ (Zweige $U\sim\mathrm{Unif}(0,1)$ und $1+Z$ mit $Z\sim\mathrm{Exp}(1)$)
+  hat dieselbe Verteilung wie $X$.</div>
+  <div class="step"><b>Schritt 1 — $f$ als Mischung erkennen.</b>
+  Auf $[0,1]$: $\tfrac13=\tfrac13\cdot 1$ = Gewicht $\tfrac13$ mal Dichte von $\mathrm{Unif}(0,1)$.
+  Auf $(1,\infty)$: $\tfrac23 e^{-(x-1)}=\tfrac23\cdot e^{-(x-1)}$ = Gewicht $\tfrac23$ mal Dichte von $1+\mathrm{Exp}(1)$.</div>
+  <div class="step"><b>Schritt 2 — Dichte von $Y$ hinschreiben.</b> Mit dem Schalter, der den
+  $U$-Zweig mit Wahrscheinlichkeit $\tfrac13$ und den $1+Z$-Zweig mit $\tfrac23$ wählt:
+    $$f_Y(y)=\tfrac13\underbrace{\mathbf 1_{[0,1]}(y)}_{f_U}+\tfrac23\underbrace{e^{-(y-1)}\mathbf 1_{y>1}}_{f_{1+Z}}.$$</div>
+  <div class="step"><b>Schritt 3 — vergleichen.</b> Das ist Stück für Stück genau $f_X$. Also
+  $f_Y\equiv f_X$ und damit $Y\stackrel{d}{=}X$. $\qquad\blacksquare$</div>
+</div>
+
+<div class="box warn">
+  <span class="label">Konsistenz-Check — unbedingt machen</span>
+  <p style="margin:0">Der ganze Beweis steht und fällt mit der <b>Zuordnung der Gewichte</b>:
+  der Gleichverteilungs-Anteil trägt Masse $\tfrac13$, der Exponential-Schwanz Masse $\tfrac23$.
+  Also muss der Schalter dem $1+Z$-Zweig die <i>größere</i> Wahrscheinlichkeit $\tfrac23$ geben.
+  Steht in einer Aufgabenfassung ein Schalter, der dem $U$-Zweig $\tfrac23$ gäbe, passen die
+  Stücke nicht mehr zusammen — dann stimmt die behauptete Gleichheit nicht. Genau dieses
+  Nachrechnen der Gewichte ist der prüfungsrelevante Schritt.</p>
+</div>
+
+<h2>So gehst du in der Klausur vor</h2>
+<ol>
+  <li><b>Dichte in Stücke</b> zerlegen; pro Stück $\int x f(x)\,dx$ rechnen und addieren.</li>
+  <li>Für Verteilungsfragen: Dichte als <b>$w_1 f_1+w_2 f_2$</b> schreiben (Gewichte = Massen).</li>
+  <li>Gleichheit zeigen = <b>Dichten (oder CDFs) Stück für Stück vergleichen</b>.</li>
+  <li>Immer der <b>Konsistenz-Check</b>: Gewichte $\ge 0$, Summe $=1$, jedes zum richtigen Stück.</li>
+</ol>
+
+<h2>Jetzt du — Retrieval-Übung</h2>
+<p>Aus dem Gedächtnis, nicht nachschlagen. Brüche wie <code>1/6</code> sind erlaubt.</p>
+<div id="quiz2"></div>
+
+<div class="primary-source">
+  <span class="label">Primärquelle zum Vertiefen</span>
+  Blitzstein &amp; Hwang, <a href="https://probabilitybook.net/"><i>Introduction to Probability</i></a>
+  — Kap.&nbsp;5 (Continuous RVs, $E[X]=\int x f(x)dx$) und Kap.&nbsp;8 (Transformationen &amp;
+  Mischungen). Referenz: <a href="../reference/verteilungen.html">Verteilungen auf einen Blick</a>.
+</div>
+
+<div class="ask">
+  <b>Ich bin dein Tutor.</b> Frag z.&nbsp;B.: „Warum ist $\int_0^\infty t e^{-t}dt=1$?“,
+  „Zeig mir (a) über die CDF statt über $E[X]=\int xf$“, oder „Gib mir eine Dichte, bei der ich
+  die Mischung selbst finden muss.“
+</div>
+
+<div class="footer-nav">
+  <span>← <a href="0001-bedingen-totale-erwartung.html">Lektion 1: Bedingen</a></span>
+  <span>Nächste Lektion: Konvergenz → Poisson-Approximation →</span>
+</div>
+
+<hr>
+<p class="eyebrow">Quellen</p>
+<ol class="sources">
+  <li><span class="cite">Pre-Klausur Stochastik I+II, Aufgabe&nbsp;2 (Dichte, Erwartungswert,
+      Verteilungsgleichheit) — <code>pre_klausur.pdf</code>.</span></li>
+  <li><span class="cite">Blitzstein &amp; Hwang, <i>Introduction to Probability</i>, Kap.&nbsp;5 &amp; 8
+      — <a href="https://probabilitybook.net/">probabilitybook.net</a>.</span></li>
+</ol>
+
+<script src="../assets/quiz.js"></script>
+<script>
+Quiz.render('quiz2', [
+  { type:'recall',
+    q:'Wie berechnet man $E[X]$ einer stetigen Zufallsvariablen mit Dichte $f$?',
+    answer:'$E[X]=\\int_{-\\infty}^{\\infty} x\\,f(x)\\,dx$',
+    explain:'Bei stückweiser Dichte: Summe der Integrale über die Stücke.' },
+  { type:'numeric',
+    q:'Wert von $\\int_0^1 x\\cdot\\tfrac13\\,dx$ ?',
+    answer:0.16666667, tol:0.01,
+    explain:'$\\tfrac13\\cdot\\tfrac12=\\tfrac16\\approx0{,}167$. (Eingabe 1/6 zählt auch.)' },
+  { type:'numeric',
+    q:'Gesamt-$E[X]$ der Beispiel-Dichte ($\\tfrac16+\\tfrac43$) ?',
+    answer:1.5, tol:0.001,
+    explain:'$\\tfrac16+\\tfrac86=\\tfrac96=\\tfrac32=1{,}5$.' },
+  { type:'mc',
+    q:'Wann sind $X$ und $Y$ „gleich verteilt“ ($X\\stackrel{d}{=}Y$)?',
+    options:[
+      'Ihre Verteilungsfunktionen stimmen überall überein',
+      'Sie nehmen stets denselben Wert an',
+      'Sie haben denselben Erwartungswert'],
+    correct:0,
+    explain:'Gleiche CDF (bzw. Dichte) genügt und ist nötig — gleicher Mittelwert reicht nicht.' },
+  { type:'numeric',
+    q:'Gewicht des Gleichverteilungs-Anteils: $\\int_0^1 \\tfrac13\\,dx$ ?',
+    answer:0.33333333, tol:0.01,
+    explain:'$\\tfrac13$. Der Exponential-Schwanz trägt entsprechend $\\tfrac23$.' }
+], { title: 'Selbsttest · Dichte & Verteilungen' });
+
+if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+  MathJax.startup.promise.then(function () { MathJax.typesetPromise(); });
+}
+</script>
+
+</body>
+</html>
