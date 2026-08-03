@@ -47,10 +47,11 @@
     font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
   .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
   .frac>span:last-child{padding:0 .28em;}
-  .eq{margin:1.05rem 0; text-align:center; font-size:1.08rem;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
   .intg{font-style:normal; font-size:1.42em; line-height:0; vertical-align:-.32em; margin-right:.02em;}
   .cases{display:inline-grid; grid-template-columns:auto auto; gap:.15rem 1rem; text-align:left;
     border-left:2px solid currentColor; padding-left:.6rem; margin:.3rem 0; font-style:normal;}
+  .evalbar{display:inline-block; margin:0 .05rem 0 .12rem; font-style:normal;}
   .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
     letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
   .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0; background:var(--card);}
@@ -98,6 +99,20 @@
   .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
   .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
   .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
   @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
 </style>
 
@@ -118,12 +133,14 @@
   <div class="box idea">
     <span class="label">Die Formel</span>
     <p style="margin-bottom:.2rem">Statt Summe über Werte steht ein Integral über die Dichte:</p>
-    <div class="eq"><span class="m">E[X]</span> = <span class="intg">∫</span><sub>−∞</sub><sup>∞</sup> <span class="m">x&thinsp;f(x)</span> <span class="m">dx</span></div>
+    <div class="eq"><span class="nw"><span class="m">E[X]</span> = <span class="intg">∫</span><sub>−∞</sub><sup>∞</sup> <span class="m">x&thinsp;f(x)</span> <span class="m">dx</span></span></div>
     <p style="margin-bottom:0">Ist <span class="m">f</span> <b>stückweise</b> definiert, wird daraus eine <b>Summe von Integralen</b> — eins pro Stück.</p>
   </div>
 
   <h2>Kernidee 2 — eine Dichte als Mischung lesen</h2>
-  <p>Lässt sich eine Dichte schreiben als <span class="m">f(x)</span> = <span class="m">w</span><sub>1</sub>&thinsp;<span class="m">f</span><sub>1</sub><span class="m">(x)</span> + <span class="m">w</span><sub>2</sub>&thinsp;<span class="m">f</span><sub>2</sub><span class="m">(x)</span> mit <span class="m">w</span><sub>1</sub>+<span class="m">w</span><sub>2</sub>=1 (und <span class="m">f</span><sub>1</sub>,<span class="m">f</span><sub>2</sub> selbst Dichten), dann ist <span class="m">X</span> eine <b>Mischung</b>: „mit Wahrscheinlichkeit <span class="m">w</span><sub>1</sub> wie <span class="m">f</span><sub>1</sub>, mit <span class="m">w</span><sub>2</sub> wie <span class="m">f</span><sub>2</sub>.“ Die Gewichte sind die <b>Massen</b> der Stücke.</p>
+  <p>Lässt sich eine Dichte schreiben als</p>
+  <div class="eq"><span class="nw"><span class="m">f(x)</span> = <span class="m">w<sub>1</sub></span>·<span class="m">f<sub>1</sub>(x)</span> + <span class="m">w<sub>2</sub></span>·<span class="m">f<sub>2</sub>(x)</span>, &nbsp; <span class="m">w<sub>1</sub></span>+<span class="m">w<sub>2</sub></span> = 1</span></div>
+  <p>(mit <span class="m">f<sub>1</sub></span>, <span class="m">f<sub>2</sub></span> selbst Dichten), dann ist <span class="m">X</span> eine <b>Mischung</b>: „mit Wahrscheinlichkeit <span class="m">w</span><sub>1</sub> wie <span class="m">f</span><sub>1</sub>, mit <span class="m">w</span><sub>2</sub> wie <span class="m">f</span><sub>2</sub>.“ Die Gewichte sind die <b>Massen</b> der Stücke.</p>
 
   <div class="box warn">
     <span class="label">Der Punkt, der Punkte kostet</span>
@@ -137,7 +154,8 @@
   (<span class="m">X</span> <sup>d</sup>= <span class="m">Y</span>), wenn ihre
   Verteilungsfunktionen — äquivalent: ihre Dichten — <b>überall übereinstimmen</b>. Für ein
   konstruiertes <span class="m">Y</span> mit „Schalter“ <span class="m">B</span> bekommt man die Dichte per totaler Wahrscheinlichkeit:</p>
-  <div class="eq"><span class="m">f<sub>Y</sub>(y)</span> = <span class="m">P(B=1)</span>&thinsp;<span class="m">f</span><sub>Zweig 1</sub><span class="m">(y)</span> + <span class="m">P(B=0)</span>&thinsp;<span class="m">f</span><sub>Zweig 2</sub><span class="m">(y)</span></div>
+  <div class="eq"><span class="nw"><span class="m">f<sub>Y</sub>(y)</span> = <span class="m">P(B=1)</span>·<span class="m">f<sub>1</sub>(y)</span> + <span class="m">P(B=0)</span>·<span class="m">f<sub>2</sub>(y)</span></span></div>
+  <p class="cite" style="text-align:center; margin-top:-.3rem">wobei <span class="m">f<sub>1</sub></span>, <span class="m">f<sub>2</sub></span> die Dichten der beiden Zweige sind</p>
   <p>… und vergleicht <b>Stück für Stück</b> mit <span class="m">f<sub>X</sub></span>.</p>
 
   <h2>Durchgerechnet: Aufgabe 2 der Pre-Klausur</h2>
@@ -153,14 +171,15 @@
   <div class="worked">
     <div class="step"><b>(a) <span class="m">E[X]</span> — Stück für Stück integrieren.</b></div>
     <div class="step">Stück 1 auf [0,1]:
-      <span class="intg">∫</span><sub>0</sub><sup>1</sup> <span class="m">x</span>·⅓ <span class="m">dx</span> = ⅓·<span class="frac"><span class="m">x<sup>2</sup></span><span>2</span></span> <span class="cite">von 0 bis 1</span> = <span class="frac"><span>1</span><span>6</span></span>.</div>
+      <div class="eq"><span class="nw"><span class="intg">∫</span><sub>0</sub><sup>1</sup> <span class="m">x</span>·⅓ <span class="m">dx</span> = ⅓·<span class="frac"><span class="m">x<sup>2</sup></span><span>2</span></span><span class="evalbar">|</span><sub>0</sub><sup>1</sup> = ⅓·<span class="frac"><span>1</span><span>2</span></span> = <span class="frac"><span>1</span><span>6</span></span></span></div></div>
     <div class="step">Stück 2 auf (1,∞), Substitution <span class="m">t = x−1</span> (also <span class="m">x = 1+t</span>):
-      <div class="eq"><span class="intg">∫</span><sub>1</sub><sup>∞</sup> <span class="m">x</span>·⅔<span class="m">e<sup>−(x−1)</sup></span><span class="m">dx</span> = ⅔<span class="intg">∫</span><sub>0</sub><sup>∞</sup>(1+<span class="m">t</span>)<span class="m">e<sup>−t</sup></span><span class="m">dt</span> = ⅔·(1+1) = <span class="frac"><span>4</span><span>3</span></span></div>
+      <div class="eq"><span class="nw"><span class="intg">∫</span><sub>1</sub><sup>∞</sup> <span class="m">x</span>·⅔<span class="m">e<sup>−(x−1)</sup></span><span class="m">dx</span> = ⅔<span class="intg">∫</span><sub>0</sub><sup>∞</sup>(1+<span class="m">t</span>)<span class="m">e<sup>−t</sup></span><span class="m">dt</span> = ⅔·(1+1) = <span class="frac"><span>4</span><span>3</span></span></span></div>
       <span class="cite">Dabei ist ∫e<sup>−t</sup>dt = 1 und ∫t&thinsp;e<sup>−t</sup>dt = 1 (das ist der Erwartungswert von Exp(1)).</span></div>
-    <div class="step"><b>Ergebnis:</b> <span class="m">E[X]</span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>8</span><span>6</span></span> = <span class="frac"><span>9</span><span>6</span></span> = <span class="frac"><span>3</span><span>2</span></span>.</div>
+    <div class="step"><b>Ergebnis:</b>
+      <div class="eq"><span class="nw"><span class="m">E[X]</span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>8</span><span>6</span></span> = <span class="frac"><span>9</span><span>6</span></span> = <span class="frac"><span>3</span><span>2</span></span></span></div></div>
     <div class="step"><b>Gegenprobe mit der Turmregel (Lektion 1).</b> Lies <span class="m">f</span> als Mischung:
       Gewicht ⅓ auf Unif(0,1), Gewicht ⅔ auf 1+Exp(1). Dann
-      <div class="eq"><span class="m">E[X]</span> = ⅓·<span class="m">E[U]</span> + ⅔·<span class="m">E[1+Z]</span> = ⅓·<span class="frac"><span>1</span><span>2</span></span> + ⅔·2 = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>3</span><span>2</span></span> ✓</div>
+      <div class="eq"><span class="nw"><span class="m">E[X]</span> = ⅓·<span class="m">E[U]</span> + ⅔·<span class="m">E[1+Z]</span> = ⅓·<span class="frac"><span>1</span><span>2</span></span> + ⅔·2 = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>4</span><span>3</span></span> = <span class="frac"><span>3</span><span>2</span></span> ✓</span></div>
       Zwei Wege, dasselbe Ergebnis — genau so fängst du Rechenfehler.</div>
   </div>
 
@@ -173,7 +192,7 @@
       Auf (1,∞): ⅔<span class="m">e<sup>−(x−1)</sup></span> = Gewicht ⅔ mal Dichte von 1+Exp(1).</div>
     <div class="step"><b>Schritt 2 — Dichte von <span class="m">Y</span> hinschreiben.</b> Der Schalter wählt
       den <span class="m">U</span>-Zweig mit Wahrscheinlichkeit ⅓ und den 1+<span class="m">Z</span>-Zweig mit ⅔:
-      <div class="eq"><span class="m">f<sub>Y</sub>(y)</span> = ⅓·<span class="m">1<sub>[0,1]</sub>(y)</span> + ⅔·<span class="m">e<sup>−(y−1)</sup>1<sub>y&gt;1</sub></span></div></div>
+      <div class="eq"><span class="nw"><span class="m">f<sub>Y</sub>(y)</span> = ⅓·<span class="m">1<sub>[0,1]</sub>(y)</span> + ⅔·<span class="m">e<sup>−(y−1)</sup>1<sub>y&gt;1</sub></span></span></div></div>
     <div class="step"><b>Schritt 3 — vergleichen.</b> Das ist Stück für Stück genau <span class="m">f<sub>X</sub></span>.
       Also <span class="m">f<sub>Y</sub> ≡ f<sub>X</sub></span> und damit <span class="m">Y</span> <sup>d</sup>= <span class="m">X</span>. &nbsp;∎</div>
   </div>

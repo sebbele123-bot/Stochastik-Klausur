@@ -1,0 +1,379 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0;
+    --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+      --idea-bg:#16211a; --idea-br:#2f4a35;
+      --warn-bg:#241d13; --warn-br:#574421;
+      --card:#171b21; --code:#1c222a;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0;
+    --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+    --idea-bg:#16211a; --idea-br:#2f4a35;
+    --warn-bg:#241d13; --warn-br:#574421;
+    --card:#171b21; --code:#1c222a;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62; margin:0;
+  }
+  .wrap{max-width:41rem; margin:0 auto; padding:3.4rem 1.4rem 5rem;}
+  .sans{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;}
+
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.13em; font-size:.72rem; font-weight:600; color:var(--accent); margin:0 0 .7rem;}
+  h1{font-size:2.05rem; line-height:1.12; font-weight:600; margin:0 0 .5rem; text-wrap:balance; letter-spacing:-.01em;}
+  .subtitle{color:var(--muted); font-style:italic; font-size:1.12rem; margin:0 0 1.6rem; text-wrap:balance;}
+  h2{font-size:1.32rem; font-weight:600; margin:2.6rem 0 .5rem; letter-spacing:-.005em;}
+  p{margin:.7rem 0;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+
+  /* math */
+  .m{font-style:italic; font-family:Georgia,"Times New Roman",serif;}
+  sup,sub{font-style:normal;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:-0.55em;
+    text-align:center; font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
+  .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
+  .frac>span:last-child{padding:0 .28em;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
+  .sig{font-style:normal; font-size:1.28em; vertical-align:-.18em; margin-right:.05em;}
+  .brace{font-style:normal;}
+
+  .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
+
+  .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0;
+    background:var(--card);}
+  .box>:first-child{margin-top:0} .box>:last-child{margin-bottom:0}
+  .idea{background:var(--idea-bg); border-color:var(--idea-br);}
+  .idea .label{color:#2f6b3d;}
+  .warn{background:var(--warn-bg); border-color:var(--warn-br);}
+  .warn .label{color:#8a5a17;}
+  .why .label{color:var(--accent);}
+  @media (prefers-color-scheme:dark){ .idea .label{color:#8fce9c} .warn .label{color:#e0bd82} }
+  :root[data-theme="dark"] .idea .label{color:#8fce9c}
+  :root[data-theme="dark"] .warn .label{color:#e0bd82}
+
+  .worked{border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.15rem; margin:1.4rem 0;}
+  .worked .step{margin:.75rem 0;}
+  .worked .step b{color:var(--accent);}
+
+  ol.steps{padding-left:1.25rem;} ol.steps li{margin:.4rem 0;}
+
+  code{background:var(--code); font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    font-size:.86em; padding:.06rem .32rem; border-radius:4px;}
+
+  .source{background:var(--accent-soft); border:1px solid var(--rule); border-radius:8px;
+    padding:1rem 1.15rem; margin:1.5rem 0;}
+  .source .label{color:var(--accent);}
+  .ask{border:1px dashed var(--accent); border-radius:8px; padding:1rem 1.15rem; margin:1.8rem 0;
+    background:transparent;}
+  .ask .label{color:var(--accent);}
+
+  hr{border:0; border-top:1px solid var(--rule); margin:2.4rem 0;}
+  .sources{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--muted); padding-left:1.1rem;}
+  .sources li{margin:.3rem 0;}
+  .foot{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:.85rem; color:var(--muted);
+    margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule);}
+
+  /* quiz */
+  .quiz{border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:1.6rem 0;
+    background:var(--card); font-family:ui-sans-serif,system-ui,sans-serif;}
+  .quiz-head{display:flex; justify-content:space-between; align-items:center;
+    padding:.7rem 1.05rem; border-bottom:1px solid var(--rule);
+    text-transform:uppercase; letter-spacing:.09em; font-size:.72rem; font-weight:700; color:var(--muted);}
+  .quiz-score{letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--accent);}
+  .q{padding:1.05rem;} .q+.q{border-top:1px solid var(--rule);}
+  .q-prompt{margin:0 0 .75rem; font-weight:600; font-family:inherit;}
+  .q-prompt .qn{color:var(--muted); margin-right:.4rem; font-weight:700;}
+  .opt{display:block; width:100%; text-align:left; margin:.34rem 0; padding:.55rem .8rem;
+    border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--ink);
+    font:inherit; cursor:pointer; transition:border-color .12s, background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:#dcefdf; border-color:#5fa06c; color:#173f21;}
+  .opt.wrong{background:#f4dede; border-color:#c06a6a; color:#521818;}
+  :root[data-theme="dark"] .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+  :root[data-theme="dark"] .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  @media (prefers-color-scheme:dark){
+    .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+    .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  }
+  .num-row{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center;}
+  .num-row input{font:inherit; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:6px;
+    background:var(--paper); color:var(--ink); width:8.5rem;}
+  .num-row input:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .btn{font:inherit; font-weight:600; padding:.5rem .95rem; border:1px solid var(--accent);
+    border-radius:6px; background:var(--accent); color:var(--on-accent); cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--accent);}
+  .btn:hover{filter:brightness(1.05);}
+  .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;}
+  .fb.show{display:block;}
+  .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);}
+  .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
+  .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule);
+    border-radius:6px; display:none;} .reveal.show{display:block;}
+  .reveal .m,.fb .m,.opt .m,.q-prompt .m{font-family:Georgia,serif;}
+
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">Lektion 1 · Stochastik I · Klausurvorbereitung</p>
+  <h1>Bedingen: totale Wahrscheinlichkeit &amp; totale Erwartung</h1>
+  <p class="subtitle">Ein Werkzeug, zwei Formeln — und damit ist Aufgabe&nbsp;1 der Pre-Klausur gelöst.</p>
+
+  <div class="box why">
+    <span class="label">Warum genau das zuerst</span>
+    <p>Die <b>erste Aufgabe</b> deiner Muster-Klausur ist eine Bernoulli-Mischung: erst
+    entscheidet ein Münzwurf <span class="m">B</span>, <i>welche</i> Verteilung gilt, dann wird
+    <span class="m">X</span> gezogen. Solche „Erst-dies-dann-das“-Aufgaben löst man immer mit
+    denselben zwei Formeln. Beherrschst du sie, holst du sichere Punkte — und dasselbe Muster
+    kommt in Teil&nbsp;II bei der Likelihood wieder.</p>
+  </div>
+
+  <h2>Die Kernidee</h2>
+
+  <div class="box idea">
+    <span class="label">Zwei Formeln — mehr brauchst du hier nicht</span>
+    <p style="margin-bottom:.2rem"><b>Totale Wahrscheinlichkeit.</b> Zerlege über die Fälle von <span class="m">B</span>:</p>
+    <div class="eq"><span class="nw"><span class="m">P(A)</span> = <span class="sig">∑</span><sub class="m">b</sub>&nbsp;<span class="m">P(A&nbsp;|&nbsp;B=b)</span>&thinsp;<span class="m">P(B=b)</span></span></div>
+    <p style="margin-bottom:.2rem"><b>Totale Erwartung (Turmregel).</b> Genauso für Erwartungswerte:</p>
+    <div class="eq"><span class="nw"><span class="m">E[X]</span> = <span class="m">E</span><span class="brace">[</span>&thinsp;<span class="m">E[X&nbsp;|&nbsp;B]</span>&thinsp;<span class="brace">]</span> = <span class="sig">∑</span><sub class="m">b</sub>&nbsp;<span class="m">E[X&nbsp;|&nbsp;B=b]</span>&thinsp;<span class="m">P(B=b)</span></span></div>
+  </div>
+
+  <p>Beide sagen dasselbe in Worten: <i>Rechne den Fall bei bekanntem <span class="m">B</span> aus,
+  und mittle dann über die Fälle — gewichtet mit ihren Wahrscheinlichkeiten.</i> Das Gewicht
+  <span class="m">P(B=b)</span> darf nie fehlen; das ist der häufigste Fehler.</p>
+
+  <div class="box warn">
+    <span class="label">Denkfehler, den die Klausur bestraft</span>
+    <p><span class="m">E[X&nbsp;|&nbsp;B]</span> ist <b>keine feste Zahl</b>, solange
+    <span class="m">B</span> zufällig ist — es ist selbst eine Zufallsvariable, die je nach Ausgang
+    von <span class="m">B</span> einen anderen Wert annimmt. Deshalb steht außen noch ein
+    <span class="m">E[&thinsp;·&thinsp;]</span>: erst innen bedingt rechnen, dann außen über
+    <span class="m">B</span> mitteln.</p>
+  </div>
+
+  <h2>Durchgerechnet: Aufgabe 1 der Pre-Klausur</h2>
+
+  <p>Sei <span class="m">B</span>&nbsp;~&nbsp;<span class="m">Bernoulli(p)</span>. Bedingt auf
+  <span class="m">B</span> gilt <span class="m">X</span>&nbsp;~&nbsp;<span class="m">Exp(2)</span>
+  falls <span class="m">B=1</span>, und <span class="m">X</span>&nbsp;~&nbsp;<span class="m">Exp(1)</span>
+  falls <span class="m">B=0</span>. Erinnerung aus der Verteilungs-Referenz: für
+  <span class="m">Exp(λ)</span> ist <span class="m">P(X&nbsp;≤&nbsp;x)</span> = 1&nbsp;−&nbsp;<span class="m">e</span><sup class="m">−λx</sup>
+  und <span class="m">E[X]</span> = <span class="frac"><span>1</span><span>λ</span></span>.</p>
+
+  <div class="worked">
+    <div class="step"><b>Aufbau.</b> Zwei Fälle: <span class="m">B=1</span> mit Gewicht
+    <span class="m">p</span> und Rate <span class="m">λ=2</span>; &nbsp;<span class="m">B=0</span> mit
+    Gewicht <span class="m">1−p</span> und Rate <span class="m">λ=1</span>.</div>
+
+    <div class="step"><b>(a) <span class="m">P(X&nbsp;≤&nbsp;1)</span>.</b> Totale Wahrscheinlichkeit mit <span class="m">A=&thinsp;{X&nbsp;≤&nbsp;1}</span>:
+      <div class="eq"><span class="nw"><span class="m">P(X&nbsp;≤&nbsp;1)</span> = <span class="m">p</span>(1&nbsp;−&nbsp;<span class="m">e</span><sup>−2</sup>) + (1&nbsp;−&nbsp;<span class="m">p</span>)(1&nbsp;−&nbsp;<span class="m">e</span><sup>−1</sup>)</span></div>
+    </div>
+
+    <div class="step"><b>(b) <span class="m">P(X&nbsp;≤&nbsp;2)</span>.</b> Dieselbe Zerlegung, nur <span class="m">x=2</span>:
+      <div class="eq"><span class="nw"><span class="m">P(X&nbsp;≤&nbsp;2)</span> = <span class="m">p</span>(1&nbsp;−&nbsp;<span class="m">e</span><sup>−4</sup>) + (1&nbsp;−&nbsp;<span class="m">p</span>)(1&nbsp;−&nbsp;<span class="m">e</span><sup>−2</sup>)</span></div>
+    </div>
+
+    <div class="step"><b>(c) <span class="m">E[X]</span>.</b> Turmregel. Innen ist der Erwartungswert
+    einer Exponentialverteilung, also <span class="m">E[X&nbsp;|&nbsp;B=1]</span> = <span class="frac"><span>1</span><span>2</span></span>
+    und <span class="m">E[X&nbsp;|&nbsp;B=0]</span> = 1. Außen mitteln:
+      <div class="eq"><span class="nw"><span class="m">E[X]</span> = <span class="m">p</span>&thinsp;·&thinsp;<span class="frac"><span>1</span><span>2</span></span> + (1&nbsp;−&nbsp;<span class="m">p</span>)&thinsp;·&thinsp;1 = 1&nbsp;−&nbsp;<span class="frac"><span class="m">p</span><span>2</span></span></span></div>
+    </div>
+
+    <div class="step"><b>Plausibilität.</b> Für <span class="m">p=0</span> (immer
+    <span class="m">Exp(1)</span>) kommt <span class="m">E[X]</span>&nbsp;=&nbsp;1 heraus, für
+    <span class="m">p=1</span> (immer <span class="m">Exp(2)</span>) kommt <span class="frac"><span>1</span><span>2</span></span>
+    heraus — genau die Randfälle, die man erwartet. Gutes Zeichen, dass die Rechnung stimmt.</div>
+  </div>
+
+  <h2>So gehst du in der Klausur vor</h2>
+  <ol class="steps">
+    <li>Finde die <b>Fallvariable</b> <span class="m">B</span> und schreibe ihre Gewichte <span class="m">P(B=b)</span> hin.</li>
+    <li>Rechne die gesuchte Größe <b>innerhalb jedes Falls</b> (bedingt) aus.</li>
+    <li><b>Mittle</b> mit den Gewichten: Summe aus (Wert im Fall)&thinsp;×&thinsp;(Wahrscheinlichkeit des Falls).</li>
+    <li>Bei Erwartungswerten steht außen ein <span class="m">E[&thinsp;·&thinsp;]</span> — nicht vergessen.</li>
+  </ol>
+
+  <h2>Jetzt du — Retrieval-Übung</h2>
+  <p>Nicht nachschlagen, sondern <i>aus dem Gedächtnis</i> abrufen. Genau dieser leichte
+  Widerstand baut die dauerhafte Erinnerung auf.</p>
+
+  <div id="quiz1"></div>
+
+  <div class="source">
+    <span class="label">Primärquelle zum Vertiefen</span>
+    <p style="margin:0">Blitzstein &amp; Hwang, <a href="https://probabilitybook.net/" target="_blank" rel="noopener"><i>Introduction to Probability</i></a>
+    — Kap.&nbsp;2 (Law of Total Probability) und Kap.&nbsp;9 (Conditional Expectation, „Adam’s Law“ = Turmregel).
+    Visuell: <a href="https://seeing-theory.brown.edu/compound-probability/index.html" target="_blank" rel="noopener">Seeing Theory — Conditional Probability</a>.</p>
+  </div>
+
+  <div class="ask">
+    <span class="label">Ich bin dein Tutor</span>
+    <p style="margin:0">Frag ruhig nach: „Warum ist <span class="m">E[X&nbsp;|&nbsp;B]</span> eine
+    Zufallsvariable?“, „Rechne mir (a) mit <span class="m">p=</span><span class="frac"><span>1</span><span>3</span></span>
+    als Zahl aus“, oder „Gib mir eine ähnliche Aufgabe mit Normalverteilung.“ Unklarheiten jetzt
+    klären ist billiger als in der Klausur.</p>
+  </div>
+
+  <div class="foot">
+    <span>Referenz: Verteilungen auf einen Blick</span>
+    <span>Nächste Lektion: Erwartungswert aus der Dichte →</span>
+  </div>
+
+  <hr>
+  <p class="eyebrow">Quellen</p>
+  <ol class="sources">
+    <li>Pre-Klausur Stochastik&nbsp;I+II, Aufgabe&nbsp;1 (Bernoulli-Mischung von Exponentialverteilungen) — <code>pre_klausur.pdf</code>.</li>
+    <li>Blitzstein &amp; Hwang, <i>Introduction to Probability</i>, 2.&nbsp;Aufl., Kap.&nbsp;2 &amp; 9 — <a href="https://probabilitybook.net/" target="_blank" rel="noopener">probabilitybook.net</a>.</li>
+    <li>Verteilungswerte (Exp): Verteilungs-Referenz dieses Kurses.</li>
+  </ol>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+  function scoreText(s){return s.total? (s.correct+" / "+s.total+" richtig"):"";}
+  function parseNum(raw){
+    raw=(raw||"").replace(",",".").trim(); if(raw==="")return NaN;
+    var m=raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if(m){var d=parseFloat(m[2]); return d!==0?parseFloat(m[1])/d:NaN;}
+    return parseFloat(raw);
+  }
+
+  function render(mountId, questions, title){
+    var mount=document.getElementById(mountId); if(!mount) return;
+    var state={correct:0,total:0};
+    questions.forEach(function(q){ if(q.type!=="recall") state.total++; });
+    var wrap=el("div","quiz");
+    var head=el("div","quiz-head");
+    head.appendChild(el("span",null,title||"Selbsttest"));
+    var score=el("span","quiz-score",scoreText(state)); head.appendChild(score);
+    wrap.appendChild(head);
+    questions.forEach(function(q,i){ wrap.appendChild(buildQ(q,i,state,score)); });
+    mount.appendChild(wrap);
+  }
+  function buildQ(q,i,state,score){
+    var box=el("div","q");
+    box.appendChild(el("p","q-prompt",'<span class="qn">'+(i+1)+'.</span>'+q.q));
+    if(q.type==="mc") mc(box,q,state,score);
+    else if(q.type==="numeric") numeric(box,q,state,score);
+    else recall(box,q);
+    return box;
+  }
+  function mc(box,q,state,score){
+    var fb=el("div","fb"); var answered=false; var btns=[];
+    q.options.forEach(function(opt,j){
+      var b=el("button","opt",opt); b.type="button";
+      b.addEventListener("click",function(){
+        if(answered)return; answered=true;
+        var ok=j===q.correct;
+        btns.forEach(function(bb,k){ bb.disabled=true;
+          if(k===q.correct) bb.classList.add("correct");
+          else if(k===j) bb.classList.add("wrong"); });
+        fb.className="fb show "+(ok?"ok":"no");
+        fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz. ")+(q.explain||"");
+        if(ok)state.correct++; score.textContent=scoreText(state);
+      });
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+  }
+  function numeric(box,q,state,score){
+    var row=el("div","num-row");
+    var input=el("input"); input.type="text"; input.placeholder=q.placeholder||"z. B. 0,75 oder 3/4";
+    var btn=el("button","btn","Prüfen"); btn.type="button";
+    row.appendChild(input); row.appendChild(btn); box.appendChild(row);
+    var fb=el("div","fb"); box.appendChild(fb); var answered=false;
+    function check(){
+      if(answered)return;
+      var v=parseNum(input.value);
+      if(isNaN(v)){input.focus();return;}
+      answered=true; input.disabled=true; btn.disabled=true;
+      var tol=q.tol!=null?q.tol:1e-9; var ok=Math.abs(v-q.answer)<=tol;
+      fb.className="fb show "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz — richtig ist <b>"+q.answer+"</b>. ")+(q.explain||"");
+      if(ok)state.correct++; score.textContent=scoreText(state);
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter")check(); });
+  }
+  function recall(box,q){
+    var btn=el("button","btn ghost","Antwort zeigen"); btn.type="button";
+    var rev=el("div","reveal",q.answer+(q.explain?'<br><span style="color:var(--muted);font-size:.86rem">'+q.explain+'</span>':''));
+    btn.addEventListener("click",function(){ rev.classList.add("show"); btn.style.display="none"; });
+    box.appendChild(btn); box.appendChild(rev);
+  }
+
+  var M='class="m"';
+  render("quiz1",[
+    { type:"recall",
+      q:'Formuliere die Turmregel (totale Erwartung) als Formel.',
+      answer:'<span '+M+'>E[X]</span> = <span '+M+'>E</span>[&thinsp;<span '+M+'>E[X&nbsp;|&nbsp;B]</span>&thinsp;]',
+      explain:'Innen bedingt rechnen, außen über B mitteln.' },
+    { type:"mc",
+      q:'Was ist <span '+M+'>E[X&nbsp;|&nbsp;B]</span>, solange <span '+M+'>B</span> zufällig ist?',
+      options:['Selbst eine zufällige Größe','Eine feste reelle Zahl','Stets der gesuchte Erwartungswert'],
+      correct:0,
+      explain:'Der Wert hängt vom Ausgang von B ab — deshalb steht außen noch ein E[·].' },
+    { type:"mc",
+      q:'Wie zerlegt man <span '+M+'>P(X&nbsp;≤&nbsp;x)</span> über <span '+M+'>B</span>&nbsp;~&nbsp;<span '+M+'>Bernoulli(p)</span> korrekt?',
+      options:[
+        '<span '+M+'>p&thinsp;P(X≤x|B=1) + (1−p)&thinsp;P(X≤x|B=0)</span>',
+        '<span '+M+'>P(X≤x|B=1) + P(X≤x|B=0)</span>',
+        '<span '+M+'>p&thinsp;P(X≤x|B=1) · (1−p)&thinsp;P(X≤x|B=0)</span>'],
+      correct:0,
+      explain:'Mit P(B=b) gewichten und summieren — nicht multiplizieren, nicht weglassen.' },
+    { type:"numeric",
+      q:'Berechne <span '+M+'>E[X]</span> im Beispiel für <span '+M+'>p=</span>½. &nbsp;(Es gilt <span '+M+'>E[X]</span> = 1 − <span '+M+'>p</span>/2.)',
+      answer:0.75, tol:0.001,
+      explain:'1 − ½·½ = 1 − ¼ = 0,75.' },
+    { type:"numeric",
+      q:'Und für <span '+M+'>p=1</span> (also immer <span '+M+'>Exp(2)</span>): <span '+M+'>E[X]</span> = ?',
+      answer:0.5, tol:0.001,
+      explain:'E[X] = 1 − ½ = ½, der Erwartungswert von Exp(2).' }
+  ],"Selbsttest · Bedingen");
+})();
+</script>

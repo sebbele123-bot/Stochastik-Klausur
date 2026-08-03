@@ -48,7 +48,7 @@
   .binom{display:inline-flex; flex-direction:column; vertical-align:-0.42em; text-align:center;
     font-size:.8em; line-height:1.06; font-style:italic; margin:0 .04em;}
   .paren{font-size:1.75em; font-style:normal; line-height:0; vertical-align:-.34em; color:inherit;}
-  .eq{margin:1.05rem 0; text-align:center; font-size:1.08rem;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
   .sig{font-style:normal; font-size:1.3em; vertical-align:-.2em; margin-right:.04em;}
   .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
     letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
@@ -98,6 +98,20 @@
   .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
   .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
   .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
   @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
 </style>
 
@@ -139,7 +153,7 @@
     <span class="label">Die Regel, die alles trägt</span>
     <p style="margin-bottom:.2rem">Ist <span class="m">S<sub>n</sub></span> ~ Binomial(<span class="m">n</span>, <span class="m">p<sub>n</sub></span>)
     mit <b><span class="m">n·p<sub>n</sub> → λ</span></b> (viele Versuche, jeder selten), so gilt</p>
-    <div class="eq"><span class="m">S<sub>n</sub></span> <sup>d</sup>⟶ Poisson(<span class="m">λ</span>)</div>
+    <div class="eq"><span class="nw"><span class="m">S<sub>n</sub></span> <sup>d</sup>⟶ Poisson(<span class="m">λ</span>)</span></div>
     <p style="margin-bottom:0">Hier: <span class="m">n·</span><span class="frac"><span>1</span><span class="m">n</span></span> = 1 für alle <span class="m">n</span>, also <b><span class="m">λ</span> = 1</b>.
     Das ist der Grund, warum am Ende Poisson(1) steht.</p>
   </div>
@@ -155,15 +169,15 @@
       <span class="paren">(</span><span class="binom"><span>n</span><span>k</span></span><span class="paren">)</span>
       Möglichkeiten — und jede einzelne hat wegen Unabhängigkeit die Wahrscheinlichkeit
       <span class="m">p<sup>k</sup>(1−p)<sup>n−k</sup></span>:
-      <div class="eq"><span class="m">P(S<sub>n</sub>=k)</span> = <span class="paren">(</span><span class="binom"><span>n</span><span>k</span></span><span class="paren">)</span> <span class="m">p<sup>k</sup>(1−p)<sup>n−k</sup></span>, &nbsp; <span class="m">p</span> = <span class="frac"><span>1</span><span class="m">n</span></span></div>
+      <div class="eq"><span class="nw"><span class="m">P(S<sub>n</sub>=k)</span> = <span class="paren">(</span><span class="binom"><span>n</span><span>k</span></span><span class="paren">)</span> <span class="m">p<sup>k</sup>(1−p)<sup>n−k</sup></span>, &nbsp; <span class="m">p</span> = <span class="frac"><span>1</span><span class="m">n</span></span></span></div>
       Das ist genau die Definition von Binomial(<span class="m">n</span>, <span class="m">p</span>). ✓</div>
   </div>
 
   <div class="worked">
     <div class="step"><b>(b) Grenzwert der Zähldichte.</b> Setze <span class="m">p</span> = 1/<span class="m">n</span> ein und sortiere:
-      <div class="eq"><span class="m">P(S<sub>n</sub>=k)</span> = <span class="frac"><span class="m">n(n−1)⋯(n−k+1)</span><span class="m">k!</span></span> · <span class="frac"><span>1</span><span class="m">n<sup>k</sup></span></span> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">n−k</sup></div>
+      <div class="eq"><span class="nw"><span class="m">P(S<sub>n</sub>=k)</span> = <span class="frac"><span class="m">n(n−1)⋯(n−k+1)</span><span class="m">k!</span></span> · <span class="frac"><span>1</span><span class="m">n<sup>k</sup></span></span> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">n−k</sup></span></div>
       Die ersten beiden Faktoren zusammengefasst (jeweils durch <span class="m">n</span> geteilt) und den letzten aufgespalten:
-      <div class="eq">= <span class="frac"><span>1</span><span class="m">k!</span></span> · <span class="m">∏</span><sub class="m">j=0</sub><sup class="m">k−1</sup><span class="paren">(</span>1−<span class="frac"><span class="m">j</span><span class="m">n</span></span><span class="paren">)</span> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">n</sup> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">−k</sup></div>
+      <div class="eq"><span class="nw">= <span class="frac"><span>1</span><span class="m">k!</span></span> · <span class="m">∏</span><sub class="m">j=0</sub><sup class="m">k−1</sup><span class="paren">(</span>1−<span class="frac"><span class="m">j</span><span class="m">n</span></span><span class="paren">)</span> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">n</sup> · <span class="paren">(</span>1−<span class="frac"><span>1</span><span class="m">n</span></span><span class="paren">)</span><sup class="m">−k</sup></span></div>
     </div>
     <div class="step"><b>Jetzt <span class="m">n → ∞</span> bei festem <span class="m">k</span></b> — drei Grenzwerte, das ist das ganze Werkzeug:
       <div class="toolkit">
@@ -173,7 +187,7 @@
       </div>
     </div>
     <div class="step"><b>Ergebnis:</b>
-      <div class="eq"><span class="m">P(S<sub>n</sub>=k)</span> ⟶ <span class="m">e</span><sup>−1</sup> <span class="frac"><span>1</span><span class="m">k!</span></span></div>
+      <div class="eq"><span class="nw"><span class="m">P(S<sub>n</sub>=k)</span> ⟶ <span class="m">e</span><sup>−1</sup> <span class="frac"><span>1</span><span class="m">k!</span></span></span></div>
       Das ist die Zähldichte von Poisson(1). ✓</div>
   </div>
 
@@ -182,11 +196,11 @@
       Laut <b>Definition 13</b> (Skript) heißt <span class="m">S<sub>n</sub></span> <sup>d</sup>⟶ <span class="m">S</span>:
       die Verteilungsfunktionen konvergieren (an allen Stetigkeitsstellen von <span class="m">F</span>).</div>
     <div class="step">Für <span class="m">x ≥ 0</span> ist die Verteilungsfunktion eine <b>endliche</b> Summe:
-      <div class="eq"><span class="m">F<sub>S<sub>n</sub></sub>(x)</span> = <span class="sig">∑</span><sub class="m">k≤x</sub> <span class="m">P(S<sub>n</sub>=k)</span> ⟶ <span class="sig">∑</span><sub class="m">k≤x</sub> <span class="m">e</span><sup>−1</sup><span class="frac"><span>1</span><span class="m">k!</span></span> = <span class="m">F</span><sub>Poisson(1)</sub><span class="m">(x)</span></div>
+      <div class="eq"><span class="nw"><span class="m">F<sub>S<sub>n</sub></sub>(x)</span> = <span class="sig">∑</span><sub class="m">k≤x</sub> <span class="m">P(S<sub>n</sub>=k)</span> ⟶ <span class="sig">∑</span><sub class="m">k≤x</sub> <span class="m">e</span><sup>−1</sup><span class="frac"><span>1</span><span class="m">k!</span></span> = <span class="m">F</span><sub>Poisson(1)</sub><span class="m">(x)</span></span></div>
       <span class="cite">Weil nur <b>endlich viele</b> Summanden auftreten (<span class="m">k</span> = 0,…,⌊<span class="m">x</span>⌋), darf man den Grenzwert gliedweise ziehen — genau das ist der Punkt, an dem (b) eingeht.</span></div>
     <div class="step">Für <span class="m">x &lt; 0</span> sind beide Seiten 0. Also konvergieren die
       Verteilungsfunktionen überall, insbesondere an allen Stetigkeitsstellen:
-      <div class="eq"><span class="m">S<sub>n</sub></span> <sup>d</sup>⟶ Poisson(1) &nbsp;∎</div></div>
+      <div class="eq"><span class="nw"><span class="m">S<sub>n</sub></span> <sup>d</sup>⟶ Poisson(1) &nbsp;∎</span></div></div>
   </div>
 
   <div class="box warn">

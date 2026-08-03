@@ -123,6 +123,28 @@ th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(-
 th { font-variant: small-caps; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
 .table-wrap { overflow-x: auto; }
 
+/* --- Formeln: nie umbrechen, lieber seitlich scrollen --- */
+.eq, mjx-container[display="true"] {
+  display: flex; justify-content: safe center; align-items: center;
+  white-space: nowrap; overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; padding: .15rem 0 .45rem;
+}
+.nw, .frac, .binom { white-space: nowrap; }
+.eq::-webkit-scrollbar { height: 4px; }
+.eq::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+/* --- Handy --- */
+@media (max-width: 560px) {
+  html { font-size: 16px; }
+  body { padding: 2.1rem 1rem 4rem; line-height: 1.56; }
+  h1 { font-size: 1.55rem; }
+  h2 { font-size: 1.13rem; margin-top: 2rem; }
+  .subtitle { font-size: 1rem; }
+  .box { padding: .85rem .95rem; }
+  .worked { padding-left: .85rem; }
+  table { font-size: .85rem; }
+}
+
 /* --- Druck --- */
 @media print {
   :root { --bg:#fff; --ink:#000; }
