@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion 3 · Konvergenz in Verteilung: Binomial → Poisson</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+  window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+
+<p class="eyebrow">Lektion 3 · Stochastik I · Klausurvorbereitung</p>
+<h1>Konvergenz in Verteilung: von Binomial zu Poisson</h1>
+<p class="subtitle">Warum viele seltene Versuche zusammen eine Poisson-Verteilung ergeben —
+Aufgabe&nbsp;3 der Pre-Klausur.</p>
+
+<div class="box note">
+  <span class="label">Warum das dran ist</span>
+  <p style="margin:0">Aufgabe&nbsp;3 führt in drei Schritten durch den
+  <b>Poisson-Grenzwertsatz</b>: erst die Verteilung von $S_n$ bestimmen, dann den Grenzwert der
+  Zähldichte, dann daraus die Konvergenz in Verteilung folgern. Der Beweis ist kurz — er lebt
+  von <b>drei Grenzwerten</b>, die du auswendig können musst.</p>
+</div>
+
+<h2>Die Aufgabe</h2>
+<p>Für jedes $n$ seien $X_1,\dots,X_n$ unabhängig mit $P(X_k=1)=\tfrac1n$,
+$P(X_k=0)=1-\tfrac1n$, und $S_n=\sum_{k=1}^n X_k$.</p>
+
+<div class="box warn">
+  <span class="label">Lies die Aufgabe genau — hier steckt eine Stolperfalle</span>
+  <p>In der Angabe steht $P(X_n=1)=\tfrac1n$, also scheinbar für jedes $k$ eine <i>andere</i>
+  Erfolgswahrscheinlichkeit $\tfrac1k$. Dann wäre $S_n$ aber <b>nicht</b> binomialverteilt —
+  eine Summe von Bernoullis mit <i>verschiedenen</i> Parametern ist keine Binomialverteilung.</p>
+  <p style="margin-bottom:0">Damit Teil&nbsp;(a) stimmt, ist gemeint: <b>für jedes feste $n$ haben
+  alle $n$ Summanden denselben Parameter $\tfrac1n$</b> (ein Dreiecksschema). Genau so rechnest
+  du es. Fällt dir so etwas in der Klausur auf: kurz dazuschreiben, wie du es liest — kostet
+  nichts und zeigt Verständnis.</p>
+</div>
+
+<h2>Kernidee — der Poisson-Grenzwertsatz</h2>
+<div class="box idea">
+  <span class="label">Die Regel, die alles trägt</span>
+  <p>Ist $S_n\sim\mathrm{Binomial}(n,p_n)$ mit $\;n\,p_n\to\lambda\;$ (viele Versuche, jeder
+  selten), so gilt $$S_n \stackrel{d}{\longrightarrow} \mathrm{Poisson}(\lambda).$$</p>
+  <p style="margin-bottom:0">Hier ist $n\cdot\tfrac1n=1$ für alle $n$, also $\lambda=1$ — daher
+  am Ende Poisson(1).</p>
+</div>
+
+<h2>Durchgerechnet</h2>
+
+<div class="worked">
+  <div class="step"><b>(a) $S_n\sim\mathrm{Binomial}(n,1/n)$.</b> Eine Summe von $n$
+  <i>unabhängigen</i> Bernoulli-Variablen mit <i>gleichem</i> Parameter $p$ zählt die Erfolge
+  unter $n$ Versuchen. Für genau $k$ Erfolge wählt man, <i>welche</i> $k$ der $n$ Versuche
+  erfolgreich sind — dafür gibt es $\binom{n}{k}$ Möglichkeiten — und jede Konfiguration hat
+  wegen Unabhängigkeit die Wahrscheinlichkeit $p^k(1-p)^{n-k}$:
+  $$P(S_n=k)=\binom{n}{k}p^k(1-p)^{n-k},\qquad p=\tfrac1n.$$
+  Das ist genau die Definition von $\mathrm{Binomial}(n,p)$. $\checkmark$</div>
+</div>
+
+<div class="worked">
+  <div class="step"><b>(b) Grenzwert der Zähldichte.</b> Mit $p=\tfrac1n$:
+  $$P(S_n=k)=\frac{n(n-1)\cdots(n-k+1)}{k!}\cdot\frac{1}{n^k}\cdot\Big(1-\tfrac1n\Big)^{n-k}.$$
+  Die ersten beiden Faktoren zusammenfassen (jeder der $k$ Faktoren durch $n$ geteilt) und den
+  letzten aufspalten:
+  $$=\frac{1}{k!}\cdot\prod_{j=0}^{k-1}\Big(1-\tfrac{j}{n}\Big)\cdot\Big(1-\tfrac1n\Big)^{n}\cdot\Big(1-\tfrac1n\Big)^{-k}.$$</div>
+
+  <div class="step"><b>Jetzt $n\to\infty$ bei festem $k$</b> — drei Grenzwerte, das ist das ganze Werkzeug:
+    <ol>
+      <li>$\prod_{j=0}^{k-1}\big(1-\tfrac{j}{n}\big)\to 1$ &nbsp;<span class="cite">(endlich viele Faktoren, jeder $\to1$)</span></li>
+      <li>$\big(1-\tfrac1n\big)^{n}\to e^{-1}$ &nbsp;<span class="cite">— der Schlüsselgrenzwert</span></li>
+      <li>$\big(1-\tfrac1n\big)^{-k}\to 1$ &nbsp;<span class="cite">(fester Exponent)</span></li>
+    </ol></div>
+
+  <div class="step"><b>Ergebnis:</b> $\;P(S_n=k)\longrightarrow e^{-1}\dfrac{1}{k!}$ — die
+  Zähldichte von Poisson(1). $\checkmark$</div>
+</div>
+
+<div class="worked">
+  <div class="step"><b>(c) Von der Zähldichte zur Konvergenz in Verteilung.</b> Laut
+  <b>Definition&nbsp;13</b> (Skript) bedeutet $S_n\stackrel{d}{\to}S$: die Verteilungsfunktionen
+  konvergieren (an allen Stetigkeitsstellen von $F$).</div>
+  <div class="step">Für $x\ge 0$ ist die Verteilungsfunktion eine <b>endliche</b> Summe:
+  $$F_{S_n}(x)=\sum_{k\le x}P(S_n=k)\;\longrightarrow\;\sum_{k\le x}e^{-1}\frac{1}{k!}=F_{\mathrm{Poisson}(1)}(x).$$
+  <span class="cite">Weil nur endlich viele Summanden auftreten ($k=0,\dots,\lfloor x\rfloor$),
+  darf man den Grenzwert gliedweise ziehen — genau hier geht (b) ein.</span></div>
+  <div class="step">Für $x<0$ sind beide Seiten $0$. Also konvergieren die Verteilungsfunktionen
+  überall, insbesondere an allen Stetigkeitsstellen:
+  $$S_n\stackrel{d}{\longrightarrow}\mathrm{Poisson}(1).\qquad\blacksquare$$</div>
+</div>
+
+<div class="box warn">
+  <span class="label">Notation</span>
+  <p style="margin:0">Dein Skript schreibt die Konvergenz in Verteilung als
+  $X_n\stackrel{L}{\to}X$ („L“ wie <i>Law</i>), die Pre-Klausur als $\stackrel{d}{\to}$
+  („distribution“). <b>Dasselbe gemeint</b> — beide Schreibweisen sind zulässig.</p>
+</div>
+
+<h2>So gehst du in der Klausur vor</h2>
+<ol>
+  <li><b>Verteilung identifizieren:</b> Summe unabhängiger Bernoullis mit gleichem $p$ ⇒ Binomial.</li>
+  <li><b>$\lambda$ ablesen:</b> $\lambda=\lim n\,p_n$. (Hier $1$.)</li>
+  <li><b>Zähldichte umformen</b> und die drei Grenzwerte anwenden.</li>
+  <li><b>Auf CDFs schließen:</b> endliche Summen ⇒ gliedweiser Grenzwert ⇒ Konvergenz in Verteilung.</li>
+</ol>
+
+<h2>Jetzt du — Retrieval-Übung</h2>
+<p>Aus dem Gedächtnis. Brüche wie <code>1/2</code> sind erlaubt.</p>
+<div id="quiz3"></div>
+
+<div class="primary-source">
+  <span class="label">Primärquelle zum Vertiefen</span>
+  Skript Stochastik II, <b>Definition&nbsp;13</b> (Konvergenz in Verteilung). Ergänzend
+  Blitzstein &amp; Hwang, <a href="https://probabilitybook.net/"><i>Introduction to Probability</i></a>,
+  Kap.&nbsp;4.8 (Poisson approximation). Referenz:
+  <a href="../reference/verteilungen.html">Verteilungen auf einen Blick</a>.
+</div>
+
+<div class="ask">
+  <b>Ich bin dein Tutor.</b> Frag z.&nbsp;B.: „Warum ist $(1-\tfrac1n)^n\to e^{-1}$?“,
+  „Warum reicht gliedweise Konvergenz bei unendlich vielen $k$ nicht automatisch?“, oder
+  „Rechne (b) für $k=2$ konkret vor.“
+</div>
+
+<div class="footer-nav">
+  <span>← <a href="0002-erwartungswert-dichte.html">Lektion 2: Dichte &amp; Erwartungswert</a></span>
+  <span>Nächste Lektion: Exponentialfamilien (Stochastik II) →</span>
+</div>
+
+<hr>
+<p class="eyebrow">Quellen</p>
+<ol class="sources">
+  <li><span class="cite">Pre-Klausur Stochastik I+II, Aufgabe&nbsp;3 (Binomial → Poisson) — <code>pre_klausur.pdf</code>.</span></li>
+  <li><span class="cite">Skript Stochastik II (T. Schmidt), Definition&nbsp;13 — Konvergenz in
+      Verteilung über die Verteilungsfunktionen.</span></li>
+  <li><span class="cite">Blitzstein &amp; Hwang, <i>Introduction to Probability</i>, Kap.&nbsp;4.8
+      — <a href="https://probabilitybook.net/">probabilitybook.net</a>.</span></li>
+</ol>
+
+<script src="../assets/quiz.js"></script>
+<script>
+Quiz.render('quiz3', [
+  { type:'recall',
+    q:'Formuliere den Poisson-Grenzwertsatz: $\\mathrm{Binomial}(n,p_n)$ mit welcher Bedingung ⇒ was?',
+    answer:'Gilt $n\\,p_n\\to\\lambda$, so folgt $\\mathrm{Binomial}(n,p_n)\\stackrel{d}{\\to}\\mathrm{Poisson}(\\lambda)$.',
+    explain:'Merksatz: viele Versuche, jeder selten, Produkt bleibt endlich.' },
+  { type:'numeric',
+    q:'Welches $\\lambda$ ergibt sich für $\\mathrm{Binomial}(n,1/n)$?',
+    answer:1, tol:0.0001,
+    explain:'$\\lambda=n\\cdot\\tfrac1n=1$ — deshalb Poisson(1).' },
+  { type:'mc',
+    q:'Welcher Grenzwert ist der Schlüssel im Beweis von (b)?',
+    options:['$(1-1/n)^n \\to e^{-1}$','$(1-1/n)^n \\to 0$','$(1-1/n)^n \\to 1$'],
+    correct:0,
+    explain:'Das ist die Definition von $e^{-1}$; daher der Faktor $e^{-\\lambda}$ in der Poisson-Zähldichte.' },
+  { type:'numeric',
+    q:'Grenzwert von $P(S_n=0)$, also $e^{-1}/0!$ — auf 3 Nachkommastellen?',
+    answer:0.368, tol:0.002,
+    explain:'$e^{-1}\\approx 0{,}368$ (mit $0!=1$).' },
+  { type:'numeric',
+    q:'Wiederholung: $E[S_n]$ für $\\mathrm{Binomial}(n,1/n)$?',
+    answer:1, tol:0.0001,
+    explain:'$E=np=n\\cdot\\tfrac1n=1$ — passt zu $E[\\mathrm{Poisson}(1)]=1$.' },
+  { type:'mc',
+    q:'Was ist laut Definition 13 für „$S_n\\stackrel{d}{\\to}S$“ zu zeigen?',
+    options:[
+      'Die Verteilungsfunktionen konvergieren (an Stetigkeitsstellen)',
+      'Die Zufallsvariablen konvergieren punktweise',
+      'Die Erwartungswerte konvergieren'],
+    correct:0,
+    explain:'Konvergenz in Verteilung ist eine Aussage über die Verteilungen, nicht über die Werte der Zufallsvariablen.' }
+], { title: 'Selbsttest · Konvergenz & Poisson' });
+
+if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+  MathJax.startup.promise.then(function () { MathJax.typesetPromise(); });
+}
+</script>
+
+</body>
+</html>

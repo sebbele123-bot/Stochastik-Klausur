@@ -16,6 +16,14 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 - `pre_klausur.pdf` ist die beste Referenz für den Aufgaben-Stil (I: Bedingen/Mischen,
   stetige Dichten, Konvergenz→Poisson; II: Exponentialfamilie+MLS, Gauß-Test+KI).
 
+## Arbeitsmodus (vereinbart 02.08.)
+- **Volle HTML-Lektionen mit Selbsttest**, wie L1/L2. Sebastians ausdrückliche Wahl.
+- **Wichtiger Vorbehalt:** Quiz-Ergebnisse kommen NICHT bei mir an — das Quiz läuft im
+  Browser. Alle Learning Records zu Sebastians Können beruhen auf **Selbstauskunft**,
+  nicht auf beobachteter Leistung. Bei ZPD-Entscheidungen mitdenken.
+- Angebot steht: Sobald er eine Rechnung (Text oder **Foto vom Blatt**) schickt, kann ich
+  echt korrigieren. Nicht drängen — einmal angeboten, er entscheidet.
+
 ## Material im Repo
 - `2025_lectures_stochastik_I.pdf` — Skript Stochastik I (78 S.)
 - `Skript_stochastic_II_ss_2026.pdf` — Skript Stochastik II, T. Schmidt (57 S.)
