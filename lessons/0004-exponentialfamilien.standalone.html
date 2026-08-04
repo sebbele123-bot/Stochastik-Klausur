@@ -1,0 +1,361 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+      --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+      --card:#171b21; --code:#1c222a;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+    --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+    --card:#171b21; --code:#1c222a;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62; margin:0;}
+  .wrap{max-width:41rem; margin:0 auto; padding:3.4rem 1.4rem 5rem;}
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.13em; font-size:.72rem; font-weight:600; color:var(--accent); margin:0 0 .7rem;}
+  h1{font-size:2.05rem; line-height:1.12; font-weight:600; margin:0 0 .5rem; text-wrap:balance; letter-spacing:-.01em;}
+  .subtitle{color:var(--muted); font-style:italic; font-size:1.12rem; margin:0 0 1.6rem; text-wrap:balance;}
+  h2{font-size:1.32rem; font-weight:600; margin:2.6rem 0 .5rem; letter-spacing:-.005em;}
+  p{margin:.7rem 0;} ol{padding-left:1.25rem;} ol li{margin:.4rem 0;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+  .m{font-style:italic; font-family:Georgia,"Times New Roman",serif;}
+  sup,sub{font-style:normal;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:-0.55em; text-align:center;
+    font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
+  .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
+  .frac>span:last-child{padding:0 .28em;}
+  .binom{display:inline-flex; flex-direction:column; vertical-align:-0.42em; text-align:center;
+    font-size:.8em; line-height:1.06; font-style:italic; margin:0 .04em;}
+  .paren{font-size:1.75em; font-style:normal; line-height:0; vertical-align:-.34em; color:inherit;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
+  .sig{font-style:normal; font-size:1.3em; vertical-align:-.2em; margin-right:.04em;}
+  .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
+  .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0; background:var(--card);}
+  .box>:first-child{margin-top:0} .box>:last-child{margin-bottom:0}
+  .idea{background:var(--idea-bg); border-color:var(--idea-br);} .idea .label{color:#2f6b3d;}
+  .warn{background:var(--warn-bg); border-color:var(--warn-br);} .warn .label{color:#8a5a17;}
+  .why .label{color:var(--accent);}
+  :root[data-theme="dark"] .idea .label{color:#8fce9c} :root[data-theme="dark"] .warn .label{color:#e0bd82}
+  @media (prefers-color-scheme:dark){ .idea .label{color:#8fce9c} .warn .label{color:#e0bd82} }
+  .worked{border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.15rem; margin:1.4rem 0;}
+  .worked .step{margin:.7rem 0;} .worked .step b{color:var(--accent);}
+  .cite{color:var(--muted); font-size:.88em;}
+  code{background:var(--code); font-family:ui-monospace,Menlo,monospace; font-size:.86em; padding:.06rem .32rem; border-radius:4px;}
+  .source{background:var(--accent-soft); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.5rem 0;}
+  .source .label{color:var(--accent);}
+  .ask{border:1px dashed var(--accent); border-radius:8px; padding:1rem 1.15rem; margin:1.8rem 0;} .ask .label{color:var(--accent);}
+  hr{border:0; border-top:1px solid var(--rule); margin:2.4rem 0;}
+  .foot{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:.85rem; color:var(--muted);
+    margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule);}
+  .sources{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--muted); padding-left:1.1rem;}
+  .sources li{margin:.3rem 0;}
+  .toolkit{display:grid; gap:.5rem; margin:.6rem 0 0;}
+  .toolkit div{background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:.5rem .75rem;}
+  .quiz{border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:1.6rem 0;
+    background:var(--card); font-family:ui-sans-serif,system-ui,sans-serif;}
+  .quiz-head{display:flex; justify-content:space-between; align-items:center; padding:.7rem 1.05rem;
+    border-bottom:1px solid var(--rule); text-transform:uppercase; letter-spacing:.09em; font-size:.72rem; font-weight:700; color:var(--muted);}
+  .quiz-score{letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--accent);}
+  .q{padding:1.05rem;} .q+.q{border-top:1px solid var(--rule);}
+  .q-prompt{margin:0 0 .75rem; font-weight:600;} .q-prompt .qn{color:var(--muted); margin-right:.4rem; font-weight:700;}
+  .opt{display:block; width:100%; text-align:left; margin:.34rem 0; padding:.55rem .8rem; border:1px solid var(--rule);
+    border-radius:6px; background:var(--paper); color:var(--ink); font:inherit; cursor:pointer; transition:border-color .12s, background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);} .opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:#dcefdf; border-color:#5fa06c; color:#173f21;}
+  .opt.wrong{background:#f4dede; border-color:#c06a6a; color:#521818;}
+  :root[data-theme="dark"] .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+  :root[data-theme="dark"] .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  @media (prefers-color-scheme:dark){ .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;} .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;} }
+  .num-row{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center;}
+  .num-row input{font:inherit; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--ink); width:9rem;}
+  .num-row input:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .btn{font:inherit; font-weight:600; padding:.5rem .95rem; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:var(--on-accent); cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--accent);} .btn:hover{filter:brightness(1.05);} .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
+  .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
+  .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+</style>
+<div class="wrap">
+  <p class="eyebrow">Lektion 4 · Stochastik II · Klausurvorbereitung</p>
+  <h1>Exponentialfamilien erkennen</h1>
+  <p class="subtitle">Eine Verteilung in die Standardform bringen — Aufgabe 1 (a) und (b) der Pre-Klausur.</p>
+
+  <div class="box why">
+    <span class="label">Warum das dran ist</span>
+    <p>Ab hier ist Statistik dran. Aufgabe 1 verlangt zuerst, die Poisson-Verteilung als
+    <b>Exponentialfamilie</b> zu schreiben. Das ist reine Formsache — <b>Logarithmus ziehen und
+    vier Bausteine ablesen</b>. Der Lohn kommt in Teil (c): steht die Form einmal da, liefert
+    <b>Satz 60</b> den Maximum-Likelihood-Schätzer fast geschenkt.</p>
+  </div>
+
+  <h2>Die Standardform</h2>
+  <div class="box idea">
+    <span class="label">Definition 34 im Skript</span>
+    <p>Eine Familie heißt <b>einparametrige exponentielle Familie</b>, wenn sich Dichte bzw.
+    Zähldichte so schreiben lässt:</p>
+    <div class="eq"><span class="nw"><span class="m">p(x, θ)</span> = exp<span class="paren">(</span><span class="m">c(θ)·T(x) + d(θ) + S(x)</span><span class="paren">)</span></span></div>
+    <p style="margin-bottom:0">Vier Bausteine — und jeder hat eine feste Rolle:</p>
+    <div class="toolkit">
+      <div><b><span class="m">c(θ)</span></b> — hängt <i>nur von θ</i> ab, steht als Faktor vor <span class="m">T(x)</span></div>
+      <div><b><span class="m">T(x)</span></b> — hängt <i>nur von x</i> ab; die <b>suffiziente Statistik</b></div>
+      <div><b><span class="m">d(θ)</span></b> — hängt <i>nur von θ</i> ab; sorgt für die Normierung</div>
+      <div><b><span class="m">S(x)</span></b> — hängt <i>nur von x</i> ab; alles Übrige</div>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Die eine Bedingung, die man vergisst</span>
+    <p>Der <b>Träger</b> (wo die Dichte ungleich 0 ist) darf <b>nicht von θ abhängen</b>.</p>
+    <p style="margin-bottom:0">Beispiel: Unif(0, θ) ist <b>keine</b> Exponentialfamilie — der
+    Bereich, in dem die Dichte lebt, wandert ja mit θ mit. Bei Poisson dagegen ist der Träger
+    immer <span class="m">x</span> = 0, 1, 2, … — unabhängig von θ. ✓</p>
+  </div>
+
+  <h2>Das Rezept</h2>
+  <p>Immer derselbe Dreischritt:</p>
+  <ol>
+    <li><b>Logarithmus ziehen.</b> Aus Produkten werden Summen — genau die Struktur, die wir brauchen.</li>
+    <li><b>Sortieren:</b> Was hängt nur von <span class="m">x</span> ab? Nur von <span class="m">θ</span>? Was ist ein Produkt aus beidem?</li>
+    <li><b>Ablesen</b> und wieder in <span class="m">exp(…)</span> schreiben.</li>
+  </ol>
+
+  <h2>Durchgerechnet: Aufgabe 1 (a)</h2>
+  <p>Gegeben ist die Poisson-Zähldichte</p>
+  <div class="eq"><span class="nw"><span class="m">f(x; θ)</span> = <span class="frac"><span class="m">e<sup>−θ</sup> θ<sup>x</sup></span><span class="m">x!</span></span>, &nbsp; <span class="m">x</span> = 0, 1, 2, …, &nbsp; <span class="m">θ</span> &gt; 0</span></div>
+
+  <div class="worked">
+    <div class="step"><b>Schritt 1 — Logarithmus ziehen.</b>
+      <div class="eq"><span class="nw">ln <span class="m">f(x; θ)</span> = ln<span class="paren">(</span><span class="m">e<sup>−θ</sup></span><span class="paren">)</span> + ln<span class="paren">(</span><span class="m">θ<sup>x</sup></span><span class="paren">)</span> − ln<span class="paren">(</span><span class="m">x!</span><span class="paren">)</span></span></div>
+      <div class="eq"><span class="nw">= <span class="m">−θ</span> + <span class="m">x</span>·ln <span class="m">θ</span> − ln(<span class="m">x!</span>)</span></div>
+      <span class="cite">Benutzt: ln(<span class="m">e<sup>a</sup></span>) = <span class="m">a</span> &nbsp;und&nbsp; ln(<span class="m">θ<sup>x</sup></span>) = <span class="m">x</span>·ln <span class="m">θ</span>.</span></div>
+
+    <div class="step"><b>Schritt 2 — Sortieren.</b> Wir schauen jeden Summanden an:
+      <div class="toolkit">
+        <div><span class="m">x</span>·ln <span class="m">θ</span> &nbsp;→&nbsp; Produkt aus „nur θ" und „nur x" &nbsp;⇒&nbsp; <b><span class="m">c(θ)·T(x)</span></b></div>
+        <div><span class="m">−θ</span> &nbsp;→&nbsp; nur θ &nbsp;⇒&nbsp; <b><span class="m">d(θ)</span></b></div>
+        <div>−ln(<span class="m">x!</span>) &nbsp;→&nbsp; nur x &nbsp;⇒&nbsp; <b><span class="m">S(x)</span></b></div>
+      </div></div>
+
+    <div class="step"><b>Schritt 3 — Ablesen.</b>
+      <div class="eq"><span class="nw"><span class="m">c(θ)</span> = ln <span class="m">θ</span>, &nbsp; <span class="m">T(x)</span> = <span class="m">x</span>, &nbsp; <span class="m">d(θ)</span> = <span class="m">−θ</span>, &nbsp; <span class="m">S(x)</span> = −ln(<span class="m">x!</span>)</span></div>
+      also
+      <div class="eq"><span class="nw"><span class="m">f(x; θ)</span> = exp<span class="paren">(</span><span class="m">x</span>·ln <span class="m">θ</span> − <span class="m">θ</span> − ln(<span class="m">x!</span>)<span class="paren">)</span></span></div>
+      Damit ist Poisson eine einparametrige Exponentialfamilie. ✓ ∎</div>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Der häufigste Fehler</span>
+    <p style="margin-bottom:0">Man schreibt <span class="m">d(θ)</span> = <span class="m">e<sup>−θ</sup></span> statt <span class="m">−θ</span>.
+    Denk daran: Wir stehen <b>innerhalb</b> von exp(…) — dort gehört der <i>Logarithmus</i> hin,
+    also <span class="m">−θ</span>. Gegenprobe: exp(<span class="m">−θ</span>) = <span class="m">e<sup>−θ</sup></span> ✓</p>
+  </div>
+
+  <h2>Durchgerechnet: Aufgabe 1 (b) — natürlicher Parameter</h2>
+  <p>Die Form wird noch einfacher, wenn der Faktor vor <span class="m">T(x)</span> <b>der Parameter selbst</b> ist.
+  Dafür tauft man um:</p>
+
+  <div class="worked">
+    <div class="step"><b>Schritt 1 — <span class="m">η</span> definieren</b> als das, was vor <span class="m">T(x)</span> steht:
+      <div class="eq"><span class="nw"><span class="m">η</span> := <span class="m">c(θ)</span> = ln <span class="m">θ</span></span></div></div>
+    <div class="step"><b>Schritt 2 — nach θ umstellen</b> (damit wir θ überall ersetzen können):
+      <div class="eq"><span class="nw"><span class="m">η</span> = ln <span class="m">θ</span> &nbsp;⇔&nbsp; <span class="m">θ</span> = <span class="m">e<sup>η</sup></span></span></div>
+      <span class="cite">Genau wie bei der Substitution in Lektion 2: kein <span class="m">θ</span> darf stehen bleiben.</span></div>
+    <div class="step"><b>Schritt 3 — einsetzen.</b> Nur <span class="m">d</span> enthält noch <span class="m">θ</span>:
+      <div class="eq"><span class="nw"><span class="m">d</span><sub>0</sub><span class="m">(η)</span> = <span class="m">−θ</span> = <span class="m">−e<sup>η</sup></span></span></div>
+      und damit
+      <div class="eq"><span class="nw"><span class="m">f(x; η)</span> = exp<span class="paren">(</span><span class="m">η·x − e<sup>η</sup> − </span>ln(<span class="m">x!</span>)<span class="paren">)</span></span></div>
+      Das ist die <b>natürliche Form</b> (Gleichung 36 im Skript). ✓ ∎</div>
+    <div class="step"><b>Probe</b> (lohnt sich immer): <span class="m">η</span> = ln <span class="m">θ</span> einsetzen gibt
+      <span class="m">e<sup>x·ln θ</sup></span> = <span class="m">θ<sup>x</sup></span> und <span class="m">e<sup>−e<sup>ln θ</sup></sup></span> = <span class="m">e<sup>−θ</sup></span> —
+      zusammen wieder <span class="m">θ<sup>x</sup>e<sup>−θ</sup>/x!</span> ✓</div>
+  </div>
+
+  <div class="box idea">
+    <span class="label">Warum der ganze Aufwand?</span>
+    <p style="margin-bottom:0">Zwei Gründe, beide klausurrelevant:
+    <b>①</b> <span class="m">T(X)</span> ist automatisch <b>suffizient</b> für <span class="m">θ</span> —
+    die ganze Information über <span class="m">θ</span> steckt in dieser einen Größe.
+    <b>②</b> <b>Satz 60</b> liefert den Maximum-Likelihood-Schätzer, ohne dass du ableiten musst.
+    Das ist Teil (c) — und damit Lektion 5.</p>
+  </div>
+
+  <h2>So gehst du in der Klausur vor</h2>
+  <ol>
+    <li><b>Träger prüfen:</b> hängt er von <span class="m">θ</span> ab? Wenn ja → keine Exponentialfamilie.</li>
+    <li><b>ln ziehen</b> und in Summanden zerlegen.</li>
+    <li><b>Sortieren</b> nach „nur θ" / „nur x" / „Produkt beider".</li>
+    <li><b>Ablesen</b>: <span class="m">c, T, d, S</span> — und wieder in exp(…) schreiben.</li>
+    <li>Für die natürliche Form: <span class="m">η = c(θ)</span> setzen, nach <span class="m">θ</span> umstellen, überall einsetzen.</li>
+  </ol>
+
+  <h2>Jetzt du — Retrieval-Übung</h2>
+  <p>Aus dem Gedächtnis, nicht nachschlagen.</p>
+  <div id="quiz4"></div>
+
+  <div class="source">
+    <span class="label">Primärquelle zum Vertiefen</span>
+    <p style="margin:0">Skript Stochastik II (T. Schmidt): <b>Definition 34</b> (exponentielle Familie,
+    Gl. 35), natürliche Form <b>Gl. 36</b> und <b>Definition 47</b>. Dort steht auch, warum
+    <span class="m">T(X)</span> suffizient ist (über den Faktorisierungssatz <b>Satz 29</b>).</p>
+  </div>
+
+  <div class="ask">
+    <span class="label">Ich bin dein Tutor</span>
+    <p style="margin:0">Frag z. B.: „Warum ist Unif(0,θ) keine Exponentialfamilie?“,
+    „Mach dasselbe mal für die Exponentialverteilung“, oder „Was heißt suffizient anschaulich?“</p>
+  </div>
+
+  <div class="foot">
+    <span>← Lektion 3: Konvergenz &amp; Poisson</span>
+    <span>Nächste: Maximum-Likelihood via Satz 60 →</span>
+  </div>
+
+  <hr>
+  <p class="eyebrow">Quellen</p>
+  <ol class="sources">
+    <li>Pre-Klausur Stochastik I+II, Aufgabe 1 (a), (b) — <code>pre_klausur.pdf</code>.</li>
+    <li>Skript Stochastik II (T. Schmidt), Definition 34 (Gl. 35), natürliche Familie (Gl. 36), Definition 47.</li>
+  </ol>
+</div>
+<script>
+(function(){
+  "use strict";
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+  function scoreText(s){return s.total? (s.correct+" / "+s.total+" richtig"):"";}
+  function parseNum(raw){
+    raw=(raw||"").replace(",",".").trim(); if(raw==="")return NaN;
+    var m=raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if(m){var d=parseFloat(m[2]); return d!==0?parseFloat(m[1])/d:NaN;}
+    return parseFloat(raw);
+  }
+  function render(mountId, questions, title){
+    var mount=document.getElementById(mountId); if(!mount) return;
+    var state={correct:0,total:0};
+    questions.forEach(function(q){ if(q.type!=="recall") state.total++; });
+    var wrap=el("div","quiz"); var head=el("div","quiz-head");
+    head.appendChild(el("span",null,title||"Selbsttest"));
+    var score=el("span","quiz-score",scoreText(state)); head.appendChild(score); wrap.appendChild(head);
+    questions.forEach(function(q,i){ wrap.appendChild(buildQ(q,i,state,score)); });
+    mount.appendChild(wrap);
+  }
+  function buildQ(q,i,state,score){
+    var box=el("div","q");
+    box.appendChild(el("p","q-prompt",'<span class="qn">'+(i+1)+'.</span>'+q.q));
+    if(q.type==="mc") mc(box,q,state,score);
+    else if(q.type==="numeric") numeric(box,q,state,score);
+    else recall(box,q);
+    return box;
+  }
+  function mc(box,q,state,score){
+    var fb=el("div","fb"); var answered=false; var btns=[];
+    q.options.forEach(function(opt,j){
+      var b=el("button","opt",opt); b.type="button";
+      b.addEventListener("click",function(){
+        if(answered)return; answered=true; var ok=j===q.correct;
+        btns.forEach(function(bb,k){ bb.disabled=true;
+          if(k===q.correct) bb.classList.add("correct"); else if(k===j) bb.classList.add("wrong"); });
+        fb.className="fb show "+(ok?"ok":"no");
+        fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz. ")+(q.explain||"");
+        if(ok)state.correct++; score.textContent=scoreText(state);
+      });
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+  }
+  function numeric(box,q,state,score){
+    var row=el("div","num-row");
+    var input=el("input"); input.type="text"; input.placeholder=q.placeholder||"z. B. 0,5 oder 1/2";
+    var btn=el("button","btn","Prüfen"); btn.type="button";
+    row.appendChild(input); row.appendChild(btn); box.appendChild(row);
+    var fb=el("div","fb"); box.appendChild(fb); var answered=false;
+    function check(){
+      if(answered)return; var v=parseNum(input.value); if(isNaN(v)){input.focus();return;}
+      answered=true; input.disabled=true; btn.disabled=true;
+      var tol=q.tol!=null?q.tol:1e-9; var ok=Math.abs(v-q.answer)<=tol;
+      fb.className="fb show "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz — richtig ist <b>"+q.answer+"</b>. ")+(q.explain||"");
+      if(ok)state.correct++; score.textContent=scoreText(state);
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter")check(); });
+  }
+  function recall(box,q){
+    var btn=el("button","btn ghost","Antwort zeigen"); btn.type="button";
+    var rev=el("div","reveal",q.answer+(q.explain?'<br><span style="color:var(--muted);font-size:.86rem">'+q.explain+'</span>':''));
+    btn.addEventListener("click",function(){ rev.classList.add("show"); btn.style.display="none"; });
+    box.appendChild(btn); box.appendChild(rev);
+  }
+  var M='class="m"';
+  render("quiz4",[
+    { type:"recall",
+      q:'Schreib die Standardform einer einparametrigen Exponentialfamilie hin.',
+      answer:'<span '+M+'>p(x,θ)</span> = exp<span class="paren">(</span><span '+M+'>c(θ)·T(x) + d(θ) + S(x)</span><span class="paren">)</span>',
+      explain:'Vier Bausteine: c und d nur θ, T und S nur x.' },
+    { type:"mc",
+      q:'Was ist <span '+M+'>T(x)</span> bei der Poisson-Verteilung?',
+      options:['<span '+M+'>T(x) = x</span>','<span '+M+'>T(x)</span> = ln(<span '+M+'>x!</span>)','<span '+M+'>T(x) = e<sup>x</sup></span>'],
+      correct:0,
+      explain:'In <span '+M+'>x</span>·ln θ ist ln θ der θ-Teil, also bleibt <span '+M+'>x</span> als <span '+M+'>T(x)</span>.' },
+    { type:"mc",
+      q:'Was ist <span '+M+'>d(θ)</span> bei der Poisson-Verteilung?',
+      options:['<span '+M+'>d(θ) = −θ</span>','<span '+M+'>d(θ) = e<sup>−θ</sup></span>','<span '+M+'>d(θ)</span> = ln θ'],
+      correct:0,
+      explain:'Wir sind innerhalb von exp(…), dort steht der Logarithmus: exp(−θ) = <span '+M+'>e<sup>−θ</sup></span>.' },
+    { type:"mc",
+      q:'Warum ist Unif(0, θ) <b>keine</b> Exponentialfamilie?',
+      options:[
+        'Der Träger hängt von θ ab',
+        'Die Dichte ist nicht stetig',
+        'Der Parameter θ ist nicht positiv'],
+      correct:0,
+      explain:'Definition 34 verlangt eine Menge A, die <i>unabhängig</i> von θ ist.' },
+    { type:"recall",
+      q:'Wie lautet der natürliche Parameter <span '+M+'>η</span> bei Poisson — und wie <span '+M+'>d</span><sub>0</sub>(<span '+M+'>η</span>)?',
+      answer:'<span '+M+'>η</span> = ln θ, &nbsp; also θ = <span '+M+'>e<sup>η</sup></span> &nbsp;und&nbsp; <span '+M+'>d</span><sub>0</sub>(<span '+M+'>η</span>) = <span '+M+'>−e<sup>η</sup></span>',
+      explain:'η := c(θ) setzen, nach θ umstellen, überall einsetzen.' },
+    { type:"numeric",
+      q:'Vorschau auf Satz 60: Für <span '+M+'>X</span> ~ Poisson(θ) mit θ = 3 ist <span '+M+'>E[T(X)] = E[X]</span> = ?',
+      answer:3, tol:0.0001,
+      explain:'Bei Poisson ist <span '+M+'>E[X] = θ</span>. Genau diese Größe setzt Satz 60 gleich <span '+M+'>T(x)</span>.' }
+  ],"Selbsttest · Exponentialfamilien");
+})();
+</script>
