@@ -89,13 +89,19 @@ $$f(x)=\begin{cases}\tfrac13, & 0\le x\le 1,\\[2pt]\tfrac23 e^{-(x-1)}, & x>1,\\
 </div>
 
 <div class="box warn">
-  <span class="label">Konsistenz-Check — unbedingt machen</span>
-  <p style="margin:0">Der ganze Beweis steht und fällt mit der <b>Zuordnung der Gewichte</b>:
-  der Gleichverteilungs-Anteil trägt Masse $\tfrac13$, der Exponential-Schwanz Masse $\tfrac23$.
-  Also muss der Schalter dem $1+Z$-Zweig die <i>größere</i> Wahrscheinlichkeit $\tfrac23$ geben.
-  Steht in einer Aufgabenfassung ein Schalter, der dem $U$-Zweig $\tfrac23$ gäbe, passen die
-  Stücke nicht mehr zusammen — dann stimmt die behauptete Gleichheit nicht. Genau dieses
-  Nachrechnen der Gewichte ist der prüfungsrelevante Schritt.</p>
+  <span class="label">Achtung — in der Pre-Klausur steht hier ein Fehler</span>
+  <p>Die Angabe setzt $B\sim\mathrm{Bernoulli}(2/3)$ mit „$Y=U$ falls $B=1$". Damit bekäme der
+  $U$-Zweig Gewicht $\tfrac23$ — die Dichte trägt auf $[0,1]$ aber nur $\tfrac13$.
+  <b>Die Gewichte sind vertauscht.</b></p>
+  <p>Ein einziger Wert entscheidet: $U\le 1$ immer und $1+Z>1$ immer, also
+  $$P(Y\le 1)=P(B{=}1)=\tfrac23\quad\text{aber}\quad P(X\le 1)=\int_0^1\tfrac13\,dx=\tfrac13 .$$
+  $\tfrac23\neq\tfrac13$ — die behauptete Gleichheit gilt so <b>nicht</b>. Reparatur:
+  <b>(A)</b> $B\sim\mathrm{Bernoulli}(1/3)$, oder <b>(B)</b> die Zweige tauschen. Oben ist mit
+  Lesart (A) gerechnet.</p>
+  <p style="margin-bottom:0"><b>In der Klausur:</b> nicht stillschweigend anpassen, sondern kurz
+  hinschreiben — „mit Bernoulli(2/3) wäre $P(Y\le1)=\tfrac23\neq\tfrac13=P(X\le1)$; ich rechne
+  daher mit $\tfrac13$" — und dann sauber weiterrechnen. Genau dieses Nachrechnen der Gewichte
+  ist der prüfungsrelevante Schritt.</p>
 </div>
 
 <h2>So gehst du in der Klausur vor</h2>

@@ -186,7 +186,9 @@
   <div class="worked">
     <div class="step"><b>(b) Verteilungsgleichheit zeigen.</b> Behauptet wird: ein per Schalter
     <span class="m">B</span> konstruiertes <span class="m">Y</span> (Zweige <span class="m">U</span>~Unif(0,1) und
-    1+<span class="m">Z</span> mit <span class="m">Z</span>~Exp(1)) hat dieselbe Verteilung wie <span class="m">X</span>.</div>
+    1+<span class="m">Z</span> mit <span class="m">Z</span>~Exp(1)) hat dieselbe Verteilung wie <span class="m">X</span>.
+    <br><span class="cite"><b>Hinweis:</b> Hier ist mit <span class="m">B</span> ~ Bernoulli(⅓) gerechnet — die
+    Angabe der Pre-Klausur nennt ⅔ und ist an dieser Stelle fehlerhaft; siehe Kasten unten.</span></div>
     <div class="step"><b>Schritt 1 — <span class="m">f</span> als Mischung erkennen.</b>
       Auf [0,1]: ⅓ = ⅓·1 = Gewicht ⅓ mal Dichte von Unif(0,1).
       Auf (1,∞): ⅔<span class="m">e<sup>−(x−1)</sup></span> = Gewicht ⅔ mal Dichte von 1+Exp(1).</div>
@@ -198,13 +200,21 @@
   </div>
 
   <div class="box warn">
-    <span class="label">Konsistenz-Check — unbedingt machen</span>
-    <p>Der ganze Beweis steht und fällt mit der <b>Zuordnung der Gewichte</b>: der
-    Gleichverteilungs-Anteil trägt Masse ⅓, der Exponential-Schwanz Masse ⅔. Also muss der
-    Schalter dem 1+<span class="m">Z</span>-Zweig die <i>größere</i> Wahrscheinlichkeit ⅔ geben.
-    Steht in einer Aufgabenfassung ein Schalter, der dem <span class="m">U</span>-Zweig ⅔ gäbe,
-    passen die Stücke nicht mehr zusammen — dann stimmt die behauptete Gleichheit nicht. Dieses
-    Nachrechnen der Gewichte ist der prüfungsrelevante Schritt.</p>
+    <span class="label">Achtung — in der Pre-Klausur steht hier ein Fehler</span>
+    <p>Die Angabe setzt <span class="m">B</span> ~ Bernoulli(⅔) mit
+    „<span class="m">Y = U</span> falls <span class="m">B</span>=1". Damit bekäme der
+    <span class="m">U</span>-Zweig Gewicht <b>⅔</b> — die Dichte trägt auf [0,1] aber nur
+    <b>⅓</b>. <b>Die Gewichte sind vertauscht.</b></p>
+    <p>Ein einziger Wert entscheidet: <span class="m">U</span> ist immer ≤ 1 und
+    1+<span class="m">Z</span> immer &gt; 1, also</p>
+    <div class="eq"><span class="nw"><span class="m">P(Y ≤ 1) = P(B=1)</span> = ⅔ &nbsp;&nbsp;aber&nbsp;&nbsp; <span class="m">P(X ≤ 1)</span> = <span class="intg">∫</span><sub>0</sub><sup>1</sup> ⅓ <span class="m">dx</span> = ⅓</span></div>
+    <p>⅔ ≠ ⅓ — die behauptete Gleichheit gilt so <b>nicht</b>. Reparieren lässt es sich auf zwei
+    Arten: <b>(A)</b> <span class="m">B</span> ~ Bernoulli(<b>⅓</b>) setzen, oder <b>(B)</b> die
+    Zweige tauschen. Oben ist mit der korrigierten Lesart (A) gerechnet.</p>
+    <p style="margin-bottom:0"><b>In der Klausur:</b> so etwas nicht stillschweigend anpassen,
+    sondern kurz hinschreiben — „mit Bernoulli(⅔) wäre <span class="m">P(Y≤1)</span> = ⅔ ≠ ⅓ =
+    <span class="m">P(X≤1)</span>; ich rechne daher mit ⅓" — und dann sauber weiterrechnen.
+    Genau dieses Nachrechnen der Gewichte ist der prüfungsrelevante Schritt.</p>
   </div>
 
   <h2>So gehst du in der Klausur vor</h2>
