@@ -25,6 +25,38 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 - Angebot steht: Sobald er eine Rechnung (Text oder **Foto vom Blatt**) schickt, kann ich
   echt korrigieren. Nicht drängen — einmal angeboten, er entscheidet.
 
+## Falls Nachklausur: hier weitermachen
+
+Der Kern (6 Aufgabentypen der Pre-Klausur) ist abgedeckt und von Sebastian nachweislich
+gekonnt — siehe Learning Record 0006. **Nicht neu aufbauen.** Stattdessen die Lücken
+schließen, die ich aus den Tutorien/Übungsblättern extrahiert habe und die in den
+bisherigen Lektionen *fehlen*:
+
+**Stochastik II — belegt durch die Tutorien:**
+- **Suffizienz begründen** über den Faktorisierungssatz (Satz 29) — T3 verlangt das explizit.
+  L4 erwähnt Suffizienz nur, erklärt die Begründung aber nicht.
+- **Gütefunktion** und Niveau-α-Test allgemein (Def. 85, Bsp. 86) — T6 Aufgabe 1.
+  (p-Wert ist in L5+6 schon drin.)
+- **Konfidenzintervall für nicht-normale Modelle** (z. B. Exp) — T6 Aufgabe 2b.
+- **Erwartungstreue / Eigenschaften von Schätzern** — T2.
+- Exponentialfamilie in der Schreibweise `f = S(x)·exp(...)` (T3 zieht S als Vorfaktor).
+
+**Stochastik I:**
+- Faltung / Dichte von X+Y (Übungsblatt 3), Summe von Exp → Gamma (Blatt 5).
+- Jensen-Ungleichung und Konvexität (Satz 10/11), Tschebyscheff.
+- Gesetz der großen Zahl (Satz 12) und zentraler Grenzwertsatz (Satz 15).
+
+**Größtes ungedecktes Risiko:** **Regression / kleinste Quadrate** (Def. 70, Bsp. 68/69/74/75,
+Satz 107) ist im Skript ausführlich, kam aber weder in der Pre-Klausur noch in den Lektionen
+vor. Ebenso χ²-/t-Verteilung (Def. 98/101) und Konfidenzintervalle für σ² (Bsp. 103/104).
+
+**Entwarnung:** „Machine Learning" und „Nichtparametrische Statistik" werden nur in der
+Skript-Einleitung angekündigt, aber nicht ausgeführt — kein Prüfungsstoff.
+
+**Wichtigster erster Schritt nach der Klausur:** Aufgaben aus dem Gedächtnis notieren, solange
+sie frisch sind. Das ist die beste Grundlage für eine Nachklausur-Vorbereitung — besser als
+jede Vermutung darüber, was drankommen könnte.
+
 ## Material im Repo
 - `2025_lectures_stochastik_I.pdf` — Skript Stochastik I (78 S.)
 - `Skript_stochastic_II_ss_2026.pdf` — Skript Stochastik II, T. Schmidt (57 S.)
