@@ -1,0 +1,151 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#dfe4ea;
+    --accent:#215d6e; --accent2:#7a3b1f; --card:#ffffff; --soft:#eef4f5; --warnbg:#fbf2e6;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent2:#d8a37e; --card:#171b21; --soft:#17262b; --warnbg:#241d13;}
+  }
+  :root[data-theme="light"]{--paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#dfe4ea;
+    --accent:#215d6e; --accent2:#7a3b1f; --card:#ffffff; --soft:#eef4f5; --warnbg:#fbf2e6;}
+  :root[data-theme="dark"]{--paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent2:#d8a37e; --card:#171b21; --soft:#17262b; --warnbg:#241d13;}
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); margin:0;
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif; line-height:1.45;}
+  .wrap{max-width:52rem; margin:0 auto; padding:2.2rem 1.1rem 4rem;}
+  h1{font-size:1.7rem; margin:0 0 .2rem; font-weight:600; letter-spacing:-.01em;}
+  .sub{color:var(--muted); font-style:italic; margin:0 0 1.4rem;}
+  h2{font-size:1.02rem; margin:1.5rem 0 .5rem; padding-bottom:.25rem; font-weight:700;
+     border-bottom:2px solid var(--accent); color:var(--accent);
+     font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase; letter-spacing:.07em;}
+  h3{font-size:.95rem; margin:.9rem 0 .3rem; font-weight:700;
+     font-family:ui-sans-serif,system-ui,sans-serif; color:var(--muted);}
+  .m{font-style:italic; font-family:Georgia,serif;}
+  sup,sub{font-style:normal;}
+  .card{background:var(--card); border:1px solid var(--rule); border-radius:7px;
+        padding:.65rem .85rem; margin:.5rem 0;}
+  .f{display:block; margin:.35rem 0; font-size:1.02rem; overflow-x:auto; white-space:nowrap; padding-bottom:.1rem;}
+  .tag{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.68rem; font-weight:700;
+       text-transform:uppercase; letter-spacing:.07em; color:var(--accent); display:block; margin-bottom:.25rem;}
+  .warn{background:var(--warnbg); border-color:#e0c199;}
+  .warn .tag{color:var(--accent2);}
+  .soft{background:var(--soft);}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:.5rem;}
+  @media (max-width:640px){ .grid2{grid-template-columns:1fr;} }
+  table{border-collapse:collapse; width:100%; font-size:.85rem; margin:.4rem 0;}
+  th,td{text-align:left; padding:.3rem .45rem; border-bottom:1px solid var(--rule); white-space:nowrap;}
+  th{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.7rem; text-transform:uppercase;
+     letter-spacing:.05em; color:var(--muted);}
+  td.n{font-weight:600;}
+  .tw{overflow-x:auto;}
+  ol,ul{padding-left:1.15rem; margin:.3rem 0;} li{margin:.22rem 0;}
+  .cite{color:var(--muted); font-size:.85em;}
+  @media print{
+    :root{--paper:#fff; --ink:#000; --card:#fff; --soft:#f4f4f4; --warnbg:#f7f2ea;}
+    .wrap{max-width:none; padding:.3rem;}
+    body{font-size:9.5pt; line-height:1.3;}
+    h2{margin:.7rem 0 .3rem;} .card{padding:.35rem .5rem; margin:.3rem 0; break-inside:avoid;}
+    .grid2{gap:.3rem;}
+  }
+</style>
+
+<div class="wrap">
+  <h1>Formelsammlung — Stochastik I + II</h1>
+  <p class="sub">Alles auf einen Blick für die Klausur. Rezepte, Formeln, Fallen.</p>
+
+  <h2>Stochastik I — Bedingen</h2>
+  <div class="grid2">
+    <div class="card"><span class="tag">Totale Wahrscheinlichkeit</span>
+      <span class="f"><span class="m">P(A) = Σ<sub>b</sub> P(A | B=b) · P(B=b)</span></span></div>
+    <div class="card"><span class="tag">Totale Erwartung (Turmregel)</span>
+      <span class="f"><span class="m">E[X] = E[ E[X | B] ] = Σ<sub>b</sub> E[X | B=b] · P(B=b)</span></span></div>
+  </div>
+  <div class="card"><span class="tag">Erwartungswert</span>
+    <span class="f">diskret: <span class="m">E[X] = Σ<sub>k</sub> k · P(X=k)</span></span>
+    <span class="f">stetig: &nbsp;<span class="m">E[X] = ∫ x · f(x) dx</span> &nbsp;<span class="cite">(stückweise Dichte → Summe der Integrale)</span></span>
+    <span class="f"><span class="m">Var(X) = E[X²] − (E[X])²</span> &nbsp;·&nbsp; <span class="m">E[aX+b] = aE[X]+b</span></span></div>
+  <div class="card soft"><span class="tag">Mischung (Dichte als „Schalter")</span>
+    <span class="f"><span class="m">f = w<sub>1</sub>f<sub>1</sub> + w<sub>2</sub>f<sub>2</sub></span>, &nbsp; <span class="m">w<sub>1</sub>+w<sub>2</sub> = 1</span> &nbsp; → &nbsp; <span class="m">E[X] = w<sub>1</sub>E<sub>1</sub> + w<sub>2</sub>E<sub>2</sub></span></span>
+    <span class="cite">Gewichte = Massen der Stücke. Gleich verteilt ⇔ Dichten/CDFs stimmen <b>überall</b> überein.</span></div>
+
+  <h2>Verteilungen</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Verteilung</th><th>Zähldichte / Dichte</th><th>E[X]</th><th>Var(X)</th></tr></thead>
+    <tbody>
+    <tr><td class="n">Bernoulli(p)</td><td><span class="m">p<sup>k</sup>(1−p)<sup>1−k</sup></span></td><td><span class="m">p</span></td><td><span class="m">p(1−p)</span></td></tr>
+    <tr><td class="n">Binomial(n,p)</td><td><span class="m">C(n,k) p<sup>k</sup>(1−p)<sup>n−k</sup></span></td><td><span class="m">np</span></td><td><span class="m">np(1−p)</span></td></tr>
+    <tr><td class="n">Poisson(λ)</td><td><span class="m">e<sup>−λ</sup>λ<sup>k</sup>/k!</span></td><td><span class="m">λ</span></td><td><span class="m">λ</span></td></tr>
+    <tr><td class="n">Geometrisch(p)</td><td><span class="m">(1−p)<sup>k−1</sup>p</span></td><td><span class="m">1/p</span></td><td><span class="m">(1−p)/p²</span></td></tr>
+    <tr><td class="n">Unif(a,b)</td><td><span class="m">1/(b−a)</span> auf [a,b]</td><td><span class="m">(a+b)/2</span></td><td><span class="m">(b−a)²/12</span></td></tr>
+    <tr><td class="n">Exp(λ)</td><td><span class="m">λe<sup>−λx</sup></span>, &nbsp;<span class="m">F(x)=1−e<sup>−λx</sup></span></td><td><span class="m">1/λ</span></td><td><span class="m">1/λ²</span></td></tr>
+    <tr><td class="n">N(µ,σ²)</td><td><span class="m">F(x)=Φ((x−µ)/σ)</span></td><td><span class="m">µ</span></td><td><span class="m">σ²</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="card soft"><span class="tag">Nützliche Integrale</span>
+    <span class="f"><span class="m">∫<sub>0</sub><sup>∞</sup> e<sup>−t</sup>dt = 1</span> &nbsp;·&nbsp; <span class="m">∫<sub>0</sub><sup>∞</sup> t e<sup>−t</sup>dt = 1</span> &nbsp;·&nbsp; <span class="m">∫<sub>0</sub><sup>∞</sup> t<sup>n</sup>e<sup>−t</sup>dt = n!</span></span>
+    <span class="cite">Substitution: bei <span class="m">e<sup>−(x−a)</sup></span> setze <span class="m">t = x−a</span>, dann <span class="m">x = a+t</span>, <span class="m">dx = dt</span> — <b>jedes</b> x ersetzen, auch das einzelne vorne.</span></div>
+
+  <h2>Konvergenz → Poisson</h2>
+  <div class="card"><span class="tag">Poisson-Grenzwertsatz</span>
+    <span class="f"><span class="m">S<sub>n</sub> ~ Bin(n, p<sub>n</sub>)</span> mit <span class="m">n·p<sub>n</sub> → λ</span> &nbsp;⇒&nbsp; <span class="m">S<sub>n</sub> →<sup>d</sup> Poisson(λ)</span></span>
+    <span class="f">Werkzeug: <span class="m">(1−1/n)<sup>n</sup> → e<sup>−1</sup></span> &nbsp;·&nbsp; <span class="m">∏<sub>j&lt;k</sub>(1−j/n) → 1</span> &nbsp;·&nbsp; <span class="m">(1−1/n)<sup>−k</sup> → 1</span></span>
+    <span class="cite">Konvergenz in Verteilung (Def. 13) = Verteilungsfunktionen konvergieren an Stetigkeitsstellen. Skript schreibt →<sup>L</sup>, Klausur →<sup>d</sup>.</span></div>
+
+  <h2>Stochastik II — Exponentialfamilie</h2>
+  <div class="card"><span class="tag">Standardform (Def. 34)</span>
+    <span class="f"><span class="m">p(x,θ) = exp( c(θ)·T(x) + d(θ) + S(x) )</span></span>
+    <span class="cite"><b>c, d</b> nur θ · <b>T, S</b> nur x · Träger muss <b>θ-frei</b> sein (sonst keine Exp.familie, z. B. Unif(0,θ)).</span>
+    <span class="f">natürlich: <span class="m">η := c(θ)</span>, nach θ auflösen, einsetzen → <span class="m">exp( η·T(x) + d<sub>0</sub>(η) + S(x) )</span></span></div>
+  <div class="card soft"><span class="tag">Beispiel Poisson</span>
+    <span class="f"><span class="m">c(θ) = ln θ</span> · <span class="m">T(x) = x</span> · <span class="m">d(θ) = −θ</span> · <span class="m">S(x) = −ln(x!)</span> &nbsp;→&nbsp; <span class="m">η = ln θ</span>, <span class="m">d<sub>0</sub>(η) = −e<sup>η</sup></span></span></div>
+
+  <h2>Maximum-Likelihood</h2>
+  <div class="grid2">
+    <div class="card"><span class="tag">Rezept 1 — klassisch</span>
+      <ol style="margin:0">
+        <li><span class="m">L(θ) = ∏ f(x<sub>i</sub>;θ)</span></li>
+        <li><span class="m">l(θ) = Σ ln f(x<sub>i</sub>;θ)</span></li>
+        <li><span class="m">l′(θ) = 0</span> → auflösen</li>
+        <li><span class="m">l″(θ) &lt; 0</span> prüfen</li>
+      </ol></div>
+    <div class="card"><span class="tag">Rezept 2 — Satz 60</span>
+      <span class="f">löse &nbsp;<span class="m">E<sub>θ</sub>[T(X)] = T(x)</span></span>
+      <span class="cite">Nur bei Exponentialfamilie. Für n i.i.d. ist <span class="m">T(x) = Σx<sub>i</sub></span>.<br>
+      Poisson: <span class="m">nθ = Σx<sub>i</sub> ⇒ θ̂ = x̄</span></span></div>
+  </div>
+  <div class="card soft"><span class="tag">Auswendig — bekannte Schätzer</span>
+    <span class="f">Poisson(θ): <span class="m">θ̂ = x̄</span> &nbsp;·&nbsp; Exp(λ): <span class="m">λ̂ = 1/x̄</span> &nbsp;·&nbsp; N(µ,σ²): <span class="m">µ̂ = x̄</span> &nbsp;·&nbsp; Bernoulli(p): <span class="m">p̂ = x̄</span></span></div>
+
+  <h2>Test &amp; Konfidenzintervall</h2>
+  <div class="card"><span class="tag">Gauß-Test — 4 Schritte</span>
+    <span class="f">1. <span class="m">Z = (x̄ − µ<sub>0</sub>) / (σ/√n)</span> &nbsp;~ N(0,1) unter <span class="m">H<sub>0</sub></span></span>
+    <span class="f">2. verwerfen falls: &nbsp;<span class="m">H<sub>1</sub>: µ&gt;µ<sub>0</sub> → Z &gt; z<sub>1−α</sub></span> &nbsp;|&nbsp; <span class="m">µ&lt;µ<sub>0</sub> → Z &lt; −z<sub>1−α</sub></span> &nbsp;|&nbsp; <span class="m">µ≠µ<sub>0</sub> → |Z| &gt; z<sub>1−α/2</sub></span></span>
+    <span class="f">3. entscheiden &nbsp; 4. <span class="m">p</span>-Wert: einseitig <span class="m">1−Φ(z)</span>, zweiseitig <span class="m">2(1−Φ(|z|))</span>; verwerfen ⇔ <span class="m">p &lt; α</span></span></div>
+  <div class="card"><span class="tag">Konfidenzintervall (σ bekannt)</span>
+    <span class="f"><span class="m">x̄ ± z<sub>1−α/2</sub> · σ/√n</span> &nbsp;&nbsp; <span class="cite">95 % → 1,96</span></span></div>
+  <div class="tw"><table>
+    <thead><tr><th>p</th><th>0,90</th><th>0,95</th><th>0,975</th><th>0,99</th><th>0,995</th></tr></thead>
+    <tbody><tr><td class="n"><span class="m">z<sub>p</sub></span></td><td>1,282</td><td><b>1,645</b></td><td><b>1,960</b></td><td>2,326</td><td>2,576</td></tr>
+    <tr><td class="n"><span class="m">Φ</span>-Werte</td><td colspan="5"><span class="m">Φ(1) ≈ 0,841 · Φ(1,33) ≈ 0,908 · Φ(1,5) ≈ 0,933 · Φ(2) ≈ 0,977</span></td></tr></tbody>
+  </table></div>
+
+  <div class="card warn"><span class="tag">Die 5 teuersten Fehler</span>
+    <ol style="margin:0">
+      <li><b>1,645 vs. 1,96</b> — einseitiger Test vs. 95 %-Intervall.</li>
+      <li><b>√n vergessen</b> — es heißt <span class="m">σ/√n</span>, nicht <span class="m">σ</span>.</li>
+      <li><b>Rücktransformation</b> — ist <span class="m">E[X̄] = 2µ</span>, dann Intervall am Ende <b>durch 2</b> teilen.</li>
+      <li><b>d(θ) = e<sup>−θ</sup></b> statt <span class="m">−θ</span> — innerhalb von exp(…) steht der Logarithmus.</li>
+      <li><b>Gewichte vertauschen</b> bei Mischungen — immer prüfen: passt jedes Gewicht zu seinem Stück?</li>
+    </ol></div>
+
+  <div class="card soft"><span class="tag">Taktik</span>
+    <ul style="margin:0">
+      <li><b>Gegenprobe rechnen</b>, wenn möglich (Integral vs. Mischung; Test vs. p-Wert vs. KI).</li>
+      <li><b>Randfälle prüfen</b>: <span class="m">p=0</span>, <span class="m">p=1</span>, <span class="m">n→∞</span> — kommt Sinnvolles raus?</li>
+      <li><b>Widerspruch in der Angabe?</b> Benennen, Lesart festlegen, sauber weiterrechnen. Nie stillschweigend anpassen.</li>
+      <li><b>Wonach war gefragt?</b> Am Ende nochmal die Aufgabenstellung lesen.</li>
+      <li>Teilpunkte mitnehmen: Ansatz und Formel hinschreiben, auch wenn die Rechnung hakt.</li>
+    </ul></div>
+</div>
