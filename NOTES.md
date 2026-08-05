@@ -7,8 +7,9 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 - **Prüfungsorientiert:** Jede Lektion an einen Klausur-Aufgabentyp koppeln.
 - Kurze Lektionen mit *einem* greifbaren Win (kleines Arbeitsgedächtnis, Crunch-Modus).
 
-## Working context (Stand: 2026-08-02)
-- **Klausur: Donnerstag, 06.08.2026** — nur noch ~3½ Tage. Kombiniert **Stochastik I + II**.
+## Working context (Stand: 2026-08-05, Mittwoch)
+- **Klausur: Donnerstag, 06.08.2026 — MORGEN.** Kombiniert **Stochastik I + II**.
+  (Frühere Notiz "~3½ Tage" war falsch: Datum aus Datei-Zeitstempeln statt echtem Datum abgeleitet.)
 - Ausgangsniveau: Grundlagen wackelig.
 - **Zeitbudget: 6+ Std/Tag** — großzügig. Alle 6 Lektionen gründlich + Pre-Klausur schaffbar;
   Notfall-Priorität voraussichtlich nicht nötig. Lernstil: erst Lektion durcharbeiten, dann

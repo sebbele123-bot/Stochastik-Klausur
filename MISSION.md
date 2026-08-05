@@ -1,7 +1,7 @@
 # Mission: Stochastik I + II Klausur bestehen
 
 ## Why
-Sebastian schreibt am **Donnerstag, 06.08.2026** (in ~3½ Tagen) die kombinierte
+Sebastian schreibt am **Donnerstag, 06.08.2026** die kombinierte
 **Stochastik I + II Klausur** (Lehramt, Uni Freiburg, Skript Thorsten Schmidt). Ziel ist
 schlicht und konkret: **die Klausur bestehen.** Die Grundlagen sitzen noch wackelig,
 deshalb muss jede Lernminute auf die Aufgabentypen zielen, die in der Klausur tatsächlich
@@ -19,9 +19,9 @@ drankommen — kein Deep Dive, nur prüfungsrelevante Muster einüben.
   **Konfidenzintervall** aufstellen — inkl. der Verbindung zwischen beiden.
 
 ## Constraints
-- **Nur ~3½ Tage** bis zur Klausur (Do, 06.08.) → harter Crunch-Modus. Höchste Priorität
-  auf die 6 Aufgabentypen der Pre-Klausur, nicht auf Vollständigkeit. Lieber wenige Muster
-  sicher als viele halb.
+- **Klausur ist morgen** (Stand 05.08. = Mittwoch) → Notfall-Modus. Nur noch der größte
+  Punkteblock zählt: Stochastik II (MLE, Test, Konfidenzintervall). Nichts Neues mehr anfangen,
+  was nicht sicher drankommt.
 - Grundlagen sind wackelig → Wissen erst leicht und sauber aufbauen, dann drillen.
 - **Sprache: Deutsch** (Fachbegriffe wie im Skript).
 - Zeitbudget pro Lektion klein halten (Arbeitsgedächtnis!) — kurze, abgeschlossene Wins.

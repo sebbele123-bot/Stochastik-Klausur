@@ -1,0 +1,372 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+      --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+      --card:#171b21; --code:#1c222a;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+    --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+    --card:#171b21; --code:#1c222a;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62; margin:0;}
+  .wrap{max-width:41rem; margin:0 auto; padding:3.4rem 1.4rem 5rem;}
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.13em; font-size:.72rem; font-weight:600; color:var(--accent); margin:0 0 .7rem;}
+  h1{font-size:2.05rem; line-height:1.12; font-weight:600; margin:0 0 .5rem; text-wrap:balance; letter-spacing:-.01em;}
+  .subtitle{color:var(--muted); font-style:italic; font-size:1.12rem; margin:0 0 1.6rem; text-wrap:balance;}
+  h2{font-size:1.32rem; font-weight:600; margin:2.6rem 0 .5rem; letter-spacing:-.005em;}
+  p{margin:.7rem 0;} ol{padding-left:1.25rem;} ol li{margin:.4rem 0;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+  .m{font-style:italic; font-family:Georgia,"Times New Roman",serif;}
+  sup,sub{font-style:normal;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:-0.55em; text-align:center;
+    font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
+  .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
+  .frac>span:last-child{padding:0 .28em;}
+  .binom{display:inline-flex; flex-direction:column; vertical-align:-0.42em; text-align:center;
+    font-size:.8em; line-height:1.06; font-style:italic; margin:0 .04em;}
+  .paren{font-size:1.75em; font-style:normal; line-height:0; vertical-align:-.34em; color:inherit;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
+  .sig{font-style:normal; font-size:1.3em; vertical-align:-.2em; margin-right:.04em;}
+  .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
+  .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0; background:var(--card);}
+  .box>:first-child{margin-top:0} .box>:last-child{margin-bottom:0}
+  .idea{background:var(--idea-bg); border-color:var(--idea-br);} .idea .label{color:#2f6b3d;}
+  .warn{background:var(--warn-bg); border-color:var(--warn-br);} .warn .label{color:#8a5a17;}
+  .why .label{color:var(--accent);}
+  :root[data-theme="dark"] .idea .label{color:#8fce9c} :root[data-theme="dark"] .warn .label{color:#e0bd82}
+  @media (prefers-color-scheme:dark){ .idea .label{color:#8fce9c} .warn .label{color:#e0bd82} }
+  .worked{border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.15rem; margin:1.4rem 0;}
+  .worked .step{margin:.7rem 0;} .worked .step b{color:var(--accent);}
+  .cite{color:var(--muted); font-size:.88em;}
+  code{background:var(--code); font-family:ui-monospace,Menlo,monospace; font-size:.86em; padding:.06rem .32rem; border-radius:4px;}
+  .source{background:var(--accent-soft); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.5rem 0;}
+  .source .label{color:var(--accent);}
+  .ask{border:1px dashed var(--accent); border-radius:8px; padding:1rem 1.15rem; margin:1.8rem 0;} .ask .label{color:var(--accent);}
+  hr{border:0; border-top:1px solid var(--rule); margin:2.4rem 0;}
+  .foot{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:.85rem; color:var(--muted);
+    margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule);}
+  .sources{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--muted); padding-left:1.1rem;}
+  .sources li{margin:.3rem 0;}
+  .toolkit{display:grid; gap:.5rem; margin:.6rem 0 0;}
+  .toolkit div{background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:.5rem .75rem;}
+  .quiz{border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:1.6rem 0;
+    background:var(--card); font-family:ui-sans-serif,system-ui,sans-serif;}
+  .quiz-head{display:flex; justify-content:space-between; align-items:center; padding:.7rem 1.05rem;
+    border-bottom:1px solid var(--rule); text-transform:uppercase; letter-spacing:.09em; font-size:.72rem; font-weight:700; color:var(--muted);}
+  .quiz-score{letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--accent);}
+  .q{padding:1.05rem;} .q+.q{border-top:1px solid var(--rule);}
+  .q-prompt{margin:0 0 .75rem; font-weight:600;} .q-prompt .qn{color:var(--muted); margin-right:.4rem; font-weight:700;}
+  .opt{display:block; width:100%; text-align:left; margin:.34rem 0; padding:.55rem .8rem; border:1px solid var(--rule);
+    border-radius:6px; background:var(--paper); color:var(--ink); font:inherit; cursor:pointer; transition:border-color .12s, background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);} .opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:#dcefdf; border-color:#5fa06c; color:#173f21;}
+  .opt.wrong{background:#f4dede; border-color:#c06a6a; color:#521818;}
+  :root[data-theme="dark"] .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+  :root[data-theme="dark"] .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  @media (prefers-color-scheme:dark){ .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;} .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;} }
+  .num-row{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center;}
+  .num-row input{font:inherit; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--ink); width:9rem;}
+  .num-row input:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .btn{font:inherit; font-weight:600; padding:.5rem .95rem; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:var(--on-accent); cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--accent);} .btn:hover{filter:brightness(1.05);} .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
+  .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
+  .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+</style>
+<div class="wrap">
+  <p class="eyebrow">Lektion 5 + 6 · Stochastik II · Letzte Lektion vor der Klausur</p>
+  <h1>Schätzen und Testen</h1>
+  <p class="subtitle">Maximum-Likelihood, Gauß-Test und Konfidenzintervall — die drei Dinge, die morgen sicher drankommen.</p>
+
+  <div class="box why">
+    <span class="label">Warum genau das</span>
+    <p>Stochastik II ist rund die <b>halbe Klausur</b>, und diese drei Aufgabentypen tauchen in der
+    Pre-Klausur <i>und</i> in den Tutorien T5/T6 auf. Wenn du heute Abend nur eine Sache machst,
+    dann diese Lektion. Jeder Teil ist ein festes <b>Rezept</b> — auswendig lernen, nicht verstehen wollen.</p>
+  </div>
+
+  <h2>Teil A · Maximum-Likelihood-Schätzer</h2>
+
+  <div class="box idea">
+    <span class="label">Rezept 1 — der klassische Weg (so machen es T5 und T6)</span>
+    <div class="toolkit">
+      <div><b>1.</b> <b>Likelihood</b> aufstellen: <span class="m">L(θ)</span> = <span class="m">∏</span><sub class="m">i=1</sub><sup class="m">n</sup> <span class="m">f(x<sub>i</sub>; θ)</span></div>
+      <div><b>2.</b> <b>Logarithmieren</b>: <span class="m">l(θ)</span> = <span class="sig">∑</span> ln <span class="m">f(x<sub>i</sub>; θ)</span> &nbsp;<span class="cite">(Produkt → Summe)</span></div>
+      <div><b>3.</b> <b>Ableiten und null setzen</b>: <span class="m">l′(θ)</span> = 0 &nbsp;→&nbsp; nach <span class="m">θ</span> auflösen</div>
+      <div><b>4.</b> <b>Maximum prüfen</b>: <span class="m">l″(θ)</span> &lt; 0 ✓</div>
+    </div>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>Beispiel Poisson</b> (Pre-Klausur Aufgabe 1c). <span class="m">f(x;θ) = e<sup>−θ</sup>θ<sup>x</sup>/x!</span></div>
+    <div class="step"><b>1. Likelihood:</b>
+      <div class="eq"><span class="nw"><span class="m">L(θ)</span> = <span class="m">∏</span> <span class="frac"><span class="m">e<sup>−θ</sup>θ<sup>x<sub>i</sub></sup></span><span class="m">x<sub>i</sub>!</span></span> = <span class="frac"><span class="m">e<sup>−nθ</sup> θ<sup>Σx<sub>i</sub></sup></span><span class="m">∏ x<sub>i</sub>!</span></span></span></div></div>
+    <div class="step"><b>2. Logarithmieren:</b>
+      <div class="eq"><span class="nw"><span class="m">l(θ)</span> = <span class="m">−nθ</span> + <span class="paren">(</span><span class="sig">∑</span><span class="m">x<sub>i</sub></span><span class="paren">)</span> ln <span class="m">θ</span> − <span class="sig">∑</span> ln(<span class="m">x<sub>i</sub>!</span>)</span></div></div>
+    <div class="step"><b>3. Ableiten, null setzen:</b>
+      <div class="eq"><span class="nw"><span class="m">l′(θ)</span> = <span class="m">−n</span> + <span class="frac"><span class="sig">∑</span><span class="m">x<sub>i</sub></span></span><span class="frac"><span></span><span class="m">θ</span></span> = 0 &nbsp;⇒&nbsp; <span class="m">θ̂</span> = <span class="frac"><span class="sig">∑</span><span class="m">x<sub>i</sub></span></span><span class="frac"><span></span><span class="m">n</span></span> = <span class="m">x̄</span></span></div>
+      <span class="cite">Der letzte Term hat kein θ, fällt also beim Ableiten weg.</span></div>
+    <div class="step"><b>4. Maximum?</b> <span class="m">l″(θ)</span> = <span class="m">−(</span><span class="sig">∑</span><span class="m">x<sub>i</sub>)/θ<sup>2</sup></span> &lt; 0 ✓ &nbsp;→&nbsp; <b><span class="m">θ̂ = x̄</span></b>, das arithmetische Mittel.</div>
+  </div>
+
+  <div class="box idea">
+    <span class="label">Rezept 2 — der Abkürzungsweg (Satz 60)</span>
+    <p>Steht die Verteilung schon als <b>Exponentialfamilie</b> da (Lektion 4), geht es ohne Ableiten.
+    Satz 60 sagt: löse einfach</p>
+    <div class="eq"><span class="nw"><span class="m">E<sub>θ</sub>[T(X)] = T(x)</span></span></div>
+    <p style="margin-bottom:0">Für <span class="m">n</span> i.i.d. Poisson ist <span class="m">T(x) =</span> <span class="sig">∑</span><span class="m">x<sub>i</sub></span> und
+    <span class="m">E<sub>θ</sub></span>[<span class="sig">∑</span><span class="m">X<sub>i</sub></span>] = <span class="m">nθ</span>, also
+    <span class="m">nθ =</span> <span class="sig">∑</span><span class="m">x<sub>i</sub></span> ⇒ <b><span class="m">θ̂ = x̄</span></b> — dasselbe Ergebnis in einer Zeile.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Welchen Weg in der Klausur?</span>
+    <p style="margin-bottom:0">Steht „<b>mithilfe von Satz 60</b>" in der Aufgabe → Rezept 2.
+    Sonst → Rezept 1 (immer sicher, funktioniert auch außerhalb von Exponentialfamilien).
+    Beide können, ist die sicherste Vorbereitung.</p>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>Zweites Beispiel: Exp(λ)</b> — kommt in T5 <i>und</i> T6 vor, also gut merken.
+      <div class="eq"><span class="nw"><span class="m">L(λ)</span> = <span class="m">∏ λe<sup>−λx<sub>i</sub></sup></span> = <span class="m">λ<sup>n</sup>e<sup>−λΣx<sub>i</sub></sup></span></span></div>
+      <div class="eq"><span class="nw"><span class="m">l(λ)</span> = <span class="m">n</span> ln <span class="m">λ</span> − <span class="m">λ</span><span class="sig">∑</span><span class="m">x<sub>i</sub></span> &nbsp;⇒&nbsp; <span class="m">l′</span> = <span class="frac"><span class="m">n</span><span class="m">λ</span></span> − <span class="sig">∑</span><span class="m">x<sub>i</sub></span> = 0</span></div>
+      <div class="eq"><span class="nw">⇒ <span class="m">λ̂</span> = <span class="frac"><span class="m">n</span><span class="sig">∑</span></span><span class="frac"><span></span><span class="m">x<sub>i</sub></span></span> = <span class="frac"><span>1</span><span class="m">x̄</span></span></span></div>
+      <span class="cite">Merksatz: Poisson → <span class="m">x̄</span>, &nbsp;Exponential → <span class="m">1/x̄</span>.</span></div>
+  </div>
+
+  <h2>Teil B · Der Gauß-Test</h2>
+
+  <div class="box idea">
+    <span class="label">Das Testschema — immer diese 4 Schritte</span>
+    <div class="toolkit">
+      <div><b>1.</b> <b>Teststatistik</b> unter <span class="m">H<sub>0</sub></span>: &nbsp;<span class="m">Z</span> = <span class="frac"><span class="m">X̄ − µ<sub>0</sub></span><span class="m">σ/√n</span></span> &nbsp;~ <span class="m">N</span>(0,1)</div>
+      <div><b>2.</b> <b>Kritischer Bereich</b> je nach Gegenhypothese:<br>
+        <span class="m">H<sub>1</sub>: µ &gt; µ<sub>0</sub></span> → verwerfen falls <span class="m">Z &gt; z<sub>1−α</sub></span><br>
+        <span class="m">H<sub>1</sub>: µ &lt; µ<sub>0</sub></span> → verwerfen falls <span class="m">Z &lt; −z<sub>1−α</sub></span><br>
+        <span class="m">H<sub>1</sub>: µ ≠ µ<sub>0</sub></span> → verwerfen falls <span class="m">|Z| &gt; z<sub>1−α/2</sub></span></div>
+      <div><b>3.</b> <b>Vergleichen</b> und entscheiden.</div>
+      <div><b>4.</b> <b>p-Wert</b> (falls gefragt): einseitig <span class="m">p = 1 − Φ(z)</span>, zweiseitig <span class="m">p = 2(1 − Φ(|z|))</span>. Verwerfen ⇔ <span class="m">p &lt; α</span>.</div>
+    </div>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>Pre-Klausur Aufgabe 2.</b> <span class="m">X<sub>1</sub>,…,X<sub>25</sub></span> i.i.d.
+      <span class="m">N(2µ, 9)</span>, beobachtet <span class="m">x̄ = 0,8</span>.
+      Teste <span class="m">H<sub>0</sub>: µ = 0</span> gegen <span class="m">H<sub>1</sub>: µ &gt; 0</span>, <span class="m">α</span> = 0,05.</div>
+
+    <div class="step"><b>⚠ Der Trick dieser Aufgabe:</b> Der Erwartungswert ist <b><span class="m">2µ</span></b>, nicht <span class="m">µ</span>.
+      Unter <span class="m">H<sub>0</sub>: µ = 0</span> ist <span class="m">2µ = 0</span> — das passt hier zufällig, aber beim
+      Konfidenzintervall wird es gleich entscheidend.</div>
+
+    <div class="step"><b>1. Streuung von <span class="m">X̄</span>:</b> <span class="m">σ<sup>2</sup></span> = 9, also <span class="m">σ</span> = 3, <span class="m">n</span> = 25:
+      <div class="eq"><span class="nw"><span class="m">σ/√n</span> = <span class="frac"><span>3</span><span>5</span></span> = 0,6</span></div></div>
+
+    <div class="step"><b>2. Teststatistik:</b>
+      <div class="eq"><span class="nw"><span class="m">Z</span> = <span class="frac"><span class="m">0,8 − 0</span><span>0,6</span></span> = 1,33</span></div></div>
+
+    <div class="step"><b>3. Vergleich:</b> einseitig nach oben, also gegen <span class="m">z<sub>0,95</sub></span> = 1,645:
+      <div class="eq"><span class="nw">1,33 &nbsp;&lt;&nbsp; 1,645</span></div>
+      <b>⇒ <span class="m">H<sub>0</sub></span> wird nicht verworfen.</b> Die Daten liefern keinen ausreichenden Beleg für <span class="m">µ &gt; 0</span>.</div>
+
+    <div class="step"><b>4. p-Wert:</b> <span class="m">p = 1 − Φ(1,33) ≈ 1 − 0,908 = 0,09</span>. Wegen 0,09 &gt; 0,05 ebenfalls: nicht verwerfen ✓
+      <span class="cite">Zwei Wege, dieselbe Entscheidung — gute Kontrolle.</span></div>
+  </div>
+
+  <h2>Teil C · Konfidenzintervall</h2>
+
+  <div class="box idea">
+    <span class="label">Die Formel</span>
+    <div class="eq"><span class="nw"><span class="m">X̄ ± z<sub>1−α/2</sub> ·</span> <span class="frac"><span class="m">σ</span><span class="m">√n</span></span></span></div>
+    <p style="margin-bottom:0">Für 95 %: <span class="m">z<sub>0,975</sub></span> = <b>1,96</b>. &nbsp;(Nicht 1,645 — das ist der <i>einseitige</i> Wert!)</p>
+  </div>
+
+  <div class="worked">
+    <div class="step"><b>Fortsetzung der Aufgabe.</b> Erst das Intervall für <b><span class="m">2µ</span></b>, denn das ist der Erwartungswert von <span class="m">X̄</span>:
+      <div class="eq"><span class="nw">0,8 ± 1,96 · 0,6 = 0,8 ± 1,176 = [−0,376 ; &nbsp;1,976]</span></div></div>
+    <div class="step"><b>Jetzt durch 2 teilen</b> — gesucht war <span class="m">µ</span>, nicht <span class="m">2µ</span>:
+      <div class="eq"><span class="nw"><span class="m">µ</span> ∈ [−0,188 ; &nbsp;0,988]</span></div>
+      <span class="cite">Genau hier verlieren die meisten den Punkt. Immer fragen: Wonach war gefragt?</span></div>
+    <div class="step"><b>Verträglich mit Teil (a)?</b> Ja: Die <b>0 liegt im Intervall</b>, also ist
+      <span class="m">µ = 0</span> mit den Daten vereinbar — passt dazu, dass <span class="m">H<sub>0</sub></span> nicht verworfen wurde. ✓
+      <span class="cite">(Streng genommen gehört zum zweiseitigen Intervall ein zweiseitiger Test; die Schlussfolgerung ist hier trotzdem konsistent — genau das will die Aufgabe hören.)</span></div>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Die drei Fehler, die morgen Punkte kosten</span>
+    <div class="toolkit">
+      <div><b>①</b> <span class="m">z<sub>1−α</sub></span> und <span class="m">z<sub>1−α/2</sub></span> verwechseln. Test einseitig → 1,645. Intervall (95 %) → 1,96.</div>
+      <div><b>②</b> <span class="m">√n</span> vergessen. Es heißt <span class="m">σ/√n</span>, nicht <span class="m">σ</span>.</div>
+      <div><b>③</b> Rücktransformation vergessen: gefragt war <span class="m">µ</span>, gerechnet wurde mit <span class="m">2µ</span>.</div>
+    </div>
+  </div>
+
+  <h2>Jetzt du — Retrieval-Übung</h2>
+  <p>Die letzte Runde vor morgen. Aus dem Gedächtnis.</p>
+  <div id="quiz5"></div>
+
+  <div class="source">
+    <span class="label">Primärquelle</span>
+    <p style="margin:0">Skript Stochastik II: <b>Satz 60</b> (MLS für exponentielle Familien),
+    <b>Definition 52</b> (MLS), <b>Beispiel 92</b> (einseitiger Gauß-Test), <b>Beispiel 95</b> (p-Wert),
+    <b>Beispiel 96</b> (zweiseitig), <b>Beispiel 81</b> (Konfidenzintervall). Übung: <b>T5</b> und <b>T6</b>.</p>
+  </div>
+
+  <div class="ask">
+    <span class="label">Ich bin dein Tutor</span>
+    <p style="margin:0">Heute Abend noch offene Fragen? Schreib mir — oder schick ein Foto deiner Rechnung,
+    dann lese ich sie wirklich gegen. Viel Erfolg morgen! 🍀</p>
+  </div>
+
+  <div class="foot">
+    <span>← Lektion 4: Exponentialfamilien</span>
+    <span>Danach: Formelsammlung für morgen früh</span>
+  </div>
+
+  <hr>
+  <p class="eyebrow">Quellen</p>
+  <ol class="sources">
+    <li>Pre-Klausur Stochastik I+II, Stochastik-II-Aufgaben 1(c) und 2 — <code>pre_klausur.pdf</code>.</li>
+    <li>Skript Stochastik II (T. Schmidt): Def. 52, Satz 60, Bsp. 81, 92, 95, 96.</li>
+    <li>Tutorien <code>T5_S2.pdf</code>, <code>T6-S2.pdf</code> (MLE Exp/Poisson, Niveau-α-Test, p-Wert, KI).</li>
+  </ol>
+</div>
+<script>
+(function(){
+  "use strict";
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+  function scoreText(s){return s.total? (s.correct+" / "+s.total+" richtig"):"";}
+  function parseNum(raw){
+    raw=(raw||"").replace(",",".").trim(); if(raw==="")return NaN;
+    var m=raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if(m){var d=parseFloat(m[2]); return d!==0?parseFloat(m[1])/d:NaN;}
+    return parseFloat(raw);
+  }
+  function render(mountId, questions, title){
+    var mount=document.getElementById(mountId); if(!mount) return;
+    var state={correct:0,total:0};
+    questions.forEach(function(q){ if(q.type!=="recall") state.total++; });
+    var wrap=el("div","quiz"); var head=el("div","quiz-head");
+    head.appendChild(el("span",null,title||"Selbsttest"));
+    var score=el("span","quiz-score",scoreText(state)); head.appendChild(score); wrap.appendChild(head);
+    questions.forEach(function(q,i){ wrap.appendChild(buildQ(q,i,state,score)); });
+    mount.appendChild(wrap);
+  }
+  function buildQ(q,i,state,score){
+    var box=el("div","q");
+    box.appendChild(el("p","q-prompt",'<span class="qn">'+(i+1)+'.</span>'+q.q));
+    if(q.type==="mc") mc(box,q,state,score);
+    else if(q.type==="numeric") numeric(box,q,state,score);
+    else recall(box,q);
+    return box;
+  }
+  function mc(box,q,state,score){
+    var fb=el("div","fb"); var answered=false; var btns=[];
+    q.options.forEach(function(opt,j){
+      var b=el("button","opt",opt); b.type="button";
+      b.addEventListener("click",function(){
+        if(answered)return; answered=true; var ok=j===q.correct;
+        btns.forEach(function(bb,k){ bb.disabled=true;
+          if(k===q.correct) bb.classList.add("correct"); else if(k===j) bb.classList.add("wrong"); });
+        fb.className="fb show "+(ok?"ok":"no");
+        fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz. ")+(q.explain||"");
+        if(ok)state.correct++; score.textContent=scoreText(state);
+      });
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+  }
+  function numeric(box,q,state,score){
+    var row=el("div","num-row");
+    var input=el("input"); input.type="text"; input.placeholder=q.placeholder||"z. B. 0,5 oder 1/2";
+    var btn=el("button","btn","Prüfen"); btn.type="button";
+    row.appendChild(input); row.appendChild(btn); box.appendChild(row);
+    var fb=el("div","fb"); box.appendChild(fb); var answered=false;
+    function check(){
+      if(answered)return; var v=parseNum(input.value); if(isNaN(v)){input.focus();return;}
+      answered=true; input.disabled=true; btn.disabled=true;
+      var tol=q.tol!=null?q.tol:1e-9; var ok=Math.abs(v-q.answer)<=tol;
+      fb.className="fb show "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz — richtig ist <b>"+q.answer+"</b>. ")+(q.explain||"");
+      if(ok)state.correct++; score.textContent=scoreText(state);
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter")check(); });
+  }
+  function recall(box,q){
+    var btn=el("button","btn ghost","Antwort zeigen"); btn.type="button";
+    var rev=el("div","reveal",q.answer+(q.explain?'<br><span style="color:var(--muted);font-size:.86rem">'+q.explain+'</span>':''));
+    btn.addEventListener("click",function(){ rev.classList.add("show"); btn.style.display="none"; });
+    box.appendChild(btn); box.appendChild(rev);
+  }
+  var M='class="m"';
+  render("quiz5",[
+    { type:"recall",
+      q:'Nenne die 4 Schritte des klassischen Maximum-Likelihood-Rezepts.',
+      answer:'1. Likelihood <span class="m">L(θ)=∏f(x<sub>i</sub>;θ)</span> &nbsp; 2. logarithmieren &nbsp; 3. ableiten und = 0 setzen &nbsp; 4. <span class="m">l″&lt;0</span> prüfen',
+      explain:'Logarithmieren macht aus dem Produkt eine Summe — erst dadurch ist es ableitbar.' },
+    { type:"mc",
+      q:'MLS für <span class="m">n</span> i.i.d. Poisson(θ)-Beobachtungen?',
+      options:['<span class="m">θ̂ = x̄</span>','<span class="m">θ̂ = 1/x̄</span>','<span class="m">θ̂ = Σx<sub>i</sub></span>'],
+      correct:0,
+      explain:'Poisson → arithmetisches Mittel. Merke im Kontrast: Exp(λ) → <span class="m">1/x̄</span>.' },
+    { type:"numeric",
+      q:'<span class="m">n</span> = 25, <span class="m">σ<sup>2</sup></span> = 9. Wie groß ist <span class="m">σ/√n</span>?',
+      answer:0.6, tol:0.001,
+      explain:'<span class="m">σ</span> = 3, <span class="m">√n</span> = 5, also 3/5 = 0,6. Die Wurzel nicht vergessen!' },
+    { type:"numeric",
+      q:'Welchen <span class="m">z</span>-Wert nimmst du für ein <b>95%-Konfidenzintervall</b>?',
+      answer:1.96, tol:0.01,
+      explain:'<span class="m">z<sub>0,975</sub></span> = 1,96 (zweiseitig). Beim einseitigen Test zu <span class="m">α</span>=0,05 dagegen 1,645.' },
+    { type:"numeric",
+      q:'Teststatistik der Pre-Klausur-Aufgabe: <span class="m">Z</span> = 0,8 / 0,6 = ? (2 Nachkommastellen)',
+      answer:1.33, tol:0.02,
+      explain:'1,33 &lt; 1,645 ⇒ <span class="m">H<sub>0</sub></span> wird nicht verworfen.' },
+    { type:"mc",
+      q:'Das KI für <span class="m">2µ</span> ist [−0,376 ; 1,976]. Was ist das KI für <span class="m">µ</span>?',
+      options:['[−0,188 ; 0,988]','[−0,376 ; 1,976]','[−0,752 ; 3,952]'],
+      correct:0,
+      explain:'Durch 2 teilen, weil <span class="m">E[X̄] = 2µ</span> ist. Genau hier gehen Punkte verloren.' }
+  ],"Selbsttest · Schätzen & Testen");
+})();
+</script>
