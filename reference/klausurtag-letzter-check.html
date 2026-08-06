@@ -1,0 +1,309 @@
+<style>
+  :root{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+      --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+      --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+      --card:#171b21; --code:#1c222a;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#fafbfc; --ink:#14181d; --muted:#586170; --rule:#e2e6ec;
+    --accent:#215d6e; --accent-soft:#e6eff1; --on-accent:#ffffff;
+    --idea-bg:#eef3ee; --idea-br:#bcd3c0; --warn-bg:#f8efe3; --warn-br:#e3c391;
+    --card:#ffffff; --code:#eef1f4;
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151a; --ink:#e7ebf0; --muted:#9aa4b2; --rule:#262c35;
+    --accent:#6fb8c7; --accent-soft:#17262b; --on-accent:#0c1418;
+    --idea-bg:#16211a; --idea-br:#2f4a35; --warn-bg:#241d13; --warn-br:#574421;
+    --card:#171b21; --code:#1c222a;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.62; margin:0;}
+  .wrap{max-width:41rem; margin:0 auto; padding:3.4rem 1.4rem 5rem;}
+  .eyebrow{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.13em; font-size:.72rem; font-weight:600; color:var(--accent); margin:0 0 .7rem;}
+  h1{font-size:2.05rem; line-height:1.12; font-weight:600; margin:0 0 .5rem; text-wrap:balance; letter-spacing:-.01em;}
+  .subtitle{color:var(--muted); font-style:italic; font-size:1.12rem; margin:0 0 1.6rem; text-wrap:balance;}
+  h2{font-size:1.32rem; font-weight:600; margin:2.6rem 0 .5rem; letter-spacing:-.005em;}
+  p{margin:.7rem 0;} ol{padding-left:1.25rem;} ol li{margin:.4rem 0;}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;}
+  .m{font-style:italic; font-family:Georgia,"Times New Roman",serif;}
+  sup,sub{font-style:normal;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:-0.55em; text-align:center;
+    font-size:.78em; line-height:1.02; margin:0 .12em; font-style:italic;}
+  .frac>span:first-child{border-bottom:1px solid currentColor; padding:0 .28em;}
+  .frac>span:last-child{padding:0 .28em;}
+  .binom{display:inline-flex; flex-direction:column; vertical-align:-0.42em; text-align:center;
+    font-size:.8em; line-height:1.06; font-style:italic; margin:0 .04em;}
+  .paren{font-size:1.75em; font-style:normal; line-height:0; vertical-align:-.34em; color:inherit;}
+  .eq{margin:1.05rem 0; font-size:1.06rem; display:flex; justify-content:safe center; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:.15rem 0 .45rem;}
+  .sig{font-style:normal; font-size:1.3em; vertical-align:-.2em; margin-right:.04em;}
+  .label{font-family:ui-sans-serif,system-ui,sans-serif; text-transform:uppercase;
+    letter-spacing:.09em; font-size:.7rem; font-weight:700; display:block; margin-bottom:.4rem;}
+  .box{border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.3rem 0; background:var(--card);}
+  .box>:first-child{margin-top:0} .box>:last-child{margin-bottom:0}
+  .idea{background:var(--idea-bg); border-color:var(--idea-br);} .idea .label{color:#2f6b3d;}
+  .warn{background:var(--warn-bg); border-color:var(--warn-br);} .warn .label{color:#8a5a17;}
+  .why .label{color:var(--accent);}
+  :root[data-theme="dark"] .idea .label{color:#8fce9c} :root[data-theme="dark"] .warn .label{color:#e0bd82}
+  @media (prefers-color-scheme:dark){ .idea .label{color:#8fce9c} .warn .label{color:#e0bd82} }
+  .worked{border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1.15rem; margin:1.4rem 0;}
+  .worked .step{margin:.7rem 0;} .worked .step b{color:var(--accent);}
+  .cite{color:var(--muted); font-size:.88em;}
+  code{background:var(--code); font-family:ui-monospace,Menlo,monospace; font-size:.86em; padding:.06rem .32rem; border-radius:4px;}
+  .source{background:var(--accent-soft); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.15rem; margin:1.5rem 0;}
+  .source .label{color:var(--accent);}
+  .ask{border:1px dashed var(--accent); border-radius:8px; padding:1rem 1.15rem; margin:1.8rem 0;} .ask .label{color:var(--accent);}
+  hr{border:0; border-top:1px solid var(--rule); margin:2.4rem 0;}
+  .foot{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:.85rem; color:var(--muted);
+    margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule);}
+  .sources{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--muted); padding-left:1.1rem;}
+  .sources li{margin:.3rem 0;}
+  .toolkit{display:grid; gap:.5rem; margin:.6rem 0 0;}
+  .toolkit div{background:var(--paper); border:1px solid var(--rule); border-radius:6px; padding:.5rem .75rem;}
+  .quiz{border:1px solid var(--rule); border-radius:10px; overflow:hidden; margin:1.6rem 0;
+    background:var(--card); font-family:ui-sans-serif,system-ui,sans-serif;}
+  .quiz-head{display:flex; justify-content:space-between; align-items:center; padding:.7rem 1.05rem;
+    border-bottom:1px solid var(--rule); text-transform:uppercase; letter-spacing:.09em; font-size:.72rem; font-weight:700; color:var(--muted);}
+  .quiz-score{letter-spacing:0; font-variant-numeric:tabular-nums; color:var(--accent);}
+  .q{padding:1.05rem;} .q+.q{border-top:1px solid var(--rule);}
+  .q-prompt{margin:0 0 .75rem; font-weight:600;} .q-prompt .qn{color:var(--muted); margin-right:.4rem; font-weight:700;}
+  .opt{display:block; width:100%; text-align:left; margin:.34rem 0; padding:.55rem .8rem; border:1px solid var(--rule);
+    border-radius:6px; background:var(--paper); color:var(--ink); font:inherit; cursor:pointer; transition:border-color .12s, background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);} .opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .opt:disabled{cursor:default;}
+  .opt.correct{background:#dcefdf; border-color:#5fa06c; color:#173f21;}
+  .opt.wrong{background:#f4dede; border-color:#c06a6a; color:#521818;}
+  :root[data-theme="dark"] .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;}
+  :root[data-theme="dark"] .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;}
+  @media (prefers-color-scheme:dark){ .opt.correct{background:#1e3a25; color:#c2e6c9; border-color:#3f7a4c;} .opt.wrong{background:#3a1e1e; color:#e6c2c2; border-color:#7a4040;} }
+  .num-row{display:flex; gap:.5rem; flex-wrap:wrap; align-items:center;}
+  .num-row input{font:inherit; padding:.5rem .65rem; border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--ink); width:9rem;}
+  .num-row input:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .btn{font:inherit; font-weight:600; padding:.5rem .95rem; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:var(--on-accent); cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--accent);} .btn:hover{filter:brightness(1.05);} .btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .fb{margin-top:.75rem; padding:.6rem .8rem; border-radius:6px; font-size:.9rem; display:none;} .fb.show{display:block;}
+  .fb.ok{background:var(--idea-bg); border:1px solid var(--idea-br);} .fb.no{background:var(--warn-bg); border:1px solid var(--warn-br);}
+  .reveal{margin-top:.6rem; padding:.6rem .8rem; background:var(--paper); border:1px dashed var(--rule); border-radius:6px; display:none;} .reveal.show{display:block;}
+
+  .nw,.frac,.binom{white-space:nowrap;}
+  .eq::-webkit-scrollbar{height:4px}
+  .eq::-webkit-scrollbar-thumb{background:var(--rule); border-radius:2px}
+  @media (max-width:560px){
+    body{font-size:.95rem; line-height:1.56;}
+    .wrap{padding:2.1rem 1rem 4rem;}
+    h1{font-size:1.55rem;} h2{font-size:1.13rem; margin-top:2rem;}
+    .subtitle{font-size:1rem;}
+    .eq{font-size:.97rem;}
+    .worked{padding-left:.85rem;}
+    .box{padding:.85rem .95rem;}
+    .toolkit div{padding:.45rem .6rem;}
+  }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important;} }
+</style>
+<div class="wrap">
+  <p class="eyebrow">Klausurtag · Letzter Check</p>
+  <h1>Startklar?</h1>
+  <p class="subtitle">Neue Fragen, gleicher Stoff. 10 Minuten, dann Stift einpacken.</p>
+
+  <div class="box why">
+    <span class="label">Wie du das jetzt liest</span>
+    <p style="margin:0">Das ist <b>kein Test</b> mehr, sondern Aufwärmen. Was sitzt, aktivierst du.
+    Was hakt, schaust du <i>einmal kurz</i> in der Formelsammlung nach — und dann lässt du es gut sein.
+    Heute wird nichts Neues mehr gelernt.</p>
+  </div>
+
+  <h2>Block A · Aufwärmen mit Zahlen</h2>
+  <p class="cite">Ein Schritt pro Aufgabe. Genau die Handgriffe, die du gleich brauchst.</p>
+  <div id="m1"></div>
+
+  <h2>Block B · Aufgabentyp erkennen</h2>
+  <p class="cite">Die wichtigste Fähigkeit: sehen, <i>welches</i> Werkzeug drankommt.</p>
+  <div id="m2"></div>
+
+  <h2>Block C · Formeln aus dem Kopf</h2>
+  <div id="m3"></div>
+
+  <h2>Block D · Die Fallen</h2>
+  <div id="m4"></div>
+
+  <div class="box idea">
+    <span class="label">Und jetzt: rein damit</span>
+    <p><b>Ablauf in der Klausur:</b></p>
+    <ol style="margin:.3rem 0 0">
+      <li><b>Erst alles durchlesen</b> — dann weißt du, was dich erwartet.</li>
+      <li><b>Mit der leichtesten Aufgabe anfangen.</b> Punkte sind Punkte.</li>
+      <li><b>Ansatz immer hinschreiben</b>, auch wenn die Rechnung hakt — Teilpunkte.</li>
+      <li><b>Am Ende:</b> Wonach war gefragt? Randfälle plausibel?</li>
+      <li>Kommt dir etwas <b>widersprüchlich</b> vor: benennen, Lesart festlegen, weiterrechnen.</li>
+    </ol>
+  </div>
+
+  <div class="box warn">
+    <span class="label">Vor dem Losgehen</span>
+    <p style="margin:0">Ausweis · Stifte (zwei!) · Wasser · etwas gegessen · früh genug da sein.
+    Das klingt banal, kostet aber jedes Semester Leute Nerven.</p>
+  </div>
+
+  <div class="foot">
+    <span>Formelsammlung für den letzten Blick</span>
+    <span>Viel Erfolg! 🍀</span>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+  function scoreText(s){return s.total? (s.correct+" / "+s.total+" richtig"):"";}
+  function parseNum(raw){
+    raw=(raw||"").replace(",",".").trim(); if(raw==="")return NaN;
+    var m=raw.match(/^(-?\d*\.?\d+)\s*\/\s*(-?\d*\.?\d+)$/);
+    if(m){var d=parseFloat(m[2]); return d!==0?parseFloat(m[1])/d:NaN;}
+    return parseFloat(raw);
+  }
+  function render(mountId, questions, title){
+    var mount=document.getElementById(mountId); if(!mount) return;
+    var state={correct:0,total:0};
+    questions.forEach(function(q){ if(q.type!=="recall") state.total++; });
+    var wrap=el("div","quiz"); var head=el("div","quiz-head");
+    head.appendChild(el("span",null,title||"Selbsttest"));
+    var score=el("span","quiz-score",scoreText(state)); head.appendChild(score); wrap.appendChild(head);
+    questions.forEach(function(q,i){ wrap.appendChild(buildQ(q,i,state,score)); });
+    mount.appendChild(wrap);
+  }
+  function buildQ(q,i,state,score){
+    var box=el("div","q");
+    box.appendChild(el("p","q-prompt",'<span class="qn">'+(i+1)+'.</span>'+q.q));
+    if(q.type==="mc") mc(box,q,state,score);
+    else if(q.type==="numeric") numeric(box,q,state,score);
+    else recall(box,q);
+    return box;
+  }
+  function mc(box,q,state,score){
+    var fb=el("div","fb"); var answered=false; var btns=[];
+    q.options.forEach(function(opt,j){
+      var b=el("button","opt",opt); b.type="button";
+      b.addEventListener("click",function(){
+        if(answered)return; answered=true; var ok=j===q.correct;
+        btns.forEach(function(bb,k){ bb.disabled=true;
+          if(k===q.correct) bb.classList.add("correct"); else if(k===j) bb.classList.add("wrong"); });
+        fb.className="fb show "+(ok?"ok":"no");
+        fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz. ")+(q.explain||"");
+        if(ok)state.correct++; score.textContent=scoreText(state);
+      });
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+  }
+  function numeric(box,q,state,score){
+    var row=el("div","num-row");
+    var input=el("input"); input.type="text"; input.placeholder=q.placeholder||"z. B. 0,5 oder 1/2";
+    var btn=el("button","btn","Prüfen"); btn.type="button";
+    row.appendChild(input); row.appendChild(btn); box.appendChild(row);
+    var fb=el("div","fb"); box.appendChild(fb); var answered=false;
+    function check(){
+      if(answered)return; var v=parseNum(input.value); if(isNaN(v)){input.focus();return;}
+      answered=true; input.disabled=true; btn.disabled=true;
+      var tol=q.tol!=null?q.tol:1e-9; var ok=Math.abs(v-q.answer)<=tol;
+      fb.className="fb show "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✗ Nicht ganz — richtig ist <b>"+q.answer+"</b>. ")+(q.explain||"");
+      if(ok)state.correct++; score.textContent=scoreText(state);
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter")check(); });
+  }
+  function recall(box,q){
+    var btn=el("button","btn ghost","Antwort zeigen"); btn.type="button";
+    var rev=el("div","reveal",q.answer+(q.explain?'<br><span style="color:var(--muted);font-size:.86rem">'+q.explain+'</span>':''));
+    btn.addEventListener("click",function(){ rev.classList.add("show"); btn.style.display="none"; });
+    box.appendChild(btn); box.appendChild(rev);
+  }
+  var M='class="m"';
+
+  render("m1",[
+    { type:"numeric", q:'<span '+M+'>σ<sup>2</sup></span> = 16, <span '+M+'>n</span> = 25. Wie groß ist <span '+M+'>σ/√n</span>?',
+      answer:0.8, tol:0.001, explain:'<span '+M+'>σ</span> = 4, <span '+M+'>√n</span> = 5 → 4/5 = 0,8. Erst Wurzel aus der Varianz!' },
+    { type:"numeric", q:'<span '+M+'>X</span> ~ Exp(4). Wie groß ist <span '+M+'>E[X]</span>?',
+      answer:0.25, tol:0.001, explain:'<span '+M+'>1/λ</span> = 1/4 = 0,25. Große Rate → kleine Erwartung.' },
+    { type:"numeric", q:'<span '+M+'>S<sub>n</sub></span> ~ Binomial(<span '+M+'>n</span>, 5/<span '+M+'>n</span>). Welches <span '+M+'>λ</span> im Grenzwert?',
+      answer:5, tol:0.001, explain:'<span '+M+'>λ = n·p<sub>n</sub></span> = 5 → Poisson(5).' },
+    { type:"numeric", q:'12 i.i.d. Poisson-Werte, <span '+M+'>Σx<sub>i</sub></span> = 48. Wie groß ist <span '+M+'>θ̂</span>?',
+      answer:4, tol:0.001, explain:'<span '+M+'>θ̂ = x̄</span> = 48/12 = 4.' },
+    { type:"numeric", q:'<span '+M+'>x̄</span> = 1,5 und <span '+M+'>σ/√n</span> = 0,5. Wie groß ist <span '+M+'>Z</span> bei <span '+M+'>µ<sub>0</sub></span> = 0?',
+      answer:3, tol:0.01, explain:'1,5/0,5 = 3. Deutlich über 1,645 → verwerfen.' },
+    { type:"numeric", q:'Exp-Stichprobe mit <span '+M+'>x̄</span> = 2. Wie groß ist <span '+M+'>λ̂</span>?',
+      answer:0.5, tol:0.001, explain:'<span '+M+'>λ̂ = 1/x̄</span> = 0,5. Kehrwert — anders als bei Poisson!' }
+  ],"Block A · Zahlen");
+
+  render("m2",[
+    { type:"mc", q:'Ein Münzwurf entscheidet, <i>welche</i> Verteilung gilt. Welches Werkzeug?',
+      options:['Turmregel / totale Wahrscheinlichkeit','Poisson-Grenzwertsatz','Maximum-Likelihood'],
+      correct:0, explain:'Fallvariable erkennen, bedingt rechnen, mit Gewichten mitteln.' },
+    { type:"mc", q:'Dichte ist stückweise definiert, <span '+M+'>E[X]</span> gesucht. Vorgehen?',
+      options:['pro Stück integrieren, dann addieren','nur das größte Stück integrieren','Stücke mitteln'],
+      correct:0, explain:'Oder schneller: als Mischung lesen und die Erwartungswerte gewichten.' },
+    { type:"mc", q:'„Zeigen Sie, dass <span '+M+'>X</span> und <span '+M+'>Y</span> dieselbe Verteilung haben." Was tun?',
+      options:['Dichten bzw. CDFs vergleichen','Erwartungswerte vergleichen','Varianzen vergleichen'],
+      correct:0, explain:'Stück für Stück vergleichen. Gleicher Mittelwert genügt nie.' },
+    { type:"mc", q:'In der Aufgabe steht „mithilfe von Satz 60". Was löst du?',
+      options:['<span '+M+'>E<sub>θ</sub>[T(X)] = T(x)</span>','<span '+M+'>l′(θ) = 0</span>','<span '+M+'>Z = (x̄−µ<sub>0</sub>)/(σ/√n)</span>'],
+      correct:0, explain:'Ohne diesen Hinweis: klassisch über die log-Likelihood ableiten.' },
+    { type:"mc", q:'<span '+M+'>H<sub>1</sub>: µ ≠ µ<sub>0</sub></span> — wann wird verworfen?',
+      options:['<span '+M+'>|Z| &gt; z<sub>1−α/2</sub></span>','<span '+M+'>Z &gt; z<sub>1−α</sub></span>','<span '+M+'>Z &lt; z<sub>1−α/2</sub></span>'],
+      correct:0, explain:'Zweiseitig → Betrag und <span '+M+'>α</span>/2. Bei <span '+M+'>α</span>=0,05 also 1,96.' },
+    { type:"mc", q:'Der Träger der Dichte hängt von <span '+M+'>θ</span> ab. Was folgt?',
+      options:['keine Exponentialfamilie','natürlicher Parameter fehlt','<span '+M+'>T(x)</span> ist nicht suffizient'],
+      correct:0, explain:'Definition 34 verlangt eine Menge <span '+M+'>A</span> unabhängig von <span '+M+'>θ</span>.' }
+  ],"Block B · Erkennen");
+
+  render("m3",[
+    { type:"recall", q:'Turmregel?',
+      answer:'<span '+M+'>E[X] = E[ E[X | B] ]</span> &nbsp;=&nbsp; <span '+M+'>Σ<sub>b</sub> E[X | B=b]·P(B=b)</span>' },
+    { type:"recall", q:'<span '+M+'>E[X]</span> bei stetiger Zufallsvariablen?',
+      answer:'<span '+M+'>E[X] = ∫ x·f(x) dx</span>' },
+    { type:"recall", q:'Standardform der Exponentialfamilie?',
+      answer:'<span '+M+'>p(x,θ) = exp( c(θ)·T(x) + d(θ) + S(x) )</span>',
+      explain:'Plus: Träger unabhängig von θ.' },
+    { type:"recall", q:'Die vier MLE-Schritte?',
+      answer:'<span '+M+'>L = ∏f(x<sub>i</sub>;θ)</span> → logarithmieren → <span '+M+'>l′ = 0</span> → <span '+M+'>l″ &lt; 0</span> prüfen' },
+    { type:"recall", q:'Teststatistik und Konfidenzintervall?',
+      answer:'<span '+M+'>Z = (x̄ − µ<sub>0</sub>)/(σ/√n)</span> &nbsp;·&nbsp; KI: <span '+M+'>x̄ ± z<sub>1−α/2</sub>·σ/√n</span>' },
+    { type:"recall", q:'Wann konvergiert Binomial gegen Poisson — und was ist <span '+M+'>λ</span>?',
+      answer:'Wenn <span '+M+'>n·p<sub>n</sub> → λ</span>; dann Poisson(<span '+M+'>λ</span>) mit Zähldichte <span '+M+'>e<sup>−λ</sup>λ<sup>k</sup>/k!</span>' }
+  ],"Block C · Formeln");
+
+  render("m4",[
+    { type:"mc", q:'In der Angabe steht <span '+M+'>σ<sup>2</sup></span> = 25. Was setzt du in <span '+M+'>σ/√n</span> ein?',
+      options:['5','25','625'],
+      correct:0, explain:'Die Standardabweichung, nicht die Varianz. Wurzel ziehen!' },
+    { type:"mc", q:'<span '+M+'>E[X̄] = 3µ</span>, das Intervall für <span '+M+'>3µ</span> steht. Was fehlt?',
+      options:['durch 3 teilen','mal 3 nehmen','nichts mehr'],
+      correct:0, explain:'Gefragt war <span '+M+'>µ</span>. Der teuerste Flüchtigkeitsfehler überhaupt.' },
+    { type:"mc", q:'<span '+M+'>d(θ)</span> bei Poisson — welche Form?',
+      options:['<span '+M+'>−θ</span>','<span '+M+'>e<sup>−θ</sup></span>','<span '+M+'>−ln θ</span>'],
+      correct:0, explain:'Innerhalb von exp(…) steht der Logarithmus.' },
+    { type:"mc", q:'Der Test verwirft <span '+M+'>H<sub>0</sub>: µ = 0</span>. Wo liegt die 0 beim KI?',
+      options:['außerhalb des Intervalls','innerhalb des Intervalls','genau am Rand'],
+      correct:0, explain:'Verwerfen und „0 außerhalb" gehören zusammen — deine Gratis-Kontrolle.' },
+    { type:"mc", q:'Einseitiger Test zu <span '+M+'>α</span> = 0,05 <b>und</b> 95%-KI — welche Werte?',
+      options:['1,645 und 1,96','beide 1,645','beide 1,96'],
+      correct:0, explain:'Test einseitig → 1,645. Intervall zweiseitig → 1,96.' },
+    { type:"mc", q:'Mischung mit Gewichten ⅓ und ⅔ — woran erkennst du, welches wohin gehört?',
+      options:['Gewicht = Masse seines Stücks','Gewicht = Höhe der Dichte','Gewicht = Länge des Intervalls'],
+      correct:0, explain:'Masse = Fläche unter dem Stück. Vertauschte Gewichte sind der Klassiker.' }
+  ],"Block D · Fallen");
+})();
+</script>
