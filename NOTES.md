@@ -48,9 +48,18 @@ bisherigen Lektionen *fehlen*:
 - Exponentialfamilie in der Schreibweise `f = S(x)·exp(...)` (T3 zieht S als Vorfaktor).
 
 **Stochastik I:**
+- **BESTÄTIGT (Klausuraufgabe 1, nicht gelöst): Borel-Cantelli**, Skript Stochastik I
+  **Lemma 3.7** samt Beweis. Kam in keinem Übungsblatt vor.
+- **BESTÄTIGT (Klausuraufgabe 2): Turmregel _beweisen_**, nicht nur anwenden.
 - Faltung / Dichte von X+Y (Übungsblatt 3), Summe von Exp → Gamma (Blatt 5).
 - Jensen-Ungleichung und Konvexität (Satz 10/11), Tschebyscheff.
 - Gesetz der großen Zahl (Satz 12) und zentraler Grenzwertsatz (Satz 15).
+
+> **Methodischer Fehler, den man nicht wiederholen sollte:** Die Lückenanalyse stützte sich
+> auf Tutorien, Übungsblätter und das Skript Stochastik II. Das **Skript Stochastik I wurde
+> nie systematisch nach Themen durchgesehen**. Genau daher kam Borel-Cantelli als Überraschung.
+> Für eine Nachklausur: **beide Skripte einmal Kapitel für Kapitel durchgehen** und die Sätze
+> auflisten, die einen Beweis wert sind.
 
 **BESTÄTIGT — kam in der Klausur dran (Aufgabe 7) und wurde nicht gelöst:**
 **Regression / kleinste Quadrate** (Def. 70, Bsp. 68/69/74/75, Satz 107). Im Skript
