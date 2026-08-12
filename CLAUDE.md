@@ -87,11 +87,19 @@ keiner Lektion.
 
 ## Stand bei Übergabe
 
-Klausur am **06.08.2026** geschrieben. **Ergebnis zum Zeitpunkt dieser Notiz unbekannt.**
+Klausur am **06.08.2026** geschrieben. **Ergebnis unbekannt**, aber die Aufgaben sind
+teilweise rekonstruiert: siehe **`exercises/klausur-2026-08-06.md`**.
+
+Zwei Befunde daraus, die die Vorbereitungsannahmen korrigieren:
+- Die Klausur hatte **8 Aufgaben in 150 Minuten** (4× Stoch. I, 4× Stoch. II) — die
+  Pre-Klausur mit ihren 6 Aufgaben unterschätzt den Umfang.
+- Es gab eine **reine Theoriefrage** („Statistik, Suffizienz, MLS möglichst genau erklären"),
+  also einen Aufgabentyp ohne Rechnung. Keine der fünf Lektionen hat darauf vorbereitet.
+  Für eine Nachklausur: Definitionen aus dem Skript auswendig formulieren üben.
 
 Vor der Klausur nachweislich gekonnt (selbst nachgerechnet, siehe LR 0006 und
 `exercises/uebungsaufgaben.md`): alle sechs Aufgabentypen mit frischen Zahlen.
 
-**Erster Schritt in einer Folgesitzung:** fragen, wie die Klausur lief und was
-tatsächlich drankam. Falls Sebastian die Aufgaben notiert hat, gehören sie nach
-`exercises/` — sie sind die beste Grundlage für alles Weitere.
+**Erster Schritt in einer Folgesitzung:** nach dem Ergebnis fragen — und nach den noch
+fehlenden Aufgaben (Stochastik I 1–4 sowie Stochastik II 7–8), die in
+`exercises/klausur-2026-08-06.md` als offen markiert sind.

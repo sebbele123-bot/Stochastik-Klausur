@@ -27,6 +27,12 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 
 ## Falls Nachklausur: hier weitermachen
 
+> **Zuerst `exercises/klausur-2026-08-06.md` lesen** — die tatsächlich gestellten Aufgaben.
+> Zwei Korrekturen an den bisherigen Annahmen: die Klausur hatte **8 Aufgaben in 150 Minuten**
+> (nicht 6), und es gab eine **reine Theoriefrage** (Begriffe definieren), die in der
+> Pre-Klausur nicht vorkam und die keine Lektion abgedeckt hat.
+
+
 Der Kern (6 Aufgabentypen der Pre-Klausur) ist abgedeckt und von Sebastian nachweislich
 gekonnt — siehe Learning Record 0006. **Nicht neu aufbauen.** Stattdessen die Lücken
 schließen, die ich aus den Tutorien/Übungsblättern extrahiert habe und die in den
