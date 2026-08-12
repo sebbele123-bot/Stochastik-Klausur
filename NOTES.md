@@ -52,9 +52,12 @@ bisherigen Lektionen *fehlen*:
 - Jensen-Ungleichung und Konvexität (Satz 10/11), Tschebyscheff.
 - Gesetz der großen Zahl (Satz 12) und zentraler Grenzwertsatz (Satz 15).
 
-**Größtes ungedecktes Risiko:** **Regression / kleinste Quadrate** (Def. 70, Bsp. 68/69/74/75,
-Satz 107) ist im Skript ausführlich, kam aber weder in der Pre-Klausur noch in den Lektionen
-vor. Ebenso χ²-/t-Verteilung (Def. 98/101) und Konfidenzintervalle für σ² (Bsp. 103/104).
+**BESTÄTIGT — kam in der Klausur dran (Aufgabe 7) und wurde nicht gelöst:**
+**Regression / kleinste Quadrate** (Def. 70, Bsp. 68/69/74/75, Satz 107). Im Skript
+ausführlich, in der Pre-Klausur nicht enthalten, in keiner Lektion behandelt. Für eine
+Nachklausur **Priorität 1**. Übungsmaterial mit Lösungen: `T5_S2.pdf` A3 (einfache Regression
+mit Zahlen) und A4 (quadratisches Modell, Normalengleichungen, Matrixform) plus
+`T5_S2_Loesung_A3_A4_final.pdf`. Ebenso χ²-/t-Verteilung (Def. 98/101) und Konfidenzintervalle für σ² (Bsp. 103/104).
 
 **Entwarnung:** „Machine Learning" und „Nichtparametrische Statistik" werden nur in der
 Skript-Einleitung angekündigt, aber nicht ausgeführt — kein Prüfungsstoff.
