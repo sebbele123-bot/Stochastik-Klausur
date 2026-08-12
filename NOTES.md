@@ -27,7 +27,12 @@ Working notes on how Sebastian wants to be taught, and practical reminders.
 
 ## Falls Nachklausur: hier weitermachen
 
-> **Zuerst `exercises/klausur-2026-08-06.md` lesen** — die tatsächlich gestellten Aufgaben.
+> **⚠️ ZUERST `learning-records/0008-rahmenbedingungen-nachklausur.md` lesen.** Die Nachklausur
+> wäre erst **im Februar** (nur ein Termin pro Semester), und **Stochastik I stellt ein anderer
+> Professor** — der WS-Dozent. Damit gilt: kein Crunch mehr, dafür Breite; und die Planung für
+> Teil I muss auf dessen Material umgestellt werden, sobald es verfügbar ist.
+>
+> **Dann `exercises/klausur-2026-08-06.md` lesen** — die tatsächlich gestellten Aufgaben.
 > Zwei Korrekturen an den bisherigen Annahmen: die Klausur hatte **8 Aufgaben in 150 Minuten**
 > (nicht 6), und es gab eine **reine Theoriefrage** (Begriffe definieren), die in der
 > Pre-Klausur nicht vorkam und die keine Lektion abgedeckt hat.

@@ -100,6 +100,12 @@ Zwei Befunde daraus, die die Vorbereitungsannahmen korrigieren:
 Vor der Klausur nachweislich gekonnt (selbst nachgerechnet, siehe LR 0006 und
 `exercises/uebungsaufgaben.md`): alle sechs Aufgabentypen mit frischen Zahlen.
 
-**Erster Schritt in einer Folgesitzung:** nach dem Ergebnis fragen — und nach den noch
-fehlenden Aufgaben (Stochastik I 1–4 sowie Stochastik II 7–8), die in
-`exercises/klausur-2026-08-06.md` als offen markiert sind.
+**Erster Schritt in einer Folgesitzung:** nach dem Ergebnis fragen — und nach Klausuraufgabe 4
+(Stochastik I), die als einzige noch nicht erfasst ist.
+
+**Falls es um eine Nachklausur geht, unbedingt zuerst
+`learning-records/0008-rahmenbedingungen-nachklausur.md` lesen.** Kurzfassung: Termin erst im
+**Februar** (~6 Monate, also kein Crunch-Modus mehr), **Stochastik I wird von einem anderen
+Professor gestellt** (dem WS-Dozenten) — dessen Material ist für Teil I wichtiger als alles in
+diesem Repo. Teil II bleibt bei T. Schmidt, ist im Stil aber ebenfalls nur begrenzt
+vorhersehbar.
